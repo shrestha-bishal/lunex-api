@@ -81,7 +81,13 @@ class ApiClient
     }
 
     #getAbsoluteUrl(routeParam = null) {
-        return `${this.url}/${routeParam}`
+        let url = this.url.replace(/\/+$/, '')
+
+        if(routeParam != null) {
+            url += `/${routeParam}`
+        }
+
+        return url
     }
 }
 
