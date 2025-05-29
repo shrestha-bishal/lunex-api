@@ -10,15 +10,18 @@ class ApiClient
 
     /***
      * [POST]
+     * @param {string|null} routeParam - The route api parameter
      * @param {Object} data
      * @returns {Promise<Object>} 
      * @throws {Error}
      */
-    async postAsync(data)
+    async postAsync(routeParam = null, data)
     {
         try 
         {
-            const response = await fetch(this.url, {
+            let apiUrl = this.#getAbsoluteUrl(routeParam)
+
+            const response = await fetch(apiUrl , {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
@@ -38,14 +41,16 @@ class ApiClient
         }
     }
 
-
     /***
      * [POST]
+     * @param {string|null} routeParam - The route api parameter
      * @param {Object} data
      * @returns {Promise<Object>} 
      */
-    async executePostAsync(data) {
-        return await fetch(this.url, {
+    async executePostAsync(routeParam = null, data) {
+        let apiUrl = this.#getAbsoluteUrl(routeParam)
+
+        return await fetch(apiUrl, {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
@@ -56,14 +61,16 @@ class ApiClient
 
     /**
      * [GET]
+     * @param {string|null} routeParam - The route api parameter
      * @returns {Promise<Object>} 
      * @throws {Error}
      */
-    async getAsync() 
+    async getAsync(routeParam = null) 
     {
         try 
         {
-            var response = await fetch(this.url)
+            let apiUrl = this.#getAbsoluteUrl(routeParam)
+            var response = await fetch(apiUrl)
             
             if(!response.ok)
                 throw new Exception(`An error occurred ${response.statusText}`)
@@ -71,6 +78,10 @@ class ApiClient
         catch(error) {
             throw error
         }
+    }
+
+    #getAbsoluteUrl(routeParam = null) {
+        return `${this.url}/${routeParam}`
     }
 }
 
