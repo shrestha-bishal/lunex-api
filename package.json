@@ -1,0 +1,34 @@
+{
+  "name": "api-client",
+  "version": "1.0.0",
+  "description": "Lightweight and flexible JavaScript API client supporting GET/POST requests, action payloads, and utilities for form data serialization and DOM rendering.",
+  "main": "index.js",
+  "directories": {
+    "example": "examples"
+  },
+  "scripts": {
+    "test": "echo \"No test specified\""
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/shrestha-bishal/api-client-js.git"
+  },
+  "keywords": [
+    "api",
+    "client",
+    "javascript",
+    "http",
+    "fetch",
+    "rest",
+    "rest-api",
+    "payload",
+    "get",
+    "post"
+  ],
+  "author": "Bishal Shrestha <bishal.shrestha@outlook.com.au>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/shrestha-bishal/api-client-js/issues"
+  },
+  "homepage": "https://github.com/shrestha-bishal/api-client-js#readme"
+}
