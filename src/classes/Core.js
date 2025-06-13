@@ -1,7 +1,12 @@
+/**
+ * Core utility class providing helper methods for DOM manipulation and form handling.
+ */
 class Core {
     /**
-     * @param {} outputContainer 
-     * @param {} content 
+     * Clears the content of the given container and inserts new HTML content.
+     * 
+     * @param {HTMLElement} outputContainer - The DOM element to render content into.
+     * @param {string} content - The HTML string content to be rendered.
      */
     static renderContent(outputContainer, content) {
         outputContainer.innerHTML = ''
@@ -10,8 +15,10 @@ class Core {
     }
 
     /**
-     * Get form data as json formatted object
-     * @param {json} form 
+     * Extracts form data and returns it as a plain JavaScript object.
+     * 
+     * @param {HTMLFormElement} form - The form element to extract data from.
+     * @returns {Object} A key-value map representing form fields and their values.
      */
     static getFormData(form) {
         var data = new FormData(form)
