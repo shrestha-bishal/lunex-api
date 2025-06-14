@@ -30,5 +30,8 @@
   "bugs": {
     "url": "https://github.com/shrestha-bishal/api-client-js/issues"
   },
-  "homepage": "https://github.com/shrestha-bishal/api-client-js#readme"
+  "homepage": "https://github.com/shrestha-bishal/api-client-js#readme",
+  "devDependencies": {
+    "jest": "^30.0.0"
+  }
 }
