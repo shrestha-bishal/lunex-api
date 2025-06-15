@@ -56,7 +56,7 @@ class ApiClient
      */
     async getAsync(routeParam = null, queryParams = {}, headers = {}, controller = null) {
         const urlWithQuery = this.#appendQueryParams(routeParam, queryParams);
-        return this.#request("GET", urlWithQuery, null, headers, 0, controller);
+        return await this.#request("GET", urlWithQuery, null, headers, 0, controller);
     }  
 
     /**
@@ -68,7 +68,7 @@ class ApiClient
      * @returns {Promise<Object|string|null>}
      */
     async postAsync(routeParam = null, data, headers = {}, controller = null) {
-        return this.#request("POST", routeParam, data, headers, 0, controller);
+        return await this.#request("POST", routeParam, data, headers, 0, controller);
     }
 
     /**
@@ -80,7 +80,7 @@ class ApiClient
      * @returns {Promise<Object|string|null>}
      */
     async putAsync(routeParam = null, data, headers = {}, controller = null) {
-        return this.#request("PUT", routeParam, data, headers, 0, controller);
+        return await this.#request("PUT", routeParam, data, headers, 0, controller);
     }
 
     /**
@@ -92,7 +92,7 @@ class ApiClient
      * @returns {Promise<Object|string|null>}
      */
     async patchAsync(routeParam = null, data, headers = {}, controller = null) {
-        return this.#request("PATCH", routeParam, data, headers, 0, controller);
+        return await this.#request("PATCH", routeParam, data, headers, 0, controller);
     }
 
     /**
@@ -103,7 +103,7 @@ class ApiClient
      * @returns {Promise<Object|string|null>}
      */
     async deleteAsync(routeParam = null, headers = {}, controller = null) {
-        return this.#request("DELETE", routeParam, null, headers, 0, controller);
+        return await this.#request("DELETE", routeParam, null, headers, 0, controller);
     }
     
     /**
@@ -151,6 +151,9 @@ class ApiClient
 
         try {
             const response = await fetch(url, options);
+
+            // Call onRequestEnd hook after response received
+            this.onRequestEnd?.(response);
 
             if (!response.ok) {
                 // Retry on transient errors (e.g., 502, 503, 504) if maxRetries > 0

@@ -34,6 +34,7 @@
   "homepage": "https://github.com/shrestha-bishal/api-client-js#readme",
   "devDependencies": {
     "@jest/environment": "^30.0.0",
-    "jest": "^30.0.0"
+    "jest": "^30.0.0",
+    "jest-fetch-mock": "^3.0.3"
   }
 }
