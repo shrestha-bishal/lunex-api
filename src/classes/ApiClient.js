@@ -6,13 +6,16 @@
  */
 class ApiClient 
 {
-    /**
-     * Creates an instance of ApiClient.
-     * @param {string} baseUrl - The base URL of the API (e.g., "https://api.example.com").
-     * @param {Object} [defaultHeaders={}] - Optional default headers (e.g., Authorization).
-     * @param {Object} [options={}] - Optional config options.
-     * @param {number} [options.timeout=10000] - Request timeout in milliseconds (default 10s).
-     * @param {number} [options.maxRetries=0] - Number of retries on transient errors (default none).
+     /**
+     * @param {string} baseUrl
+     * @param {Object} [defaultHeaders={}]
+     * @param {Object} [options={}]
+     * @param {number} [options.timeout=10000]
+     * @param {number} [options.maxRetries=0]
+     * @param {function} [options.shouldRetry] - Custom retry condition function (response) => boolean
+     * @param {function} [options.onRequestStart] - Optional logging hook (method, url, options)
+     * @param {function} [options.onRequestEnd] - Optional logging hook (response)
+     * @param {function} [options.onRequestError] - Optional logging hook (error)
      */
     constructor(baseUrl, defaultHeaders = {}, options = {}) {
         if (!baseUrl || typeof baseUrl !== "string") {
@@ -25,8 +28,14 @@ class ApiClient
             ...defaultHeaders,
         };
 
-        this.timeout = typeof options.timeout === "number" ? options.timeout : 10000;
-        this.maxRetries = typeof options.maxRetries === "number" ? options.maxRetries : 0;
+        this.timeout = options.timeout ?? 10000;
+        this.maxRetries = options.maxRetries ?? 0;
+        this.shouldRetry = options.shouldRetry || ((res) => [502, 503, 504].includes(res.status));
+
+        // Logging hooks
+        this.onRequestStart = options.onRequestStart;
+        this.onRequestEnd = options.onRequestEnd;
+        this.onRequestError = options.onRequestError;
     }
 
     /**
@@ -42,22 +51,24 @@ class ApiClient
      * @param {string|null} routeParam - Optional route to append to the base URL.
      * @param {Object} [queryParams={}] - Optional query parameters as key-value pairs.
      * @param {Object} [headers={}] - Optional headers.
+     * @param {AbortController|null} [controller=null] - Optional controller to cancel the request.
      * @returns {Promise<Object|string|null>}
      */
-    async getAsync(routeParam = null, queryParams = {}, headers = {}) {
+    async getAsync(routeParam = null, queryParams = {}, headers = {}, controller = null) {
         const urlWithQuery = this.#appendQueryParams(routeParam, queryParams);
-        return this.#request("GET", urlWithQuery, null, headers);
-    }
+        return this.#request("GET", urlWithQuery, null, headers, 0, controller);
+    }  
 
     /**
      * Send a POST request with JSON body.
      * @param {string|null} routeParam - Optional route to append to the base URL.
      * @param {Object} data - JSON data to send in the request body.
      * @param {Object} [headers={}] - Optional headers.
+     * @param {AbortController|null} [controller=null] - Optional controller to cancel the request.
      * @returns {Promise<Object|string|null>}
      */
-    async postAsync(routeParam = null, data, headers = {}) {
-        return this.#request("POST", routeParam, data, headers);
+    async postAsync(routeParam = null, data, headers = {}, controller = null) {
+        return this.#request("POST", routeParam, data, headers, 0, controller);
     }
 
     /**
@@ -65,10 +76,11 @@ class ApiClient
      * @param {string|null} routeParam - Optional route to append to the base URL.
      * @param {Object} data - JSON data to send in the request body.
      * @param {Object} [headers={}] - Optional headers.
+     * @param {AbortController|null} [controller=null] - Optional controller to cancel the request.
      * @returns {Promise<Object|string|null>}
      */
-    async putAsync(routeParam = null, data, headers = {}) {
-        return this.#request("PUT", routeParam, data, headers);
+    async putAsync(routeParam = null, data, headers = {}, controller = null) {
+        return this.#request("PUT", routeParam, data, headers, 0, controller);
     }
 
     /**
@@ -76,20 +88,22 @@ class ApiClient
      * @param {string|null} routeParam - Optional route to append to the base URL.
      * @param {Object} data - JSON data to send in the request body.
      * @param {Object} [headers={}] - Optional headers.
+     * @param {AbortController|null} [controller=null] - Optional controller to cancel the request.
      * @returns {Promise<Object|string|null>}
      */
-    async patchAsync(routeParam = null, data, headers = {}) {
-        return this.#request("PATCH", routeParam, data, headers);
+    async patchAsync(routeParam = null, data, headers = {}, controller = null) {
+        return this.#request("PATCH", routeParam, data, headers, 0, controller);
     }
 
     /**
      * Send a DELETE request.
      * @param {string|null} routeParam - Optional route to append to the base URL.
      * @param {Object} [headers={}] - Optional headers.
+     * @param {AbortController|null} [controller=null] - Optional controller to cancel the request.
      * @returns {Promise<Object|string|null>}
      */
-    async deleteAsync(routeParam = null, headers = {}) {
-        return this.#request("DELETE", routeParam, null, headers);
+    async deleteAsync(routeParam = null, headers = {}, controller = null) {
+        return this.#request("DELETE", routeParam, null, headers, 0, controller);
     }
     
     /**
@@ -100,9 +114,10 @@ class ApiClient
      * @param {Object|null} data - Optional JSON body data.
      * @param {Object} headers - Additional per-request headers.
      * @param {number} [retryCount=0] - Current retry attempt.
+     * @param {AbortController|null} [controller=null] - Optional controller to cancel the request.
      * @returns {Promise<Object|string|null>}
      */
-    async #request(method, routeParam = null, data = null, headers = {}, retryCount = 0) {
+    async #request(method, routeParam, data, headers, retryCount = 0, externalController = null) {
         const url = this.#buildUrl(routeParam);
         const combinedHeaders = { ...this.defaultHeaders, ...headers };
 
@@ -115,28 +130,36 @@ class ApiClient
             headers: combinedHeaders,
         };
 
+        // Handle request body
         if (data !== null && method !== "GET" && method !== "HEAD") {
-            // If content-type is application/json, stringify body else for other content-types (like form-data), pass data as is (user responsibility)
-            options.body = contentType.includes("application/json") ? JSON.stringify(data) : options.body = data;
+            if (contentType.includes("application/json")) {
+                options.body = JSON.stringify(data);
+            } else if (data instanceof FormData || data instanceof URLSearchParams) {
+                options.body = data;
+                delete combinedHeaders["Content-Type"]; // Let browser set it
+            } else {
+                options.body = data;
+            }
         }
 
         // Setup timeout with AbortController
-        const controller = new AbortController();
+        const controller = externalController || new AbortController();
         const timeoutId = setTimeout(() => controller.abort(), this.timeout);
         options.signal = controller.signal;
 
+        this.onRequestStart?.(method, url, options);
+
         try {
             const response = await fetch(url, options);
-            clearTimeout(timeoutId);
 
             if (!response.ok) {
                 // Retry on transient errors (e.g., 502, 503, 504) if maxRetries > 0
-                if (this.maxRetries > 0 && retryCount < this.maxRetries && [502, 503, 504].includes(response.status)) 
+                if (this.maxRetries > 0 && retryCount < this.maxRetries && this.shouldRetry(response)) 
                 {
                     const delay = this.#exponentialBackoff(retryCount);
                     await this.#delay(delay);
 
-                    return this.#request(method, routeParam, data, headers, retryCount + 1);
+                    return this.#request(method, routeParam, data, headers, retryCount + 1, externalController);
                 }
 
                 const errorText = `HTTP ${response.status} - ${response.statusText}`;
@@ -155,16 +178,11 @@ class ApiClient
 
             if (response.status === 204) return null;
 
-            const responseContentType = (response.headers.get("content-type") || "").toLowerCase();
-
-            if (responseContentType.includes("application/json")) {
-                return await response.json();
-            }
-
-            return await response.text();
+            const contentType = (response.headers.get("content-type") || "").toLowerCase();
+            return contentType.includes("application/json") ? await response.json() : await response.text();
         } catch (err) {
-            clearTimeout(timeoutId);
-
+            this.onRequestError?.(err);
+            
             if (err.name === "AbortError") {
                 throw new Error(`Request to ${url} timed out after ${this.timeout} ms`);
             }
@@ -174,6 +192,8 @@ class ApiClient
             }
 
             throw err;
+        }finally {
+            clearTimeout(timeoutId);
         }
     }
     
