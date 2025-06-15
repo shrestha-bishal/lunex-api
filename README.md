@@ -1,6 +1,6 @@
 # api-client-js
 
-A lightweight and flexible JavaScript API client library that simplifies making HTTP requests wit support for `GET`, `POST`, `PATCH`, `PUT`, `DELTE` and handling payloads with built-in utilities for common tasks like form data serialization
+A lightweight and flexible JavaScript API client library that simplifies making HTTP requests wit support for `GET`, `POST`, `PATCH`, `PUT`, `DELETE` and handling payloads with built-in utilities for common tasks like form data serialization
 and DOM content rendering.
 
 ## Features
