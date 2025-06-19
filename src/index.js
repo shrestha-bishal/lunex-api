@@ -6,6 +6,4 @@
  * @module api-client-js
  */
 
-export { default as ActionPayload } from './classes/ActionPayload.js'
-export { default as ApiClient } from './classes/ApiClient.js'
-export { default as Core } from './classes/Core.js' 
+export { default as ApiClient } from './api/ApiClient.js'
