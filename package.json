@@ -1,19 +1,24 @@
 {
-  "name": "api-client",
+  "name": "rest-client-js",
   "version": "1.0.0",
   "type": "module",
-  "description": "Lightweight and flexible JavaScript API client supporting GET/POST requests, action payloads, and utilities for form data serialization and DOM rendering.",
-  "main": "index.js",
+  "description": "A lightweight and flexible REST API client for JavaScript with built-in retry policies and hooks.",
+  "main": "dist/index.js",
   "directories": {
     "example": "examples"
   },
+  "exports": {
+    "import": "./dist/index.js",
+    "require": "./dist/index.js"
+  },
   "scripts": {
     "build": "babel src --out-dir dist",
+    "prepare": "npm run build",
     "test": "node --experimental-vm-modules ./node_modules/jest/bin/jest.js"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/shrestha-bishal/api-client-js.git"
+    "url": "git+https://github.com/shrestha-bishal/rest-client-js.git"
   },
   "keywords": [
     "api",
@@ -25,14 +30,23 @@
     "rest-api",
     "payload",
     "get",
-    "post"
+    "post",
+    "put",
+    "delete",
+    "patch",
+    "rest",
+    "retry",
+    "restful"
   ],
   "author": "Bishal Shrestha <bishal.shrestha@outlook.com.au>",
   "license": "MIT",
+  "files": [
+    "dist"
+  ],
   "bugs": {
-    "url": "https://github.com/shrestha-bishal/api-client-js/issues"
+    "url": "https://github.com/shrestha-bishal/rest-client-js/issues"
   },
-  "homepage": "https://github.com/shrestha-bishal/api-client-js#readme",
+  "homepage": "https://github.com/shrestha-bishal/rest-client-js#readme",
   "devDependencies": {
     "@babel/cli": "^7.27.2",
     "@babel/core": "^7.27.4",
@@ -40,5 +54,8 @@
     "@jest/environment": "^30.0.0",
     "jest": "^30.0.0",
     "jest-fetch-mock": "^3.0.3"
+  },
+  "babel": {
+    "presets": ["@babel/preset-env"]
   }
 }
