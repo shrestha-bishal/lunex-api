@@ -1,7 +1,6 @@
-# api-client-js
+# rest-client-js
 
-A lightweight and flexible JavaScript API client library that simplifies making HTTP requests wit support for `GET`, `POST`, `PATCH`, `PUT`, `DELETE` and handling payloads with built-in utilities for common tasks like form data serialization
-and DOM content rendering.
+A lightweight and flexible JavaScript API client library that simplifies making HTTP requests wit support for `GET`, `POST`, `PATCH`, `PUT`, `DELETE`.
 
 ## Features
 
@@ -20,4 +19,4 @@ and DOM content rendering.
 ## Installation
 
 ```bash
-npm install api-client-js
+npm install rest-client-js
