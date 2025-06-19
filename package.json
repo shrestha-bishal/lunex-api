@@ -8,6 +8,7 @@
     "example": "examples"
   },
   "scripts": {
+    "build": "babel src --out-dir dist",
     "test": "node --experimental-vm-modules ./node_modules/jest/bin/jest.js"
   },
   "repository": {
@@ -33,6 +34,9 @@
   },
   "homepage": "https://github.com/shrestha-bishal/api-client-js#readme",
   "devDependencies": {
+    "@babel/cli": "^7.27.2",
+    "@babel/core": "^7.27.4",
+    "@babel/preset-env": "^7.27.2",
     "@jest/environment": "^30.0.0",
     "jest": "^30.0.0",
     "jest-fetch-mock": "^3.0.3"
