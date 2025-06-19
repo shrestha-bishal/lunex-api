@@ -1,4 +1,5 @@
 import { buildUrl, appendQueryParams } from "../utils/urlUtils";
+import { delay, exponentialBackoff } from "../utils/delayUtils";
 
 /**
  * ApiClient provides a clean abstraction to interact with RESTful APIs using HTTP methods.
@@ -161,8 +162,8 @@ class ApiClient
                 // Retry on transient errors (e.g., 502, 503, 504) if maxRetries > 0
                 if (this.maxRetries > 0 && retryCount < this.maxRetries && this.shouldRetry(response)) 
                 {
-                    const delay = this.#exponentialBackoff(retryCount);
-                    await this.#delay(delay);
+                    const delay = exponentialBackoff(retryCount);
+                    await delay(delay);
 
                     return this.#request(method, routeParam, data, headers, retryCount + 1, externalController);
                 }
@@ -200,27 +201,6 @@ class ApiClient
         }finally {
             clearTimeout(timeoutId);
         }
-    }
-     
-    /**
-     * Delay helper for retry logic.
-     * @private
-     * @param {number} ms - Milliseconds to delay.
-     * @returns {Promise<void>}
-     */
-    #delay(ms) {
-        return new Promise((resolve) => setTimeout(resolve, ms));
-    }
-
-    /**
-     * Calculate exponential backoff delay in milliseconds.
-     * @private
-     * @param {number} retryCount - Current retry attempt (0-based).
-     * @returns {number} Delay in ms.
-     */
-    #exponentialBackoff(retryCount) {
-        // Example: 500ms * 2^retryCount, max 8s
-        return Math.min(8000, 500 * 2 ** retryCount);
     }
 }
 
