@@ -1,3 +1,5 @@
+import { shouldRetry as defaultShouldRetry } from "../policies/retryPolicy";
+
 /**
  * Configuration options for the RestClient.
  * 
@@ -22,7 +24,7 @@ class RestClientOptions {
     constructor({
         timeout = 10000,
         maxRetries = 0,
-        shouldRetry = (res) => [502, 503, 504].includes(res.status),
+        shouldRetry = defaultShouldRetry,
         onRequestStart = null,
         onRequestEnd = null,
         onRequestError = null
