@@ -6,4 +6,5 @@
  * @module api-client-js
  */
 
-export { default as ApiClient } from './core/ApiClient.js'
+export { default as ApiClient } from './rest/RestClient.js'
+export { default as RestClientOptions } from './rest/RestClientOptions.js'

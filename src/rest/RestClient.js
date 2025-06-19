@@ -1,5 +1,6 @@
 import { buildUrl, appendQueryParams } from "../utils/urlUtils";
 import { delay, exponentialBackoff } from "../utils/delayUtils";
+import { RestClientOptions } from "..";
 
 /**
  * ApiClient provides a clean abstraction to interact with RESTful APIs using HTTP methods.
@@ -9,18 +10,14 @@ import { delay, exponentialBackoff } from "../utils/delayUtils";
  */
 class ApiClient 
 {
-     /**
-     * @param {string} baseUrl
-     * @param {Object} [defaultHeaders={}]
-     * @param {Object} [options={}]
-     * @param {number} [options.timeout=10000]
-     * @param {number} [options.maxRetries=0]
-     * @param {function} [options.shouldRetry] - Custom retry condition function (response) => boolean
-     * @param {function} [options.onRequestStart] - Optional logging hook (method, url, options)
-     * @param {function} [options.onRequestEnd] - Optional logging hook (response)
-     * @param {function} [options.onRequestError] - Optional logging hook (error)
+    /**
+     * Creates an instance of RestClient.
+     * 
+     * @param {string} baseUrl - The base URL for all API requests (e.g., "https://api.example.com").
+     * @param {Object} [defaultHeaders={}] - Default HTTP headers to include with every request.
+     * @param {RestClientOptions} [options=new RestClientOptions()] - Configuration options for request behavior such as timeout, retries, and hooks.
      */
-    constructor(baseUrl, defaultHeaders = {}, options = {}) {
+    constructor(baseUrl, defaultHeaders = {}, options = new RestClientOptions()) {
         if (!baseUrl || typeof baseUrl !== "string") {
             throw new TypeError("Base URL must be a non-empty string");
         }
