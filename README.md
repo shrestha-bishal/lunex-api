@@ -13,9 +13,7 @@ A lightweight and flexible JavaScript API client library that simplifies making 
 - Optional retry logic for transient server errors with exponential backoff.
 - Detailed error reporting including HTTP status, status text, and response body.
 - Clean ES module syntax for modern JavaScript projects.
-- Utility class `Core` for rendering HTML content and extracting form data.
-- Standardized `ActionPayload` wrapper for API actions and data.
-
+  
 ## Installation
 
 ```bash
