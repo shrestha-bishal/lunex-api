@@ -6,4 +6,4 @@
  * @module api-client-js
  */
 
-export { default as ApiClient } from './api/ApiClient.js'
+export { default as ApiClient } from './core/ApiClient.js'

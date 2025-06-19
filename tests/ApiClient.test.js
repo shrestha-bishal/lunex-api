@@ -3,7 +3,7 @@
  * @description Comprehensive Jest test suite for ApiClient.js
  */
 import { jest } from '@jest/globals';
-import ApiClient from '../src/classes/ApiClient';
+import { ApiClient } from '../src';
 
 beforeEach(() => {
   fetch.resetMocks();

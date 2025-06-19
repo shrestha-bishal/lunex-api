@@ -1,3 +1,5 @@
+import { buildUrl, appendQueryParams } from "../utils/urlUtils";
+
 /**
  * ApiClient provides a clean abstraction to interact with RESTful APIs using HTTP methods.
  * Supports GET, POST, PUT, DELETE, PATCH with JSON and text response handling.
@@ -55,7 +57,7 @@ class ApiClient
      * @returns {Promise<Object|string|null>}
      */
     async getAsync(routeParam = null, queryParams = {}, headers = {}, controller = null) {
-        const urlWithQuery = this.#appendQueryParams(routeParam, queryParams);
+        const urlWithQuery = appendQueryParams(routeParam, queryParams);
         return await this.#request("GET", urlWithQuery, null, headers, 0, controller);
     }  
 
@@ -118,7 +120,7 @@ class ApiClient
      * @returns {Promise<Object|string|null>}
      */
     async #request(method, routeParam, data, headers, retryCount = 0, externalController = null) {
-        const url = this.#buildUrl(routeParam);
+        const url = buildUrl(this.baseUrl, routeParam);
         const combinedHeaders = { ...this.defaultHeaders, ...headers };
 
         // Allow overriding Content-Type (default is application/json)
@@ -199,44 +201,7 @@ class ApiClient
             clearTimeout(timeoutId);
         }
     }
-    
-    /**
-     * Constructs the full URL by appending the route path to the base URL.
-     * @private
-     * @param {string|null} routeParam - Optional endpoint path.
-     * @returns {string}
-     */
-    #buildUrl(routeParam) {
-        if (!routeParam) return this.baseUrl;
-        if (/^https?:\/\//i.test(routeParam)) return routeParam; // full URL provided
-        return `${this.baseUrl}/${routeParam.replace(/^\/+/, "")}`;
-    }
-
-    /**
-     * Append query parameters to a route string.
-     * @private
-     * @param {string|null} routeParam
-     * @param {Object} queryParams - Key-value pairs.
-     * @returns {string} routeParam with query string
-     */
-    #appendQueryParams(routeParam, queryParams) {
-        const baseRoute = routeParam || "";
-        const params = new URLSearchParams();
-
-        for (const [key, value] of Object.entries(queryParams)) {
-            if (value !== undefined && value !== null) {
-                params.append(key, value);
-            }
-        }
-
-        if ([...params].length === 0) return baseRoute;
-
-        // Append '?' or '&' depending on if baseRoute already has query params
-        const separator = baseRoute.includes("?") ? "&" : "?";
-
-        return `${baseRoute}${separator}${params.toString()}`;
-    }
-
+     
     /**
      * Delay helper for retry logic.
      * @private
