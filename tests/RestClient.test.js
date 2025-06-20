@@ -1,20 +1,20 @@
 /**
- * @file ApiClient.test.js
- * @description Comprehensive Jest test suite for ApiClient.js
+ * @file RestClient.test.js
+ * @description Comprehensive Jest test suite for RestClient.js
  */
 import { jest } from '@jest/globals';
-import { ApiClient } from '../src';
+import { RestClient } from '../src';
 
 beforeEach(() => {
   fetch.resetMocks();
 });
 
-describe('ApiClient', () => {
+describe('RestClient', () => {
     const baseUrl = 'https://api.example.com';
     let client;
 
     beforeEach(() => {
-        client = new ApiClient(baseUrl);
+        client = new RestClient(baseUrl);
     });
 
     test('constructs correctly with defaults', () => {
@@ -129,7 +129,7 @@ describe('ApiClient', () => {
             });
         });
 
-        const shortTimeoutClient = new ApiClient(baseUrl, {}, { timeout: 10 });
+        const shortTimeoutClient = new RestClient(baseUrl, {}, { timeout: 10 });
 
         const request = shortTimeoutClient.getAsync('slow');
 

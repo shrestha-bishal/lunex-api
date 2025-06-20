@@ -24,13 +24,13 @@ function _classPrivateMethodInitSpec(e, a) { _checkPrivateRedeclaration(e, a), a
 function _checkPrivateRedeclaration(e, t) { if (t.has(e)) throw new TypeError("Cannot initialize the same private elements twice on an object"); }
 function _assertClassBrand(e, t, n) { if ("function" == typeof e ? e === t : e.has(t)) return arguments.length < 3 ? t : n; throw new TypeError("Private element is not present on this object"); }
 /**
- * ApiClient provides a clean abstraction to interact with RESTful APIs using HTTP methods.
+ * RestClient provides a clean abstraction to interact with RESTful APIs using HTTP methods.
  * Supports GET, POST, PUT, DELETE, PATCH with JSON and text response handling.
  * Allows custom headers including Authorization and API keys.
  * Supports request timeout and optional retry for transient errors.
  */
-var _ApiClient_brand = /*#__PURE__*/new WeakSet();
-var ApiClient = /*#__PURE__*/function () {
+var _RestClient_brand = /*#__PURE__*/new WeakSet();
+var RestClient = /*#__PURE__*/function () {
   /**
    * Creates an instance of RestClient.
    * 
@@ -38,11 +38,11 @@ var ApiClient = /*#__PURE__*/function () {
    * @param {Object} [defaultHeaders={}] - Default HTTP headers to include with every request.
    * @param {RestClientOptions} [options=new RestClientOptions()] - Configuration options for request behavior such as timeout, retries, and hooks.
    */
-  function ApiClient(baseUrl) {
+  function RestClient(baseUrl) {
     var _options$timeout, _options$maxRetries;
     var defaultHeaders = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : {};
     var _options = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : new _.RestClientOptions();
-    _classCallCheck(this, ApiClient);
+    _classCallCheck(this, RestClient);
     /**
      * Internal request method using fetch API with timeout and retry.
      * @private
@@ -54,7 +54,7 @@ var ApiClient = /*#__PURE__*/function () {
      * @param {AbortController|null} [controller=null] - Optional controller to cancel the request.
      * @returns {Promise<Object|string|null>}
      */
-    _classPrivateMethodInitSpec(this, _ApiClient_brand);
+    _classPrivateMethodInitSpec(this, _RestClient_brand);
     if (!baseUrl || typeof baseUrl !== "string") {
       throw new TypeError("Base URL must be a non-empty string");
     }
@@ -78,7 +78,7 @@ var ApiClient = /*#__PURE__*/function () {
    * Update default headers (e.g., to set Authorization or API key).
    * @param {Object} headers - Headers to merge with existing defaults.
    */
-  return _createClass(ApiClient, [{
+  return _createClass(RestClient, [{
     key: "setHeaders",
     value: function setHeaders(headers) {
       this.defaultHeaders = _objectSpread(_objectSpread({}, this.defaultHeaders), headers);
@@ -111,7 +111,7 @@ var ApiClient = /*#__PURE__*/function () {
               controller = _args.length > 3 && _args[3] !== undefined ? _args[3] : null;
               urlWithQuery = (0, _urlUtils.appendQueryParams)(routeParam, queryParams);
               _context.n = 1;
-              return _assertClassBrand(_ApiClient_brand, this, _request).call(this, "GET", urlWithQuery, null, headers, 0, controller);
+              return _assertClassBrand(_RestClient_brand, this, _request).call(this, "GET", urlWithQuery, null, headers, 0, controller);
             case 1:
               return _context.a(2, _context.v);
           }
@@ -148,7 +148,7 @@ var ApiClient = /*#__PURE__*/function () {
               headers = _args2.length > 2 && _args2[2] !== undefined ? _args2[2] : {};
               controller = _args2.length > 3 && _args2[3] !== undefined ? _args2[3] : null;
               _context2.n = 1;
-              return _assertClassBrand(_ApiClient_brand, this, _request).call(this, "POST", routeParam, data, headers, 0, controller);
+              return _assertClassBrand(_RestClient_brand, this, _request).call(this, "POST", routeParam, data, headers, 0, controller);
             case 1:
               return _context2.a(2, _context2.v);
           }
@@ -185,7 +185,7 @@ var ApiClient = /*#__PURE__*/function () {
               headers = _args3.length > 2 && _args3[2] !== undefined ? _args3[2] : {};
               controller = _args3.length > 3 && _args3[3] !== undefined ? _args3[3] : null;
               _context3.n = 1;
-              return _assertClassBrand(_ApiClient_brand, this, _request).call(this, "PUT", routeParam, data, headers, 0, controller);
+              return _assertClassBrand(_RestClient_brand, this, _request).call(this, "PUT", routeParam, data, headers, 0, controller);
             case 1:
               return _context3.a(2, _context3.v);
           }
@@ -222,7 +222,7 @@ var ApiClient = /*#__PURE__*/function () {
               headers = _args4.length > 2 && _args4[2] !== undefined ? _args4[2] : {};
               controller = _args4.length > 3 && _args4[3] !== undefined ? _args4[3] : null;
               _context4.n = 1;
-              return _assertClassBrand(_ApiClient_brand, this, _request).call(this, "PATCH", routeParam, data, headers, 0, controller);
+              return _assertClassBrand(_RestClient_brand, this, _request).call(this, "PATCH", routeParam, data, headers, 0, controller);
             case 1:
               return _context4.a(2, _context4.v);
           }
@@ -256,7 +256,7 @@ var ApiClient = /*#__PURE__*/function () {
               headers = _args5.length > 1 && _args5[1] !== undefined ? _args5[1] : {};
               controller = _args5.length > 2 && _args5[2] !== undefined ? _args5[2] : null;
               _context5.n = 1;
-              return _assertClassBrand(_ApiClient_brand, this, _request).call(this, "DELETE", routeParam, null, headers, 0, controller);
+              return _assertClassBrand(_RestClient_brand, this, _request).call(this, "DELETE", routeParam, null, headers, 0, controller);
             case 1:
               return _context5.a(2, _context5.v);
           }
@@ -349,7 +349,7 @@ function _request2() {
           _context6.n = 3;
           return _delay(_delay);
         case 3:
-          return _context6.a(2, _assertClassBrand(_ApiClient_brand, this, _request).call(this, method, routeParam, data, headers, retryCount + 1, externalController));
+          return _context6.a(2, _assertClassBrand(_RestClient_brand, this, _request).call(this, method, routeParam, data, headers, retryCount + 1, externalController));
         case 4:
           errorText = "HTTP ".concat(response.status, " - ").concat(response.statusText);
           responseContentType = (response.headers.get("content-type") || "").toLowerCase();
@@ -427,4 +427,4 @@ function _request2() {
   }));
   return _request2.apply(this, arguments);
 }
-var _default = exports["default"] = ApiClient;
+var _default = exports["default"] = RestClient;

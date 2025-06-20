@@ -3,7 +3,7 @@
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-Object.defineProperty(exports, "ApiClient", {
+Object.defineProperty(exports, "RestClient", {
   enumerable: true,
   get: function get() {
     return _RestClient["default"];

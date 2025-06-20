@@ -3,12 +3,12 @@ import { delay, exponentialBackoff } from "../utils/delayUtils";
 import { RestClientOptions } from "..";
 
 /**
- * ApiClient provides a clean abstraction to interact with RESTful APIs using HTTP methods.
+ * RestClient provides a clean abstraction to interact with RESTful APIs using HTTP methods.
  * Supports GET, POST, PUT, DELETE, PATCH with JSON and text response handling.
  * Allows custom headers including Authorization and API keys.
  * Supports request timeout and optional retry for transient errors.
  */
-class ApiClient 
+class RestClient 
 {
     /**
      * Creates an instance of RestClient.
@@ -159,8 +159,8 @@ class ApiClient
                 // Retry on transient errors (e.g., 502, 503, 504) if maxRetries > 0
                 if (this.maxRetries > 0 && retryCount < this.maxRetries && this.shouldRetry(response)) 
                 {
-                    const delay = exponentialBackoff(retryCount);
-                    await delay(delay);
+                    const waitTime = exponentialBackoff(retryCount);
+                    await delay(waitTime);
 
                     return this.#request(method, routeParam, data, headers, retryCount + 1, externalController);
                 }
@@ -201,4 +201,4 @@ class ApiClient
     }
 }
 
-export default ApiClient;
+export default RestClient;
