@@ -17,9 +17,9 @@ function _iterableToArrayLimit(r, l) { var t = null == r ? null : "undefined" !=
 function _arrayWithHoles(r) { if (Array.isArray(r)) return r; }
 /**
  * Constructs full URL by appending route to base.
- * @param {string} baseUrl 
- * @param {string|null} routeParam 
- * @returns {string}
+ * @param baseUrl - The base URL string.
+ * @param routeParam - The route path or full URL.
+ * @returns The full URL string.
  */
 function buildUrl(baseUrl, routeParam) {
   if (!routeParam) return baseUrl;
@@ -42,8 +42,10 @@ function appendQueryParams() {
     var _Object$entries$_i = _slicedToArray(_Object$entries[_i], 2),
       key = _Object$entries$_i[0],
       value = _Object$entries$_i[1];
+    // Only append values that are not null or undefined
     if (value !== undefined && value !== null) {
-      params.append(key, value);
+      // Convert boolean and number to string
+      params.append(key, String(value));
     }
   }
   if (_toConsumableArray(params).length === 0) return baseRoute;

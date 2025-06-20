@@ -7,8 +7,8 @@ exports.delay = delay;
 exports.exponentialBackoff = exponentialBackoff;
 /**
  * Delay helper for retry logic.
- * @param {number} ms - Milliseconds to delay.
- * @returns {Promise<void>}
+ * @param ms - Milliseconds to delay.
+ * @returns A promise that resolves after the specified delay.
  */
 function delay(ms) {
   return new Promise(function (resolve) {
