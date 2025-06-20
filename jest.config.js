@@ -1,5 +1,7 @@
 export default {
   testEnvironment: 'node',
-  transform: {}, // disable transform
+  transform: {
+    '^.+\\.ts$': 'ts-jest',
+  },
   setupFiles: ['<rootDir>/jest.setup.js'],
 }

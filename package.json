@@ -52,10 +52,15 @@
     "@babel/core": "^7.27.4",
     "@babel/preset-env": "^7.27.2",
     "@jest/environment": "^30.0.0",
+    "@types/jest": "^30.0.0",
     "jest": "^30.0.0",
-    "jest-fetch-mock": "^3.0.3"
+    "jest-fetch-mock": "^3.0.3",
+    "ts-jest": "^29.4.0",
+    "typescript": "^5.8.3"
   },
   "babel": {
-    "presets": ["@babel/preset-env"]
+    "presets": [
+      "@babel/preset-env"
+    ]
   }
 }
