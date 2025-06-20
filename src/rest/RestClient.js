@@ -1,6 +1,6 @@
 import { buildUrl, appendQueryParams } from "../utils/urlUtils";
 import { delay, exponentialBackoff } from "../utils/delayUtils";
-import { RestClientOptions } from "..";
+import RestClientOptions from "./RestClientOptions";
 
 /**
  * RestClient provides a clean abstraction to interact with RESTful APIs using HTTP methods.

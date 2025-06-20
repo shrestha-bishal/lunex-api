@@ -12,10 +12,12 @@
     "require": "./dist/index.js"
   },
   "scripts": {
-    "build": "babel src --extensions \".js,.ts\" --out-dir dist",
+    "build:types": "tsc --emitDeclarationOnly",
+    "build": "babel src --extensions \".js,.ts\" --out-dir dist && npm run build:types",
     "prepare": "npm run build",
     "test": "node --experimental-vm-modules ./node_modules/jest/bin/jest.js"
   },
+  "types": "dist/index.d.ts",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/shrestha-bishal/rest-client-js.git"
@@ -61,7 +63,8 @@
   },
   "babel": {
     "presets": [
-      "@babel/preset-env"
+      "@babel/preset-env",
+      "@babel/preset-typescript"
     ]
   }
 }
