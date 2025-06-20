@@ -6,6 +6,6 @@
  * @module api-client-js
  */
 
-export { shouldRetry } from './policies/retryPolicy.js'
+export { shouldRetry } from './policies/retryPolicy.ts'
 export { default as ApiClient } from './rest/RestClient.js'
 export { default as RestClientOptions } from './rest/RestClientOptions.js'

@@ -1,10 +1,10 @@
 /**
  * Constructs full URL by appending route to base.
- * @param {string} baseUrl 
- * @param {string|null} routeParam 
- * @returns {string}
+ * @param baseUrl - The base URL string.
+ * @param routeParam - The route path or full URL.
+ * @returns The full URL string.
  */
-export function buildUrl(baseUrl, routeParam) {
+export function buildUrl(baseUrl: string, routeParam: string | null) : string  {
     if (!routeParam) return baseUrl;
     if (/^https?:\/\//i.test(routeParam)) return routeParam;
     return `${baseUrl}/${routeParam.replace(/^\/+/, '')}`;
@@ -16,13 +16,17 @@ export function buildUrl(baseUrl, routeParam) {
  * @param {Object} queryParams - Key-value pairs.
  * @returns {string} routeParam with query string
  */
-export function appendQueryParams(routeParam = '', queryParams = {}) {
+export function appendQueryParams(
+    routeParam: string | null = '', 
+    queryParams:Record<string, string | number | boolean | null | undefined>  = {}): string {
     const baseRoute = routeParam || '';
     const params = new URLSearchParams();
 
     for (const [key, value] of Object.entries(queryParams)) {
+        // Only append values that are not null or undefined
         if (value !== undefined && value !== null) {
-            params.append(key, value);
+            // Convert boolean and number to string
+            params.append(key, String(value));
         }
     }
 
