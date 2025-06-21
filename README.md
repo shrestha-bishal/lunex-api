@@ -135,7 +135,7 @@ const options = new RestClientOptions({
 
 Contributions, issues, and feature requests are welcome. Feel free to open a pull request or issue to improve the project.
 
-### Licence
+## Licence
 
 This project is licensed under the [MIT License](./LICENSE).
 
