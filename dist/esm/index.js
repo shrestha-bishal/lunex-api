@@ -1,9 +1,9 @@
 /**
- * Main entry point for the API client JS library.
+ * Main entry point for the Rest Client library.
  *
  * Exports core classes for API interaction, payload handling, and utility functions.
  * 
- * @module api-client-js
+ * @module rest-client
  */
 
 export { shouldRetry } from './policies/retryPolicy';
