@@ -1,4 +1,4 @@
-# rest-client-js
+# @bishal-shrestha/rest-client
 
 ![npm](https://img.shields.io/npm/v/@bishal-shrestha/rest-client)
 ![License](https://img.shields.io/npm/l/@bishal-shrestha/rest-client)
@@ -56,7 +56,7 @@ Sends a DELETE request to the specified route.
 ## Installation
 
 ```bash
-npm install rest-client-js
+npm install @bishal-shrestha/rest-client
 ```
 
 ## Basic Usage
