@@ -1,5 +1,5 @@
 {
-  "name": "@bishal-shrestha/rest-client",
+  "name": "rest-client-ts",
   "version": "1.0.0",
   "type": "module",
   "description": "A lightweight and flexible REST API client for JavaScript with built-in retry policies and hooks.",
