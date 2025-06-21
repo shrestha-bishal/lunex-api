@@ -3,7 +3,7 @@
  * @description Comprehensive Jest test suite for RestClient.js
  */
 import { jest } from '@jest/globals';
-import { RestClient } from '../src';
+import { RestClient } from '../dist/esm';
 
 beforeEach(() => {
   fetch.resetMocks();
@@ -119,30 +119,30 @@ describe('RestClient', () => {
     });
 
     test('aborts request after timeout', async () => {
-        jest.useFakeTimers();
+    jest.useFakeTimers();
+    
+    const abortError = new Error('Aborted');
+    abortError.name = 'AbortError';
 
-        const abortError = new DOMException('Aborted', 'AbortError');
-
-        global.fetch = jest.fn(() => {
-            return new Promise((_, reject) => {
-                setTimeout(() => reject(abortError), 999999);
-            });
+    global.fetch = jest.fn((input, options) => {
+      return new Promise((resolve, reject) => {
+        options.signal.addEventListener('abort', () => {
+          reject(abortError);
         });
+      });
+    });
 
-        const shortTimeoutClient = new RestClient(baseUrl, {}, { timeout: 10 });
+    const shortTimeoutClient = new RestClient(baseUrl, {}, { timeout: 10 });
 
-        const request = shortTimeoutClient.getAsync('slow');
+    const request = shortTimeoutClient.getAsync('slow');
 
-        // Advance timers to trigger the abort
-        jest.advanceTimersByTime(20);
+    jest.advanceTimersByTime(20);
+    await Promise.resolve();
+    jest.runOnlyPendingTimers();
+    await Promise.resolve();
 
-        // Force microtask queue to flush (important with fake timers)
-        await Promise.resolve();
-        jest.runOnlyPendingTimers();
-        await Promise.resolve();
+    await expect(request).rejects.toThrow('timed out');
 
-        await expect(request).rejects.toThrow('timed out');
-
-        jest.useRealTimers();
-    }, 10000);
+    jest.useRealTimers();
+});
 });
