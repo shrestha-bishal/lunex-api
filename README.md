@@ -1,42 +1,55 @@
 # rest-client-js
 
+![npm](https://img.shields.io/npm/v/rest-client-js)
+![License](https://img.shields.io/npm/l/rest-client-js)
+![TypeScript](https://img.shields.io/badge/built%20with-TypeScript-blue)
+
 A lightweight, extensible, and strongly-typed HTTP client for interacting with RESTful APIs with support for `GET`, `POST`, `PATCH`, `PUT`, `DELETE` in JavaScript and TypeScript. Built on the Fetch API, with built-in support for retries, timeouts, and request lifecycle hooks.
+
+The library is fully compatible with CommonJS and ES module (ESM) environments and provides complete TypeScript typings for seamless integration in modern JavaScript and TypeScript projects.
 
 ## Features
 
 - Full RESTful HTTP method support: `GET`, `POST`, `PUT`, `PATCH`, `DELETE`.
 - Built-in JSON and plain text response handling.
 - Support for custom default headers (e.g., Authorization, API keys).
-- Ability to override headers on a per-request basis
-- Supports query parameters in GET requests.
+- Override headers on a per-request basis
+- Add query parameters to GET requests
 - Request timeout handling with configurable timeout duration.
 - Optional retry logic for transient server errors with exponential backoff.
 - Detailed error reporting including HTTP status, status text, and response body.
-- Supports Common JavaScript, ES module syntax with full TypeScript support
+- Compatible with CommonJS, ESM, and fully typed for TypeScript
 
 
 ## API Reference
-`getAsync(routeParam?: string, queryParams?: object, headers?: object, controller?: AbortController): Promise<any>`
+### `getAsync(routeParam?: string, queryParams?: object, headers?: object, controller?: AbortController): Promise<any>`
+
 Sends a GET request to the specified route with optional query parameters and headers.
+
 - `routeParam`: Optional route to append to the base URL
 - `queryParams`: Object containing query string parameters
 - `headers`: Per-request headers
 - `controller`: Optional AbortController for cancellation
 
-`postAsync(routeParam: string, data: any, headers?: object, controller?: AbortController): Promise<any>`
+### `postAsync(routeParam: string, data: any, headers?: object, controller?: AbortController): Promise<any>`
+
 Sends a POST request with a JSON payload.
+
 - `routeParam`: API route path
 - `data`: JSON-serializable body
 - `headers`: Optional headers
 - `controller`: Optional AbortController
 
-`putAsync(routeParam: string, data: any, headers?: object, controller?: AbortController): Promise<any>`
+### `putAsync(routeParam: string, data: any, headers?: object, controller?: AbortController): Promise<any>`
+
 Sends a PUT request with a JSON payload.
 
-`patchAsync(routeParam: string, data: any, headers?: object, controller?: AbortController): Promise<any>`
+### `patchAsync(routeParam: string, data: any, headers?: object, controller?: AbortController): Promise<any>`
+
 Sends a PATCH request with a JSON payload.
 
-`deleteAsync(routeParam: string, headers?: object, controller?: AbortController): Promise<any>`
+### `deleteAsync(routeParam: string, headers?: object, controller?: AbortController): Promise<any>`
+
 Sends a DELETE request to the specified route.
 
 ## Installation
@@ -69,6 +82,7 @@ const client = new RestClient('https://api.example.com', {
 ```ts
 const controller = new AbortController();
 setTimeout(() => controller.abort(), 3000); // Custom 3s timeout
+
 await client.getAsync('/delayed-endpoint', {}, {}, controller);
 ```
 
@@ -116,5 +130,11 @@ const options = new RestClientOptions({
 - Plain text responses are returned as strings
 - 204 No Content responses return null
 
-This project is licensed under the MIT License.
-© 2025 Bishal Shrestha
+## Contributing
+
+Contributions, issues, and feature requests are welcome.  
+Feel free to open a pull request or issue to improve the project.
+
+This project is licensed under the [MIT License](./LICENSE).
+
+© 2025 Bishal Shrestha, All rights reserved
