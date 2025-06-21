@@ -61,7 +61,7 @@ npm install @bishal-shrestha/rest-client
 
 ## Basic Usage
 ```ts
-import { RestClient, RestClientOptions } from 'rest-client-js';
+import { RestClient, RestClientOptions } from '@bishal-shrestha/rest-client';
 
 const client = new RestClient('https://api.example.com', {
   Authorization: 'Bearer YOUR_TOKEN'
@@ -89,7 +89,7 @@ await client.getAsync('/delayed-endpoint', {}, {}, controller);
 
 ### CommonJS Usage (for older Node.js projects)
 ```js
-const { RestClient, RestClientOptions } = require('rest-client-js');
+const { RestClient, RestClientOptions } = require('@bishal-shrestha/rest-client');
 
 const client = new RestClient('https://api.example.com', {
   Authorization: 'Bearer YOUR_TOKEN'
@@ -101,7 +101,7 @@ const client = new RestClient('https://api.example.com', {
 The library includes a default retry policy that retries on HTTP status codes 502, 503, and 504. You can override this behavior with a custom function:
 
 ```ts
-import { shouldRetry } from 'rest-client-js';
+import { shouldRetry } from '@bishal-shrestha/rest-client';
 
 const options = new RestClientOptions({
   maxRetries: 3,
