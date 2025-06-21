@@ -1,5 +1,5 @@
-import { buildUrl, appendQueryParams } from "../utils/urlUtils";
-import { delay, exponentialBackoff } from "../utils/delayUtils";
+import { buildUrl, appendQueryParams } from "../utils/url-utils";
+import { delay, exponentialBackoff } from "../utils/delay-utils";
 import RestClientOptions from "./RestClientOptions";
 
 type Headers = Record<string, string>;

@@ -11,7 +11,8 @@
   },
   "exports": {
     "import": "./dist/esm/index.js",
-    "require": "./dist/cjs/index.js"
+    "require": "./dist/cjs/index.js",
+    "types": "./dist/types/index.d.ts"
   },
   "scripts": {
     "build:cjs": "cross-env BABEL_ENV=cjs babel src --extensions \".ts,.js\" --out-dir dist/cjs",
