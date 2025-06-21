@@ -23,7 +23,7 @@ The library is fully compatible with CommonJS and ES module (ESM) environments a
 
 
 ## API Reference
-### `getAsync(routeParam?: string, queryParams?: object, headers?: object, controller?: AbortController): Promise<any>`
+#### `getAsync(routeParam?: string, queryParams?: object, headers?: object, controller?: AbortController): Promise<any>`
 
 Sends a GET request to the specified route with optional query parameters and headers.
 
@@ -32,7 +32,7 @@ Sends a GET request to the specified route with optional query parameters and he
 - `headers`: Per-request headers
 - `controller`: Optional AbortController for cancellation
 
-### `postAsync(routeParam: string, data: any, headers?: object, controller?: AbortController): Promise<any>`
+#### `postAsync(routeParam: string, data: any, headers?: object, controller?: AbortController): Promise<any>`
 
 Sends a POST request with a JSON payload.
 
@@ -41,15 +41,15 @@ Sends a POST request with a JSON payload.
 - `headers`: Optional headers
 - `controller`: Optional AbortController
 
-### `putAsync(routeParam: string, data: any, headers?: object, controller?: AbortController): Promise<any>`
+#### `putAsync(routeParam: string, data: any, headers?: object, controller?: AbortController): Promise<any>`
 
 Sends a PUT request with a JSON payload.
 
-### `patchAsync(routeParam: string, data: any, headers?: object, controller?: AbortController): Promise<any>`
+#### `patchAsync(routeParam: string, data: any, headers?: object, controller?: AbortController): Promise<any>`
 
 Sends a PATCH request with a JSON payload.
 
-### `deleteAsync(routeParam: string, headers?: object, controller?: AbortController): Promise<any>`
+#### `deleteAsync(routeParam: string, headers?: object, controller?: AbortController): Promise<any>`
 
 Sends a DELETE request to the specified route.
 
