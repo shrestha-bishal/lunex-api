@@ -1,4 +1,4 @@
-import { shouldRetry as defaultShouldRetry } from "../policies/retryPolicy";
+import { shouldRetry as defaultShouldRetry } from "../policies/retry-policy";
 
 type ShouldRetryFn = (response: Response) => boolean;
 type OnRequestStartFn = (method: string, url: string, options: RequestInit) => void;
