@@ -61,7 +61,7 @@ npm install @bishal-shrestha/rest-client
 
 ## Basic Usage
 ```ts
-import { RestClient, RestClientOptions } from '@bishal-shrestha/rest-client';
+import RestClient, { RestClientOptions } from '@bishal-shrestha/rest-client';
 
 const client = new RestClient('https://api.example.com', {
   Authorization: 'Bearer YOUR_TOKEN'
@@ -101,7 +101,7 @@ const client = new RestClient('https://api.example.com', {
 The library includes a default retry policy that retries on HTTP status codes 502, 503, and 504. You can override this behavior with a custom function:
 
 ```ts
-import { shouldRetry } from '@bishal-shrestha/rest-client';
+import { RestClientOptions, shouldRetry } from '@bishal-shrestha/rest-client';
 
 const options = new RestClientOptions({
   maxRetries: 3,
@@ -113,6 +113,8 @@ const options = new RestClientOptions({
 Hooks allow you to monitor and log request behavior:
 
 ```ts
+import { RestClientOptions } from '@bishal-shrestha/rest-client';
+
 const options = new RestClientOptions({
   onRequestStart: (method, url) => {
     console.log(`Starting request: ${method} ${url}`);
