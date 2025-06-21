@@ -14,24 +14,47 @@ function _classCallCheck(a, n) { if (!(a instanceof n)) throw new TypeError("Can
 /**
  * Configuration options for the RestClient.
  * 
- * Allows customization of request timeout, retry behavior, and logging hooks.
+ * Enables customization of:
+ * - Request timeout duration (in milliseconds).
+ * - Number of retry attempts on transient errors.
+ * - Retry decision logic based on the response.
+ * - Lifecycle hooks to tap into request start, completion, and error events.
  */
-var RestClientOptions = /*#__PURE__*/_createClass(
+var RestClientOptions = /*#__PURE__*/_createClass(/** Request timeout in milliseconds before aborting. Default: 10000 (10 seconds) */
+
+/** Maximum retry attempts on transient errors (like HTTP 502, 503, 504). Default: 0 (no retries) */
+
 /**
- * Creates an instance of RestClientOptions.
- * 
- * @param {Object} [config={}] - Configuration object.
- * @param {number} [config.timeout=10000] - Request timeout in milliseconds.
- * @param {number} [config.maxRetries=0] - Maximum number of retry attempts on transient errors.
- * @param {function} [config.shouldRetry] - Function to determine if a retry should occur based on the response.
- *   Receives the response object and returns a boolean. Defaults to retry on HTTP 502, 503, and 504.
- * @param {function|null} [config.onRequestStart] - Optional hook called before a request is sent.
- *   Receives (method, url, options).
- * @param {function|null} [config.onRequestEnd] - Optional hook called after a response is received.
- *   Receives the response object.
- * @param {function|null} [config.onRequestError] - Optional hook called if a request error occurs.
- *   Receives the error object.
+ * Function that decides if a retry should happen based on the HTTP response.
+ * Defaults to retry on status 502, 503, and 504.
  */
+
+/**
+ * Optional callback triggered before a request is sent.
+ * Receives HTTP method, request URL, and request options.
+ */
+
+/**
+ * Optional callback triggered after a response is received.
+ * Receives the response object.
+ */
+
+/**
+ * Optional callback triggered if a request error occurs.
+ * Receives the error object.
+ */
+
+/**
+     * Creates an instance of RestClientOptions.
+     * 
+     * @param {Object} [config={}] Configuration options.
+     * @param {number} [config.timeout=10000] Timeout in milliseconds.
+     * @param {number} [config.maxRetries=0] Number of retries on transient errors.
+     * @param {ShouldRetryFn} [config.shouldRetry] Retry decision function.
+     * @param {OnRequestStartFn|null} [config.onRequestStart] Hook before request start.
+     * @param {OnRequestEndFn|null} [config.onRequestEnd] Hook after request end.
+     * @param {OnRequestErrorFn|null} [config.onRequestError] Hook on request error.
+     */
 function RestClientOptions() {
   var _ref = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {},
     _ref$timeout = _ref.timeout,
@@ -47,17 +70,11 @@ function RestClientOptions() {
     _ref$onRequestError = _ref.onRequestError,
     onRequestError = _ref$onRequestError === void 0 ? null : _ref$onRequestError;
   _classCallCheck(this, RestClientOptions);
-  /** @type {number} */
   this.timeout = timeout;
-  /** @type {number} */
   this.maxRetries = maxRetries;
-  /** @type {function} */
   this.shouldRetry = shouldRetry;
-  /** @type {function|null} */
   this.onRequestStart = onRequestStart;
-  /** @type {function|null} */
   this.onRequestEnd = onRequestEnd;
-  /** @type {function|null} */
   this.onRequestError = onRequestError;
 });
 var _default = exports["default"] = RestClientOptions;

@@ -21,7 +21,7 @@ Object.defineProperty(exports, "shouldRetry", {
     return _retryPolicy.shouldRetry;
   }
 });
-var _retryPolicy = require("./policies/retryPolicy.ts");
-var _RestClient = _interopRequireDefault(require("./rest/RestClient.js"));
-var _RestClientOptions = _interopRequireDefault(require("./rest/RestClientOptions.js"));
+var _retryPolicy = require("./policies/retryPolicy");
+var _RestClient = _interopRequireDefault(require("./rest/RestClient"));
+var _RestClientOptions = _interopRequireDefault(require("./rest/RestClientOptions"));
 function _interopRequireDefault(e) { return e && e.__esModule ? e : { "default": e }; }

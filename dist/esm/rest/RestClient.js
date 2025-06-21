@@ -1,14 +1,4 @@
-"use strict";
-
 function _typeof(o) { "@babel/helpers - typeof"; return _typeof = "function" == typeof Symbol && "symbol" == typeof Symbol.iterator ? function (o) { return typeof o; } : function (o) { return o && "function" == typeof Symbol && o.constructor === Symbol && o !== Symbol.prototype ? "symbol" : typeof o; }, _typeof(o); }
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-exports["default"] = void 0;
-var _urlUtils = require("../utils/urlUtils");
-var _delayUtils = require("../utils/delayUtils");
-var _RestClientOptions = _interopRequireDefault(require("./RestClientOptions"));
-function _interopRequireDefault(e) { return e && e.__esModule ? e : { "default": e }; }
 function _regenerator() { /*! regenerator-runtime -- Copyright (c) 2014-present, Facebook, Inc. -- license (MIT): https://github.com/babel/babel/blob/main/packages/babel-helpers/LICENSE */ var e, t, r = "function" == typeof Symbol ? Symbol : {}, n = r.iterator || "@@iterator", o = r.toStringTag || "@@toStringTag"; function i(r, n, o, i) { var c = n && n.prototype instanceof Generator ? n : Generator, u = Object.create(c.prototype); return _regeneratorDefine2(u, "_invoke", function (r, n, o) { var i, c, u, f = 0, p = o || [], y = !1, G = { p: 0, n: 0, v: e, a: d, f: d.bind(e, 4), d: function d(t, r) { return i = t, c = 0, u = e, G.n = r, a; } }; function d(r, n) { for (c = r, u = n, t = 0; !y && f && !o && t < p.length; t++) { var o, i = p[t], d = G.p, l = i[2]; r > 3 ? (o = l === n) && (u = i[(c = i[4]) ? 5 : (c = 3, 3)], i[4] = i[5] = e) : i[0] <= d && ((o = r < 2 && d < i[1]) ? (c = 0, G.v = n, G.n = i[1]) : d < l && (o = r < 3 || i[0] > n || n > l) && (i[4] = r, i[5] = n, G.n = l, c = 0)); } if (o || r > 1) return a; throw y = !0, n; } return function (o, p, l) { if (f > 1) throw TypeError("Generator is already running"); for (y && 1 === p && d(p, l), c = p, u = l; (t = c < 2 ? e : u) || !y;) { i || (c ? c < 3 ? (c > 1 && (G.n = -1), d(c, u)) : G.n = u : G.v = u); try { if (f = 2, i) { if (c || (o = "next"), t = i[o]) { if (!(t = t.call(i, u))) throw TypeError("iterator result is not an object"); if (!t.done) return t; u = t.value, c < 2 && (c = 0); } else 1 === c && (t = i["return"]) && t.call(i), c < 2 && (u = TypeError("The iterator does not provide a '" + o + "' method"), c = 1); i = e; } else if ((t = (y = G.n < 0) ? u : r.call(n, G)) !== a) break; } catch (t) { i = e, c = 1, u = t; } finally { f = 1; } } return { value: t, done: y }; }; }(r, o, i), !0), u; } var a = {}; function Generator() {} function GeneratorFunction() {} function GeneratorFunctionPrototype() {} t = Object.getPrototypeOf; var c = [][n] ? t(t([][n]())) : (_regeneratorDefine2(t = {}, n, function () { return this; }), t), u = GeneratorFunctionPrototype.prototype = Generator.prototype = Object.create(c); function f(e) { return Object.setPrototypeOf ? Object.setPrototypeOf(e, GeneratorFunctionPrototype) : (e.__proto__ = GeneratorFunctionPrototype, _regeneratorDefine2(e, o, "GeneratorFunction")), e.prototype = Object.create(u), e; } return GeneratorFunction.prototype = GeneratorFunctionPrototype, _regeneratorDefine2(u, "constructor", GeneratorFunctionPrototype), _regeneratorDefine2(GeneratorFunctionPrototype, "constructor", GeneratorFunction), GeneratorFunction.displayName = "GeneratorFunction", _regeneratorDefine2(GeneratorFunctionPrototype, o, "GeneratorFunction"), _regeneratorDefine2(u), _regeneratorDefine2(u, o, "Generator"), _regeneratorDefine2(u, n, function () { return this; }), _regeneratorDefine2(u, "toString", function () { return "[object Generator]"; }), (_regenerator = function _regenerator() { return { w: i, m: f }; })(); }
 function _regeneratorDefine2(e, r, n, t) { var i = Object.defineProperty; try { i({}, "", {}); } catch (e) { i = 0; } _regeneratorDefine2 = function _regeneratorDefine(e, r, n, t) { if (r) i ? i(e, r, { value: n, enumerable: !t, configurable: !t, writable: !t }) : e[r] = n;else { var o = function o(r, n) { _regeneratorDefine2(e, r, function (e) { return this._invoke(r, n, e); }); }; o("next", 0), o("throw", 1), o("return", 2); } }, _regeneratorDefine2(e, r, n, t); }
 function asyncGeneratorStep(n, t, e, r, o, a, c) { try { var i = n[a](c), u = i.value; } catch (n) { return void e(n); } i.done ? t(u) : Promise.resolve(u).then(r, o); }
@@ -24,25 +14,28 @@ function _toPrimitive(t, r) { if ("object" != _typeof(t) || !t) return t; var e 
 function _classPrivateMethodInitSpec(e, a) { _checkPrivateRedeclaration(e, a), a.add(e); }
 function _checkPrivateRedeclaration(e, t) { if (t.has(e)) throw new TypeError("Cannot initialize the same private elements twice on an object"); }
 function _assertClassBrand(e, t, n) { if ("function" == typeof e ? e === t : e.has(t)) return arguments.length < 3 ? t : n; throw new TypeError("Private element is not present on this object"); }
+import { buildUrl, appendQueryParams } from "../utils/urlUtils";
+import { delay, exponentialBackoff } from "../utils/delayUtils";
+import RestClientOptions from "./RestClientOptions";
+var _RestClient_brand = /*#__PURE__*/new WeakSet();
 /**
  * RestClient provides a clean abstraction to interact with RESTful APIs using HTTP methods.
  * Supports GET, POST, PUT, DELETE, PATCH with JSON and text response handling.
  * Allows custom headers including Authorization and API keys.
  * Supports request timeout and optional retry for transient errors.
  */
-var _RestClient_brand = /*#__PURE__*/new WeakSet();
-var RestClient = /*#__PURE__*/function () {
+export var RestClient = /*#__PURE__*/function () {
   /**
    * Creates an instance of RestClient.
    * 
-   * @param {string} baseUrl - The base URL for all API requests (e.g., "https://api.example.com").
-   * @param {Object} [defaultHeaders={}] - Default HTTP headers to include with every request.
-   * @param {RestClientOptions} [options=new RestClientOptions()] - Configuration options for request behavior such as timeout, retries, and hooks.
+   * @param baseUrl - The base URL for all API requests (e.g., "https://api.example.com").
+   * @param defaultHeaders - Default HTTP headers to include with every request.
+   * @param options - Configuration options for request behavior such as timeout, retries, and hooks.
    */
   function RestClient(baseUrl) {
     var _options$timeout, _options$maxRetries;
     var defaultHeaders = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : {};
-    var _options = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : new _RestClientOptions["default"]();
+    var _options = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : new RestClientOptions();
     _classCallCheck(this, RestClient);
     /**
      * Internal request method using fetch API with timeout and retry.
@@ -77,7 +70,7 @@ var RestClient = /*#__PURE__*/function () {
 
   /**
    * Update default headers (e.g., to set Authorization or API key).
-   * @param {Object} headers - Headers to merge with existing defaults.
+   * @param headers - Headers to merge with existing defaults.
    */
   return _createClass(RestClient, [{
     key: "setHeaders",
@@ -87,7 +80,7 @@ var RestClient = /*#__PURE__*/function () {
 
     /**
      * Send a GET request.
-     * @param {string|null} routeParam - Optional route to append to the base URL.
+     * @param routeParam - Optional route to append to the base URL.
      * @param {Object} [queryParams={}] - Optional query parameters as key-value pairs.
      * @param {Object} [headers={}] - Optional headers.
      * @param {AbortController|null} [controller=null] - Optional controller to cancel the request.
@@ -110,7 +103,7 @@ var RestClient = /*#__PURE__*/function () {
               queryParams = _args.length > 1 && _args[1] !== undefined ? _args[1] : {};
               headers = _args.length > 2 && _args[2] !== undefined ? _args[2] : {};
               controller = _args.length > 3 && _args[3] !== undefined ? _args[3] : null;
-              urlWithQuery = (0, _urlUtils.appendQueryParams)(routeParam, queryParams);
+              urlWithQuery = appendQueryParams(routeParam, queryParams);
               _context.n = 1;
               return _assertClassBrand(_RestClient_brand, this, _request).call(this, "GET", urlWithQuery, null, headers, 0, controller);
             case 1:
@@ -148,10 +141,7 @@ var RestClient = /*#__PURE__*/function () {
               data = _args2.length > 1 ? _args2[1] : undefined;
               headers = _args2.length > 2 && _args2[2] !== undefined ? _args2[2] : {};
               controller = _args2.length > 3 && _args2[3] !== undefined ? _args2[3] : null;
-              _context2.n = 1;
-              return _assertClassBrand(_RestClient_brand, this, _request).call(this, "POST", routeParam, data, headers, 0, controller);
-            case 1:
-              return _context2.a(2, _context2.v);
+              return _context2.a(2, _assertClassBrand(_RestClient_brand, this, _request).call(this, "POST", routeParam, data, headers, 0, controller));
           }
         }, _callee2, this);
       }));
@@ -185,10 +175,7 @@ var RestClient = /*#__PURE__*/function () {
               data = _args3.length > 1 ? _args3[1] : undefined;
               headers = _args3.length > 2 && _args3[2] !== undefined ? _args3[2] : {};
               controller = _args3.length > 3 && _args3[3] !== undefined ? _args3[3] : null;
-              _context3.n = 1;
-              return _assertClassBrand(_RestClient_brand, this, _request).call(this, "PUT", routeParam, data, headers, 0, controller);
-            case 1:
-              return _context3.a(2, _context3.v);
+              return _context3.a(2, _assertClassBrand(_RestClient_brand, this, _request).call(this, "PUT", routeParam, data, headers, 0, controller));
           }
         }, _callee3, this);
       }));
@@ -222,10 +209,7 @@ var RestClient = /*#__PURE__*/function () {
               data = _args4.length > 1 ? _args4[1] : undefined;
               headers = _args4.length > 2 && _args4[2] !== undefined ? _args4[2] : {};
               controller = _args4.length > 3 && _args4[3] !== undefined ? _args4[3] : null;
-              _context4.n = 1;
-              return _assertClassBrand(_RestClient_brand, this, _request).call(this, "PATCH", routeParam, data, headers, 0, controller);
-            case 1:
-              return _context4.a(2, _context4.v);
+              return _context4.a(2, _assertClassBrand(_RestClient_brand, this, _request).call(this, "PATCH", routeParam, data, headers, 0, controller));
           }
         }, _callee4, this);
       }));
@@ -256,10 +240,7 @@ var RestClient = /*#__PURE__*/function () {
               routeParam = _args5.length > 0 && _args5[0] !== undefined ? _args5[0] : null;
               headers = _args5.length > 1 && _args5[1] !== undefined ? _args5[1] : {};
               controller = _args5.length > 2 && _args5[2] !== undefined ? _args5[2] : null;
-              _context5.n = 1;
-              return _assertClassBrand(_RestClient_brand, this, _request).call(this, "DELETE", routeParam, null, headers, 0, controller);
-            case 1:
-              return _context5.a(2, _context5.v);
+              return _context5.a(2, _assertClassBrand(_RestClient_brand, this, _request).call(this, "DELETE", routeParam, null, headers, 0, controller));
           }
         }, _callee5, this);
       }));
@@ -286,12 +267,12 @@ function _request2() {
       controller,
       timeoutId,
       _this$onRequestEnd,
-      response,
+      _response,
       waitTime,
       errorText,
       responseContentType,
       errorBody,
-      error,
+      _error,
       _contentType,
       _this$onRequestError,
       _args6 = arguments,
@@ -303,7 +284,7 @@ function _request2() {
         case 0:
           retryCount = _args6.length > 4 && _args6[4] !== undefined ? _args6[4] : 0;
           externalController = _args6.length > 5 && _args6[5] !== undefined ? _args6[5] : null;
-          url = (0, _urlUtils.buildUrl)(this.baseUrl, routeParam);
+          url = buildUrl(this.baseUrl, routeParam);
           combinedHeaders = _objectSpread(_objectSpread({}, this.defaultHeaders), headers); // Allow overriding Content-Type (default is application/json)
           contentTypeKey = Object.keys(combinedHeaders).find(function (key) {
             return key.toLowerCase() === "content-type";
@@ -318,7 +299,7 @@ function _request2() {
               options.body = JSON.stringify(data);
             } else if (data instanceof FormData || data instanceof URLSearchParams) {
               options.body = data;
-              delete combinedHeaders["Content-Type"]; // Let browser set it
+              delete combinedHeaders["Content-Type"];
             } else {
               options.body = data;
             }
@@ -335,67 +316,67 @@ function _request2() {
           _context6.n = 2;
           return fetch(url, options);
         case 2:
-          response = _context6.v;
+          _response = _context6.v;
           // Call onRequestEnd hook after response received
-          (_this$onRequestEnd = this.onRequestEnd) === null || _this$onRequestEnd === void 0 || _this$onRequestEnd.call(this, response);
-          if (response.ok) {
+          (_this$onRequestEnd = this.onRequestEnd) === null || _this$onRequestEnd === void 0 || _this$onRequestEnd.call(this, _response);
+          if (_response.ok) {
             _context6.n = 9;
             break;
           }
-          if (!(this.maxRetries > 0 && retryCount < this.maxRetries && this.shouldRetry(response))) {
+          if (!(this.maxRetries > 0 && retryCount < this.maxRetries && this.shouldRetry(_response))) {
             _context6.n = 4;
             break;
           }
-          waitTime = (0, _delayUtils.exponentialBackoff)(retryCount);
+          waitTime = exponentialBackoff(retryCount);
           _context6.n = 3;
-          return (0, _delayUtils.delay)(waitTime);
+          return delay(waitTime);
         case 3:
           return _context6.a(2, _assertClassBrand(_RestClient_brand, this, _request).call(this, method, routeParam, data, headers, retryCount + 1, externalController));
         case 4:
-          errorText = "HTTP ".concat(response.status, " - ").concat(response.statusText);
-          responseContentType = (response.headers.get("content-type") || "").toLowerCase();
+          errorText = "HTTP ".concat(_response.status, " - ").concat(_response.statusText);
+          responseContentType = (_response.headers.get("content-type") || "").toLowerCase();
           if (!responseContentType.includes("application/json")) {
             _context6.n = 6;
             break;
           }
           _context6.n = 5;
-          return response.json();
+          return _response.json();
         case 5:
           _t = _context6.v;
           _context6.n = 8;
           break;
         case 6:
           _context6.n = 7;
-          return response.text();
+          return _response.text();
         case 7:
           _t = _context6.v;
         case 8:
           errorBody = _t;
-          error = new Error(errorText);
-          error.status = response.status;
-          error.details = errorBody;
-          throw error;
+          _error = new Error(errorText);
+          _error.status = _response.status;
+          _error.details = errorBody;
+          throw _error;
         case 9:
-          if (!(response.status === 204)) {
+          if (!(_response.status === 204)) {
             _context6.n = 10;
             break;
           }
           return _context6.a(2, null);
         case 10:
-          _contentType = (response.headers.get("content-type") || "").toLowerCase();
+          _contentType = (_response.headers.get("content-type") || "").toLowerCase();
           if (!_contentType.includes("application/json")) {
             _context6.n = 12;
             break;
           }
           _context6.n = 11;
-          return response.json();
+          return _response.json();
         case 11:
           _t2 = _context6.v;
           _context6.n = 14;
           break;
         case 12:
           _context6.n = 13;
-          return response.text();
+          return _response.text();
         case 13:
           _t2 = _context6.v;
         case 14:
@@ -404,7 +385,7 @@ function _request2() {
           _context6.p = 15;
           _t3 = _context6.v;
           (_this$onRequestError = this.onRequestError) === null || _this$onRequestError === void 0 || _this$onRequestError.call(this, _t3);
-          if (!(_t3.name === "AbortError")) {
+          if (!(_t3 instanceof Error && _t3.name === "AbortError")) {
             _context6.n = 16;
             break;
           }
@@ -428,4 +409,4 @@ function _request2() {
   }));
   return _request2.apply(this, arguments);
 }
-var _default = exports["default"] = RestClient;
+export default RestClient;
