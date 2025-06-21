@@ -41,9 +41,13 @@
     "patch",
     "rest",
     "retry",
-    "restful"
+    "restful",
+    "restclient"
   ],
-  "author": "Bishal Shrestha <bishal.shrestha@outlook.com.au>",
+  "author": {
+    "name": "Bishal Shrestha",
+    "url": "https://github.com/shrestha-bishal"
+  },
   "license": "MIT",
   "files": [
     "dist"
