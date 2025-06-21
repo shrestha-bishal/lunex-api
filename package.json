@@ -3,21 +3,24 @@
   "version": "1.0.0",
   "type": "module",
   "description": "A lightweight and flexible REST API client for JavaScript with built-in retry policies and hooks.",
-  "main": "dist/index.js",
+  "main": "./dist/esm/index.js",
+  "module": "./dist/esm/index.js",
+  "types": "./dist/types/index.d.ts",
   "directories": {
     "example": "examples"
   },
   "exports": {
-    "import": "./dist/index.js",
-    "require": "./dist/index.js"
+    "import": "./dist/esm/index.js",
+    "require": "./dist/cjs/index.js"
   },
   "scripts": {
-    "build:types": "tsc --emitDeclarationOnly",
-    "build": "babel src --extensions \".js,.ts\" --out-dir dist && npm run build:types",
+    "build:cjs": "cross-env BABEL_ENV=cjs babel src --extensions \".ts,.js\" --out-dir dist/cjs",
+    "build:esm": "cross-env BABEL_ENV=esm babel src --extensions \".ts,.js\" --out-dir dist/esm",
+    "build:types": "tsc --emitDeclarationOnly --outDir dist/types",
+    "build": "npm run build:cjs && npm run build:esm && npm run build:types",
     "prepare": "npm run build",
     "test": "node --experimental-vm-modules ./node_modules/jest/bin/jest.js"
   },
-  "types": "dist/index.d.ts",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/shrestha-bishal/rest-client-js.git"
@@ -56,6 +59,7 @@
     "@babel/preset-typescript": "^7.27.1",
     "@jest/environment": "^30.0.0",
     "@types/jest": "^30.0.0",
+    "cross-env": "^7.0.3",
     "jest": "^30.0.0",
     "jest-fetch-mock": "^3.0.3",
     "ts-jest": "^29.4.0",
@@ -63,8 +67,37 @@
   },
   "babel": {
     "presets": [
-      "@babel/preset-env",
-      "@babel/preset-typescript"
-    ]
+      "@babel/preset-typescript",
+      [
+        "@babel/preset-env",
+        {
+          "modules": false
+        }
+      ]
+    ],
+    "env": {
+      "cjs": {
+        "presets": [
+          "@babel/preset-typescript",
+          [
+            "@babel/preset-env",
+            {
+              "modules": "commonjs"
+            }
+          ]
+        ]
+      },
+      "esm": {
+        "presets": [
+          "@babel/preset-typescript",
+          [
+            "@babel/preset-env",
+            {
+              "modules": false
+            }
+          ]
+        ]
+      }
+    }
   }
 }

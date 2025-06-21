@@ -6,9 +6,13 @@
     "allowJs": true,
     "jsx": "preserve",
     "module": "ESNext",
-    "target": "ESNext",
+    "target": "ES2020",
     "strict": true,
-    "esModuleInterop": true
+    "esModuleInterop": true,
+    "moduleResolution": "Node",
+    "skipLibCheck": true,
+    "resolveJsonModule": true
   },
-  "include": ["src/**/*"]
+  "include": ["src/**/*"],
+  "exclude": ["tests", "**/*.test.ts", "jest.setup.ts", "node_modules"]
 }
