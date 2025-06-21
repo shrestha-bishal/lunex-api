@@ -1,7 +1,7 @@
 # rest-client-js
 
-![npm](https://img.shields.io/npm/v/rest-client-js)
-![License](https://img.shields.io/npm/l/rest-client-js)
+![npm](https://img.shields.io/npm/v/@bishal-shrestha/rest-client)
+![License](https://img.shields.io/npm/l/@bishal-shrestha/rest-client)
 ![TypeScript](https://img.shields.io/badge/built%20with-TypeScript-blue)
 
 A lightweight, extensible, and strongly-typed HTTP client for interacting with RESTful APIs with support for `GET`, `POST`, `PATCH`, `PUT`, `DELETE` in JavaScript and TypeScript. Built on the Fetch API, with built-in support for retries, timeouts, and request lifecycle hooks.
