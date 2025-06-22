@@ -62,6 +62,43 @@ Sends a DELETE request to the specified route.
 npm install @bishal-shrestha/rest-client
 ```
 
+## Browser Usage
+This package is primarily designed for Node.js and modern bundler environments. For use in browser environments, please consider the following:
+
+### Using with Bundlers (Recommended)
+If your project uses bundlers like Vite, Webpack, Rollup, or similar tools, you can import the package using its npm name:
+```ts
+import RestClient from '@bishal-shrestha/rest-client';
+
+const client = new RestClient('https://api.example.com', {
+  Authorization: 'Bearer YOUR_TOKEN'
+});
+```
+
+Your bundler will resolve the package from node_modules, process it according to your configuration, and bundle it appropriately for browser compatibility.
+
+### Using Native ES Modules in Browsers Without Bundlers
+Browsers do not natively resolve bare module specifiers like @bishal-shrestha/rest-client. To use the package directly as a module in browsers without a bundler, import it from an ESM CDN such as esm.sh:
+
+```ts
+import RestClient from 'https://esm.sh/@bishal-shrestha/rest-client';
+
+const client = new RestClient('https://api.example.com', {
+  Authorization: 'Bearer YOUR_TOKEN'
+});
+```
+
+Then include your script in your HTML with the `type="module"` attribute:
+```html
+<script type="module" src="main.js"></script>
+```
+
+This approach allows native ES module support while letting the CDN handle package resolution and transformation.
+
+### Notes
+- When using ESM CDNs, ensure that the package version is compatible and check the CDN documentation for additional configuration options.
+- For production applications, bundling remains the preferred approach for performance and caching benefits.
+
 ## Basic Usage
 ```ts
 import RestClient, { RestClientOptions } from '@bishal-shrestha/rest-client';
@@ -99,16 +136,21 @@ const client = new RestClient('https://api.example.com', {
 }, new RestClientOptions({ timeout: 5000 }));
 ```
 
-## Configuration Options
+## Advanced Usage with Configuration Options (Retry Policy and Lifecycle Hooks) 
 ### Retry Policy
 The library includes a default retry policy that retries on HTTP status codes 502, 503, and 504. You can override this behavior with a custom function:
 
 ```ts
-import { RestClientOptions, shouldRetry } from '@bishal-shrestha/rest-client';
+import RestClient, { RestClientOptions, shouldRetry } from '@bishal-shrestha/rest-client';
 
 const options = new RestClientOptions({
   maxRetries: 3,
-  shouldRetry: shouldRetry
+  shouldRetry: (response) => {
+    // Retry on network errors or specific status codes
+    return shouldRetry(response) || response.status === 429;
+  }
+
+  const client = new RestClient('https://api.example.com', {}, options);
 });
 ```
 
@@ -116,7 +158,7 @@ const options = new RestClientOptions({
 Hooks allow you to monitor and log request behavior:
 
 ```ts
-import { RestClientOptions } from '@bishal-shrestha/rest-client';
+import RestClient, { RestClientOptions } from '@bishal-shrestha/rest-client';
 
 const options = new RestClientOptions({
   onRequestStart: (method, url) => {
@@ -129,6 +171,8 @@ const options = new RestClientOptions({
     console.error('Request error:', error);
   }
 });
+
+const client = new RestClient('https://api.example.com', {}, options);
 ``` 
 
 ## Response Handling
@@ -136,9 +180,92 @@ const options = new RestClientOptions({
 - Plain text responses are returned as strings
 - 204 No Content responses return null
 
+## Examples and Demo
+
+You can find example usage and demos in the [examples](https://github.com/shrestha-bishal/rest-client-js/tree/master/examples) folder of the repository.
+
+
+## Troubleshooting / FAQ
+**Q:** I get a module resolution error when importing in the browser.  
+**A:** Browsers do not natively resolve bare module specifiers (like `@bishal-shrestha/rest-client`). Use a bundler or import via an ESM CDN like [esm.sh](https://esm.sh).
+```ts
+import RestClient from 'https://esm.sh/@bishal-shrestha/rest-client';
+
+const client = new RestClient('https://api.example.com');
+const response = await client.getAsync('users');
+```
+
+**Q:** How can I use this library in a TypeScript project?  
+**A:** The package includes full TypeScript typings. Simply install via npm and import as usual.
+
+**Q:** How do I handle CORS errors?  
+**A:** Ensure the API server includes appropriate CORS headers to allow requests from your origin.
+
+**Q:** Why do I get a syntax error like `Cannot use import statement outside a module`?  
+**A:** This happens if your environment does not treat your JavaScript file as an ES module. Make sure to:
+
+- Add `"type": "module"` in your `package.json`, **or**  
+- Use the `.mjs` file extension for your scripts, **or**  
+- Use a bundler (Webpack, Vite, etc.) that supports ES modules.
+
+Example `package.json` snippet:
+
+```json
+{
+  "type": "module"
+}
+```
+
+**Q:** Can I use this library in older browsers like Internet Explorer?
+**A:** No, this library depends on modern browser features such as the Fetch API and native ES modules. For older browsers, you must add polyfills and transpile your code using tools like Babel.
+
+**Q:** How can I configure timeout or retry behavior?
+**A:** When creating the client, use RestClientOptions to customize these settings. For example:
+```ts
+import RestClient, { RestClientOptions } from '@bishal-shrestha/rest-client';
+
+const options = new RestClientOptions({
+  timeout: 10000,      // timeout in milliseconds
+  maxRetries: 5        // number of retry attempts
+});
+
+const client = new RestClient('https://api.example.com', {}, options);
+```
+
+**Q:** How do I abort a request?
+**A:** Pass an AbortController signal to the request method and call abort() to cancel. Example:
+
+```ts
+const controller = new AbortController();
+
+setTimeout(() => controller.abort(), 5000);  // abort after 5 seconds
+
+await client.getAsync('/endpoint', {}, {}, controller.signal);
+```
+
+**Q:** Can I use this library with React, Vue, or other frontend frameworks?
+**A:** Yes. In React or Vue projects, import the package normally and use a bundler to handle module resolution. For example, in a React component:
+```ts
+import RestClient from '@bishal-shrestha/rest-client';
+
+const client = new RestClient('https://api.example.com');
+
+useEffect(() => {
+  client.getAsync('/data').then(console.log);
+}, []);
+```
+
 ## Contributing
 
-Contributions, issues, and feature requests are welcome. Feel free to open a pull request or issue to improve the project.
+Contributions are welcome! Please follow these steps:
+
+1. Fork the repository.
+2. Create a feature branch (`git checkout -b feature-name`).
+3. Make your changes and commit them with clear messages.
+4. Run tests to ensure nothing is broken.
+5. Submit a pull request explaining your changes.
+
+For bug reports or feature requests, please open an issue on GitHub.
 
 ## License
 
