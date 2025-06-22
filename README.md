@@ -9,6 +9,8 @@ A lightweight, extensible, and strongly-typed HTTP client for interacting with R
 
 The library is fully compatible with CommonJS and ES module (ESM) environments and provides complete TypeScript typings for seamless integration in modern JavaScript and TypeScript projects.
 
+[![npm](https://img.shields.io/badge/npm-View%20Package-red?logo=npm&logoColor=white&style=flat-square)](https://www.npmjs.com/package/@bishal-shrestha/rest-client)
+
 ## Features
 
 - Full RESTful HTTP method support: `GET`, `POST`, `PUT`, `PATCH`, `DELETE`.
@@ -142,5 +144,6 @@ Contributions, issues, and feature requests are welcome. Feel free to open a pul
 This project is licensed under the [MIT License](./LICENSE).
 
 © 2025 Bishal Shrestha, All rights reserved
+[![npm](https://img.shields.io/badge/npm-View%20Package-red?logo=npm&logoColor=white&style=flat-square)](https://www.npmjs.com/package/@bishal-shrestha/rest-client)
 
 ![4da5c29c-7f0b-4cae-a28f-0152aa645567](https://github.com/user-attachments/assets/0aa91be4-9c89-45da-9087-c2c9acf74094)
