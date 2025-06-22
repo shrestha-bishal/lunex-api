@@ -4,12 +4,13 @@
 ![License](https://img.shields.io/npm/l/@bishal-shrestha/rest-client)
 ![TypeScript](https://img.shields.io/badge/built%20with-TypeScript-blue)
 ![Downloads](https://img.shields.io/npm/dm/@bishal-shrestha/rest-client)
+[![npm](https://img.shields.io/badge/npm-View%20Package-red?logo=npm&logoColor=white&style=flat-square)](https://www.npmjs.com/package/@bishal-shrestha/rest-client)
 
 A lightweight, extensible, and strongly-typed HTTP client for interacting with RESTful APIs with support for `GET`, `POST`, `PATCH`, `PUT`, `DELETE` in JavaScript and TypeScript. Built on the Fetch API, with built-in support for retries, timeouts, and request lifecycle hooks.
 
 The library is fully compatible with CommonJS and ES module (ESM) environments and provides complete TypeScript typings for seamless integration in modern JavaScript and TypeScript projects.
 
-[![npm](https://img.shields.io/badge/npm-View%20Package-red?logo=npm&logoColor=white&style=flat-square)](https://www.npmjs.com/package/@bishal-shrestha/rest-client)
+[View Package in npm](https://www.npmjs.com/package/@bishal-shrestha/rest-client)
 
 ## Features
 
