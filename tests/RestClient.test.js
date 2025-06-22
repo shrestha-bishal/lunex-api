@@ -4,9 +4,10 @@
  */
 import { jest } from '@jest/globals';
 import { RestClient } from '../dist/esm';
+import fetchMock from 'jest-fetch-mock';
 
 beforeEach(() => {
-  fetch.resetMocks();
+  fetchMock.resetMocks();
 });
 
 describe('RestClient', () => {
@@ -14,7 +15,10 @@ describe('RestClient', () => {
     let client;
 
     beforeEach(() => {
-        client = new RestClient(baseUrl);
+        client = new RestClient(baseUrl, {
+            maxRetries: 2,
+            delayFn: async () => {}
+        });
     });
 
     test('constructs correctly with defaults', () => {
@@ -24,14 +28,14 @@ describe('RestClient', () => {
     });
 
     test('GET request with query parameters', async () => {
-        fetch.mockResponseOnce(
+        fetchMock.mockResponseOnce(
           JSON.stringify({ ok: true }),
           { headers: { 'Content-Type': 'application/json' } }
         );
 
         const result = await client.getAsync('users', { q: 'john' });
 
-        expect(fetch).toHaveBeenCalledWith(
+        expect(fetchMock).toHaveBeenCalledWith(
             'https://api.example.com/users?q=john',
             expect.objectContaining({ method: 'GET' })
         );
@@ -39,7 +43,7 @@ describe('RestClient', () => {
     });
 
     test('POST request with JSON body', async () => {
-        fetch.mockResponseOnce(
+        fetchMock.mockResponseOnce(
           JSON.stringify({ created: true }),
           { headers: { 'Content-Type': 'application/json' } }
         );
@@ -47,7 +51,7 @@ describe('RestClient', () => {
         const data = { name: 'Jane Doe' };
         const result = await client.postAsync('users', data);
 
-        expect(fetch).toHaveBeenCalledWith(
+        expect(fetchMock).toHaveBeenCalledWith(
             'https://api.example.com/users',
             expect.objectContaining({
                 method: 'POST',
@@ -59,7 +63,7 @@ describe('RestClient', () => {
     });
 
     test('PUT request sends correct method and body', async () => {
-        fetch.mockResponseOnce(
+        fetchMock.mockResponseOnce(
           JSON.stringify({ updated: true }),
           { headers: { 'Content-Type': 'application/json' } }
         );
@@ -67,7 +71,7 @@ describe('RestClient', () => {
         const data = { active: false };
         const result = await client.putAsync('users/123', data);
 
-        expect(fetch).toHaveBeenCalledWith(
+        expect(fetchMock).toHaveBeenCalledWith(
             'https://api.example.com/users/123',
             expect.objectContaining({ method: 'PUT' })
         );
@@ -75,7 +79,7 @@ describe('RestClient', () => {
     });
 
     test('PATCH request works with JSON data', async () => {
-        fetch.mockResponseOnce(
+        fetchMock.mockResponseOnce(
           JSON.stringify({ patched: true }),
           { headers: { 'Content-Type': 'application/json' } }
       );
@@ -85,13 +89,13 @@ describe('RestClient', () => {
     });
 
     test('DELETE request works correctly', async () => {
-        fetch.mockResponseOnce('', { status: 204 });
+        fetchMock.mockResponseOnce('', { status: 204 });
         const result = await client.deleteAsync('users/123');
         expect(result).toBeNull();
     });
 
     test('handles non-200 HTTP errors with JSON response', async () => {
-        fetch.mockResponseOnce(JSON.stringify({ message: 'Not found' }), {
+        fetchMock.mockResponseOnce(JSON.stringify({ message: 'Not found' }), {
             status: 404,
             statusText: 'Not Found',
             headers: { 'Content-Type': 'application/json' }
@@ -105,7 +109,7 @@ describe('RestClient', () => {
     });
 
     test('handles plain text error response gracefully', async () => {
-        fetch.mockResponseOnce('Error occurred', {
+        fetchMock.mockResponseOnce('Error occurred', {
             status: 500,
             statusText: 'Internal Server Error',
             headers: { 'Content-Type': 'text/plain' }
@@ -119,30 +123,29 @@ describe('RestClient', () => {
     });
 
     test('aborts request after timeout', async () => {
-    jest.useFakeTimers();
-    
-    const abortError = new Error('Aborted');
-    abortError.name = 'AbortError';
+        jest.useFakeTimers();
+        
+        const abortError = new Error('Aborted');
+        abortError.name = 'AbortError';
 
-    global.fetch = jest.fn((input, options) => {
-      return new Promise((resolve, reject) => {
-        options.signal.addEventListener('abort', () => {
-          reject(abortError);
+        global.fetch = jest.fn((input, options) => {
+            return new Promise((resolve, reject) => {
+                options.signal.addEventListener('abort', () => {
+                    reject(abortError);
+                });
+            });
         });
-      });
+
+        const shortTimeoutClient = new RestClient(baseUrl, {}, { timeout: 10 });
+        const request = shortTimeoutClient.getAsync('slow');
+
+        jest.advanceTimersByTime(20);
+        await Promise.resolve();
+        jest.runOnlyPendingTimers();
+        await Promise.resolve();
+
+        await expect(request).rejects.toThrow('timed out');
+
+        jest.useRealTimers();
     });
-
-    const shortTimeoutClient = new RestClient(baseUrl, {}, { timeout: 10 });
-
-    const request = shortTimeoutClient.getAsync('slow');
-
-    jest.advanceTimersByTime(20);
-    await Promise.resolve();
-    jest.runOnlyPendingTimers();
-    await Promise.resolve();
-
-    await expect(request).rejects.toThrow('timed out');
-
-    jest.useRealTimers();
-});
 });
