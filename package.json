@@ -1,7 +1,6 @@
 {
   "name": "@bishal-shrestha/rest-client",
   "version": "1.0.2",
-  "type": "module",
   "description": "A lightweight and flexible REST API client for JavaScript and TypeScript, supporting CommonJS and ES modules (ESM). Features include HTTP methods (GET, POST, PUT, PATCH, DELETE), built-in retry policies with exponential backoff, request lifecycle hooks for detailed logging, configurable timeouts, and strong TypeScript typings for seamless integration.",
   "main": "./dist/cjs/index.cjs",
   "module": "./dist/esm/index.js",
@@ -11,11 +10,11 @@
   },
   "exports": {
     "import": "./dist/esm/index.js",
-    "require": "./dist/cjs/index.js",
+    "require": "./dist/cjs/index.cjs",
     "types": "./dist/types/index.d.ts"
   },
   "scripts": {
-    "build:cjs": "cross-env BABEL_ENV=cjs babel src --extensions \".ts,.js\" --out-dir dist/cjs",
+    "build:cjs": "cross-env BABEL_ENV=cjs babel src --extensions \".ts,.js\" --out-dir dist/cjs && node rename-cjs.js",
     "build:esm": "cross-env BABEL_ENV=esm babel src --extensions \".ts,.js\" --out-dir dist/esm",
     "build:types": "tsc --emitDeclarationOnly --outDir dist/types",
     "build": "npm run build:cjs && npm run build:esm && npm run build:types",
@@ -67,7 +66,7 @@
   "files": [
     "dist",
     "README.md",
-    "LICENCE"
+    "LICENSE"
   ],
   "bugs": {
     "url": "https://github.com/shrestha-bishal/rest-client-js/issues"
