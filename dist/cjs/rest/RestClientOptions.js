@@ -6,6 +6,7 @@ Object.defineProperty(exports, "__esModule", {
 });
 exports["default"] = void 0;
 var _retryPolicy = require("../policies/retry-policy");
+var _delayUtils = require("../utils/delay-utils");
 function _defineProperties(e, r) { for (var t = 0; t < r.length; t++) { var o = r[t]; o.enumerable = o.enumerable || !1, o.configurable = !0, "value" in o && (o.writable = !0), Object.defineProperty(e, _toPropertyKey(o.key), o); } }
 function _createClass(e, r, t) { return r && _defineProperties(e.prototype, r), t && _defineProperties(e, t), Object.defineProperty(e, "prototype", { writable: !1 }), e; }
 function _toPropertyKey(t) { var i = _toPrimitive(t, "string"); return "symbol" == _typeof(i) ? i : i + ""; }
@@ -30,6 +31,12 @@ var RestClientOptions = /*#__PURE__*/_createClass(/** Request timeout in millise
  */
 
 /**
+ * Custom async delay function used to wait between retries.
+ * Receives the delay time in milliseconds.
+ * Defaults to a standard delay implementation using setTimeout.
+ */
+
+/**
  * Optional callback triggered before a request is sent.
  * Receives HTTP method, request URL, and request options.
  */
@@ -45,16 +52,17 @@ var RestClientOptions = /*#__PURE__*/_createClass(/** Request timeout in millise
  */
 
 /**
-     * Creates an instance of RestClientOptions.
-     * 
-     * @param {Object} [config={}] Configuration options.
-     * @param {number} [config.timeout=10000] Timeout in milliseconds.
-     * @param {number} [config.maxRetries=0] Number of retries on transient errors.
-     * @param {ShouldRetryFn} [config.shouldRetry] Retry decision function.
-     * @param {OnRequestStartFn|null} [config.onRequestStart] Hook before request start.
-     * @param {OnRequestEndFn|null} [config.onRequestEnd] Hook after request end.
-     * @param {OnRequestErrorFn|null} [config.onRequestError] Hook on request error.
-     */
+ * Creates an instance of RestClientOptions.
+ * 
+ * @param {Object} [config={}] Configuration options.
+ * @param {number} [config.timeout=10000] Timeout in milliseconds.
+ * @param {number} [config.maxRetries=0] Number of retries on transient errors.
+ * @param {ShouldRetryFn} [config.shouldRetry] Retry decision function.
+ * @param {DelayFn} [config.delayFn] Custom async delay function for retry backoff.
+ * @param {OnRequestStartFn|null} [config.onRequestStart] Hook before request start.
+ * @param {OnRequestEndFn|null} [config.onRequestEnd] Hook after request end.
+ * @param {OnRequestErrorFn|null} [config.onRequestError] Hook on request error.
+ */
 function RestClientOptions() {
   var _ref = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {},
     _ref$timeout = _ref.timeout,
@@ -63,6 +71,8 @@ function RestClientOptions() {
     maxRetries = _ref$maxRetries === void 0 ? 0 : _ref$maxRetries,
     _ref$shouldRetry = _ref.shouldRetry,
     shouldRetry = _ref$shouldRetry === void 0 ? _retryPolicy.shouldRetry : _ref$shouldRetry,
+    _ref$delayFn = _ref.delayFn,
+    delayFn = _ref$delayFn === void 0 ? _delayUtils.delay : _ref$delayFn,
     _ref$onRequestStart = _ref.onRequestStart,
     onRequestStart = _ref$onRequestStart === void 0 ? null : _ref$onRequestStart,
     _ref$onRequestEnd = _ref.onRequestEnd,
@@ -73,6 +83,7 @@ function RestClientOptions() {
   this.timeout = timeout;
   this.maxRetries = maxRetries;
   this.shouldRetry = shouldRetry;
+  this.delayFn = delayFn;
   this.onRequestStart = onRequestStart;
   this.onRequestEnd = onRequestEnd;
   this.onRequestError = onRequestError;

@@ -5,6 +5,7 @@ function _toPropertyKey(t) { var i = _toPrimitive(t, "string"); return "symbol" 
 function _toPrimitive(t, r) { if ("object" != _typeof(t) || !t) return t; var e = t[Symbol.toPrimitive]; if (void 0 !== e) { var i = e.call(t, r || "default"); if ("object" != _typeof(i)) return i; throw new TypeError("@@toPrimitive must return a primitive value."); } return ("string" === r ? String : Number)(t); }
 function _classCallCheck(a, n) { if (!(a instanceof n)) throw new TypeError("Cannot call a class as a function"); }
 import { shouldRetry as defaultShouldRetry } from "../policies/retry-policy";
+import { delay as defaultDelay } from "../utils/delay-utils";
 /**
  * Configuration options for the RestClient.
  * 
@@ -24,6 +25,12 @@ var RestClientOptions = /*#__PURE__*/_createClass(/** Request timeout in millise
  */
 
 /**
+ * Custom async delay function used to wait between retries.
+ * Receives the delay time in milliseconds.
+ * Defaults to a standard delay implementation using setTimeout.
+ */
+
+/**
  * Optional callback triggered before a request is sent.
  * Receives HTTP method, request URL, and request options.
  */
@@ -39,16 +46,17 @@ var RestClientOptions = /*#__PURE__*/_createClass(/** Request timeout in millise
  */
 
 /**
-     * Creates an instance of RestClientOptions.
-     * 
-     * @param {Object} [config={}] Configuration options.
-     * @param {number} [config.timeout=10000] Timeout in milliseconds.
-     * @param {number} [config.maxRetries=0] Number of retries on transient errors.
-     * @param {ShouldRetryFn} [config.shouldRetry] Retry decision function.
-     * @param {OnRequestStartFn|null} [config.onRequestStart] Hook before request start.
-     * @param {OnRequestEndFn|null} [config.onRequestEnd] Hook after request end.
-     * @param {OnRequestErrorFn|null} [config.onRequestError] Hook on request error.
-     */
+ * Creates an instance of RestClientOptions.
+ * 
+ * @param {Object} [config={}] Configuration options.
+ * @param {number} [config.timeout=10000] Timeout in milliseconds.
+ * @param {number} [config.maxRetries=0] Number of retries on transient errors.
+ * @param {ShouldRetryFn} [config.shouldRetry] Retry decision function.
+ * @param {DelayFn} [config.delayFn] Custom async delay function for retry backoff.
+ * @param {OnRequestStartFn|null} [config.onRequestStart] Hook before request start.
+ * @param {OnRequestEndFn|null} [config.onRequestEnd] Hook after request end.
+ * @param {OnRequestErrorFn|null} [config.onRequestError] Hook on request error.
+ */
 function RestClientOptions() {
   var _ref = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {},
     _ref$timeout = _ref.timeout,
@@ -57,6 +65,8 @@ function RestClientOptions() {
     maxRetries = _ref$maxRetries === void 0 ? 0 : _ref$maxRetries,
     _ref$shouldRetry = _ref.shouldRetry,
     shouldRetry = _ref$shouldRetry === void 0 ? defaultShouldRetry : _ref$shouldRetry,
+    _ref$delayFn = _ref.delayFn,
+    delayFn = _ref$delayFn === void 0 ? defaultDelay : _ref$delayFn,
     _ref$onRequestStart = _ref.onRequestStart,
     onRequestStart = _ref$onRequestStart === void 0 ? null : _ref$onRequestStart,
     _ref$onRequestEnd = _ref.onRequestEnd,
@@ -67,6 +77,7 @@ function RestClientOptions() {
   this.timeout = timeout;
   this.maxRetries = maxRetries;
   this.shouldRetry = shouldRetry;
+  this.delayFn = delayFn;
   this.onRequestStart = onRequestStart;
   this.onRequestEnd = onRequestEnd;
   this.onRequestError = onRequestError;

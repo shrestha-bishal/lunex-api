@@ -14,6 +14,7 @@ export declare class RestClient {
     private timeout;
     private maxRetries;
     private shouldRetry;
+    private delayFn;
     private onRequestStart?;
     private onRequestEnd?;
     private onRequestError?;

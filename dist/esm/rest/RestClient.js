@@ -15,7 +15,7 @@ function _classPrivateMethodInitSpec(e, a) { _checkPrivateRedeclaration(e, a), a
 function _checkPrivateRedeclaration(e, t) { if (t.has(e)) throw new TypeError("Cannot initialize the same private elements twice on an object"); }
 function _assertClassBrand(e, t, n) { if ("function" == typeof e ? e === t : e.has(t)) return arguments.length < 3 ? t : n; throw new TypeError("Private element is not present on this object"); }
 import { buildUrl, appendQueryParams } from "../utils/url-utils";
-import { delay, exponentialBackoff } from "../utils/delay-utils";
+import { exponentialBackoff } from "../utils/delay-utils";
 import RestClientOptions from "./RestClientOptions";
 var _RestClient_brand = /*#__PURE__*/new WeakSet();
 /**
@@ -33,7 +33,7 @@ export var RestClient = /*#__PURE__*/function () {
    * @param options - Configuration options for request behavior such as timeout, retries, and hooks.
    */
   function RestClient(baseUrl) {
-    var _options$timeout, _options$maxRetries;
+    var _options$timeout, _options$maxRetries, _options$delayFn;
     var defaultHeaders = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : {};
     var _options = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : new RestClientOptions();
     _classCallCheck(this, RestClient);
@@ -60,6 +60,11 @@ export var RestClient = /*#__PURE__*/function () {
     this.maxRetries = (_options$maxRetries = _options.maxRetries) !== null && _options$maxRetries !== void 0 ? _options$maxRetries : 0;
     this.shouldRetry = _options.shouldRetry || function (res) {
       return [502, 503, 504].includes(res.status);
+    };
+    this.delayFn = (_options$delayFn = _options.delayFn) !== null && _options$delayFn !== void 0 ? _options$delayFn : function (ms) {
+      return new Promise(function (resolve) {
+        return setTimeout(resolve, ms);
+      });
     };
 
     // Logging hooks
@@ -329,7 +334,7 @@ function _request2() {
           }
           waitTime = exponentialBackoff(retryCount);
           _context6.n = 3;
-          return delay(waitTime);
+          return this.delayFn(waitTime);
         case 3:
           return _context6.a(2, _assertClassBrand(_RestClient_brand, this, _request).call(this, method, routeParam, data, headers, retryCount + 1, externalController));
         case 4:

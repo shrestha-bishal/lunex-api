@@ -40,7 +40,7 @@ var RestClient = exports.RestClient = /*#__PURE__*/function () {
    * @param options - Configuration options for request behavior such as timeout, retries, and hooks.
    */
   function RestClient(baseUrl) {
-    var _options$timeout, _options$maxRetries;
+    var _options$timeout, _options$maxRetries, _options$delayFn;
     var defaultHeaders = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : {};
     var _options = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : new _RestClientOptions["default"]();
     _classCallCheck(this, RestClient);
@@ -67,6 +67,11 @@ var RestClient = exports.RestClient = /*#__PURE__*/function () {
     this.maxRetries = (_options$maxRetries = _options.maxRetries) !== null && _options$maxRetries !== void 0 ? _options$maxRetries : 0;
     this.shouldRetry = _options.shouldRetry || function (res) {
       return [502, 503, 504].includes(res.status);
+    };
+    this.delayFn = (_options$delayFn = _options.delayFn) !== null && _options$delayFn !== void 0 ? _options$delayFn : function (ms) {
+      return new Promise(function (resolve) {
+        return setTimeout(resolve, ms);
+      });
     };
 
     // Logging hooks
@@ -336,7 +341,7 @@ function _request2() {
           }
           waitTime = (0, _delayUtils.exponentialBackoff)(retryCount);
           _context6.n = 3;
-          return (0, _delayUtils.delay)(waitTime);
+          return this.delayFn(waitTime);
         case 3:
           return _context6.a(2, _assertClassBrand(_RestClient_brand, this, _request).call(this, method, routeParam, data, headers, retryCount + 1, externalController));
         case 4:

@@ -2,10 +2,12 @@ type ShouldRetryFn = (response: Response) => boolean;
 type OnRequestStartFn = (method: string, url: string, options: RequestInit) => void;
 type OnRequestEndFn = (response: Response) => void;
 type OnRequestErrorFn = (error: any) => void;
+type DelayFn = (ms: number) => Promise<void>;
 interface RestClientOptionsConfig {
     timeout?: number;
     maxRetries?: number;
     shouldRetry?: ShouldRetryFn;
+    delayFn?: DelayFn;
     onRequestStart?: OnRequestStartFn | null;
     onRequestEnd?: OnRequestEndFn | null;
     onRequestError?: OnRequestErrorFn | null;
@@ -30,6 +32,12 @@ declare class RestClientOptions {
      */
     shouldRetry: ShouldRetryFn;
     /**
+     * Custom async delay function used to wait between retries.
+     * Receives the delay time in milliseconds.
+     * Defaults to a standard delay implementation using setTimeout.
+     */
+    delayFn: DelayFn;
+    /**
      * Optional callback triggered before a request is sent.
      * Receives HTTP method, request URL, and request options.
      */
@@ -45,16 +53,17 @@ declare class RestClientOptions {
      */
     onRequestError: OnRequestErrorFn | null;
     /**
-         * Creates an instance of RestClientOptions.
-         *
-         * @param {Object} [config={}] Configuration options.
-         * @param {number} [config.timeout=10000] Timeout in milliseconds.
-         * @param {number} [config.maxRetries=0] Number of retries on transient errors.
-         * @param {ShouldRetryFn} [config.shouldRetry] Retry decision function.
-         * @param {OnRequestStartFn|null} [config.onRequestStart] Hook before request start.
-         * @param {OnRequestEndFn|null} [config.onRequestEnd] Hook after request end.
-         * @param {OnRequestErrorFn|null} [config.onRequestError] Hook on request error.
-         */
-    constructor({ timeout, maxRetries, shouldRetry, onRequestStart, onRequestEnd, onRequestError }?: RestClientOptionsConfig);
+     * Creates an instance of RestClientOptions.
+     *
+     * @param {Object} [config={}] Configuration options.
+     * @param {number} [config.timeout=10000] Timeout in milliseconds.
+     * @param {number} [config.maxRetries=0] Number of retries on transient errors.
+     * @param {ShouldRetryFn} [config.shouldRetry] Retry decision function.
+     * @param {DelayFn} [config.delayFn] Custom async delay function for retry backoff.
+     * @param {OnRequestStartFn|null} [config.onRequestStart] Hook before request start.
+     * @param {OnRequestEndFn|null} [config.onRequestEnd] Hook after request end.
+     * @param {OnRequestErrorFn|null} [config.onRequestError] Hook on request error.
+     */
+    constructor({ timeout, maxRetries, shouldRetry, delayFn, onRequestStart, onRequestEnd, onRequestError }?: RestClientOptionsConfig);
 }
 export default RestClientOptions;
