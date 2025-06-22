@@ -66,7 +66,8 @@
   "files": [
     "dist",
     "README.md",
-    "LICENSE"
+    "LICENSE",
+    "assets/img/banner.png"
   ],
   "bugs": {
     "url": "https://github.com/shrestha-bishal/rest-client-js/issues"
