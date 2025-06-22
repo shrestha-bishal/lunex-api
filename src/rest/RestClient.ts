@@ -7,6 +7,7 @@ type QueryParams = Record<string, string | number | boolean | undefined | null>;
 type OnRequestStartFn = (method: string, url: string, options: RequestInit) => void;
 type OnRequestEndFn = (response: Response) => void;
 type OnRequestErrorFn = (error: unknown) => void;
+type DelayFn = (ms: number) => Promise<void>
 
 /**
  * RestClient provides a clean abstraction to interact with RESTful APIs using HTTP methods.
@@ -22,6 +23,7 @@ export class RestClient
     private timeout: number;
     private maxRetries: number;
     private shouldRetry: (res: Response) => boolean;
+    private delayFn: DelayFn;
     
     private onRequestStart?: OnRequestStartFn | null;
     private onRequestEnd?: OnRequestEndFn | null;
@@ -51,6 +53,7 @@ export class RestClient
         this.timeout = options.timeout ?? 10000;
         this.maxRetries = options.maxRetries ?? 0;
         this.shouldRetry = options.shouldRetry || ((res) => [502, 503, 504].includes(res.status));
+        this.delayFn = options.delayFn ?? (ms => new Promise(resolve => setTimeout(resolve, ms)));
 
         // Logging hooks
         this.onRequestStart = options.onRequestStart;
@@ -62,7 +65,7 @@ export class RestClient
      * Update default headers (e.g., to set Authorization or API key).
      * @param headers - Headers to merge with existing defaults.
      */
-    setHeaders(headers: Headers): void {
+    public setHeaders(headers: Headers): void {
         this.defaultHeaders = { ...this.defaultHeaders, ...headers };
     }
 
@@ -74,7 +77,7 @@ export class RestClient
      * @param {AbortController|null} [controller=null] - Optional controller to cancel the request.
      * @returns {Promise<Object|string|null>}
      */
-    async getAsync(
+    public async getAsync(
         routeParam: string | null = null, 
         queryParams: QueryParams = {}, 
         headers:Headers = {}, 
@@ -92,7 +95,7 @@ export class RestClient
      * @param {AbortController|null} [controller=null] - Optional controller to cancel the request.
      * @returns {Promise<Object|string|null>}
      */
-    async postAsync(
+    public async postAsync(
         routeParam: string | null = null,
         data: any,
         headers: Headers = {},
@@ -110,7 +113,7 @@ export class RestClient
      * @param {AbortController|null} [controller=null] - Optional controller to cancel the request.
      * @returns {Promise<Object|string|null>}
      */
-    async putAsync(
+    public async putAsync(
         routeParam: string | null = null,
         data: any,
         headers: Headers = {},
@@ -126,7 +129,7 @@ export class RestClient
      * @param {AbortController|null} [controller=null] - Optional controller to cancel the request.
      * @returns {Promise<Object|string|null>}
      */
-    async patchAsync(
+    public async patchAsync(
         routeParam: string | null = null,
         data: any,
         headers: Headers = {},
@@ -142,7 +145,7 @@ export class RestClient
      * @param {AbortController|null} [controller=null] - Optional controller to cancel the request.
      * @returns {Promise<Object|string|null>}
      */
-    async deleteAsync(
+    public async deleteAsync(
         routeParam: string | null = null,
         headers: Headers = {},
         controller: AbortController | null = null
@@ -211,7 +214,7 @@ export class RestClient
                 if (this.maxRetries > 0 && retryCount < this.maxRetries && this.shouldRetry(response)) 
                 {
                     const waitTime = exponentialBackoff(retryCount);
-                    await delay(waitTime);
+                    await this.delayFn(waitTime)
 
                     return this.#request(method, routeParam, data, headers, retryCount + 1, externalController);
                 }
