@@ -2,7 +2,7 @@
   "name": "@bishal-shrestha/rest-client",
   "version": "1.0.0",
   "type": "module",
-  "description": "A lightweight and flexible REST API client for JavaScript with built-in retry policies and hooks.",
+  "description": "A lightweight and flexible REST API client for JavaScript and TypeScript, supporting CommonJS and ES modules (ESM). Features include HTTP methods (GET, POST, PUT, PATCH, DELETE), built-in retry policies with exponential backoff, request lifecycle hooks for detailed logging, configurable timeouts, and strong TypeScript typings for seamless integration.",
   "main": "./dist/esm/index.js",
   "module": "./dist/esm/index.js",
   "types": "./dist/types/index.d.ts",
@@ -69,6 +69,9 @@
     "jest-fetch-mock": "^3.0.3",
     "ts-jest": "^29.4.0",
     "typescript": "^5.8.3"
+  },
+  "publishConfig": {
+    "access": "public"
   },
   "babel": {
     "presets": [
