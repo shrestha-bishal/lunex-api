@@ -3,7 +3,7 @@
  *
  * Exports core classes for API interaction, payload handling, and utility functions.
  * 
- * @module rest-client
+ * @module @bishal-shrestha/rest-client
  */
 import RestClient from './rest/RestClient'
 
