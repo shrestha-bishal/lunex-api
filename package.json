@@ -1,6 +1,6 @@
 {
   "name": "@bishal-shrestha/rest-client",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "description": "A lightweight and flexible REST API client for JavaScript and TypeScript, supporting CommonJS and ES modules (ESM). Features include HTTP methods (GET, POST, PUT, PATCH, DELETE), built-in retry policies with exponential backoff, request lifecycle hooks for detailed logging, configurable timeouts, and strong TypeScript typings for seamless integration.",
   "main": "./dist/cjs/index.cjs",
   "module": "./dist/esm/index.js",
@@ -53,7 +53,6 @@
     "put",
     "delete",
     "patch",
-    "rest",
     "retry",
     "restful",
     "restclient"
