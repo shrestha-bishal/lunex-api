@@ -112,7 +112,8 @@ For environments without ESM support or bundlers, the library offers a UMD build
 <!-- OR unpkg CDN -->
 <script src="https://unpkg.com/@bishal-shrestha/rest-client/dist/umd/rest-client.umd.js"></script>
 ```
-###### Local Usage
+
+> Local Usage
 - Install the package:
 ```bash
 npm install @bishal-shrestha/rest-client
