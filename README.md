@@ -184,6 +184,20 @@ const client = new RestClient('https://api.example.com', {}, options);
 
 You can find example usage and demos in the [examples](https://github.com/shrestha-bishal/rest-client-js/tree/master/examples) folder of the repository.
 
+## Playground Examples
+
+To facilitate practical understanding and experimentation, this repository includes a collection of playground projects showcasing various usage scenarios of the `@bishal-shrestha/rest-client` library.
+
+These examples encompass multiple technologies and environments—ranging from vanilla JavaScript and TypeScript to modern build tools—and are organized within the [`playground/`](./playground) directory.
+
+#### Getting Started
+
+Each playground project contains specific setup instructions. The typical workflow is:
+
+1. Navigate to the desired playground directory (e.g., `playground/simple-vite-vanilla-app`).
+2. Install dependencies via the appropriate package manager (e.g., `npm install`).
+3. Launch the development server or run the project as described in the respective README.
+4. Access the application using the provided local URL or interface.
 
 ## Troubleshooting / FAQ
 **Q:** I get a module resolution error when importing in the browser.  
