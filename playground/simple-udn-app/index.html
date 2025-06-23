@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>RestClient UMD Example</title>
+        <!-- unpkg CDN (latest version) -->
+        <!-- 
+            <script src="https://unpkg.com/your-package-name/dist/umd/rest-client.umd.js"></script>
+        -->
+        <!-- jsDelivr CDN (latest version) -->
+        <script src="https://cdn.jsdelivr.net/npm/your-package-name@version/dist/umd/rest-client.umd.js"></script>
+
+        <script src="umd/rest-client.umd.js"></script>
+
+        <!-- Local
+            <script src="umd/rest-client.umd.js"></script>
+        -->
+    </head>
+    <body>
+        <div id="output">Loading...</div>
+    </body>
+</html>
+
+<script>
+    const output = document.getElementById('output');
+    const RestClient = window.RestClient.default;
+    const RestClientOptions = window.RestClient.RestClientOptions;
+
+    const options = new RestClientOptions({ 
+        timeout: 8000,
+        maxRetries: 2
+    });
+
+    const client = new RestClient('https://jsonplaceholder.typicode.com', {}, options);
+
+    async function fetchUsers() {
+        try {
+            const users = await client.getAsync('users');
+            output.innerHTML = `<pre>${JSON.stringify(users, null, 2)}</pre>`;
+        } catch (error) {
+            output.textContent = 'Error fetching users: ' + error.message;
+        }
+    }
+
+    fetchUsers();
+</script>
