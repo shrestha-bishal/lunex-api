@@ -65,7 +65,7 @@ npm install @bishal-shrestha/rest-client
 ## Browser Usage
 This package is primarily designed for Node.js and modern bundler environments. For use in browser environments, please consider the following:
 
-### Using with Bundlers (Recommended)
+### 1. Using with Bundlers (Recommended)
 If your project uses bundlers like Vite, Webpack, Rollup, or similar tools, you can import the package using its npm name:
 ```ts
 import RestClient from '@bishal-shrestha/rest-client';
@@ -77,7 +77,7 @@ const client = new RestClient('https://api.example.com', {
 
 Your bundler will resolve the package from node_modules, process it according to your configuration, and bundle it appropriately for browser compatibility.
 
-### Using Native ES Modules in Browsers Without Bundlers
+### 2. Using Native ES Modules in Browsers Without Bundlers
 Browsers do not natively resolve bare module specifiers like @bishal-shrestha/rest-client. To use the package directly as a module in browsers without a bundler, import it from an ESM CDN such as esm.sh:
 
 ```ts
@@ -99,7 +99,7 @@ This approach allows native ES module support while letting the CDN handle packa
 - When using ESM CDNs, ensure that the package version is compatible and check the CDN documentation for additional configuration options.
 - For production applications, bundling remains the preferred approach for performance and caching benefits.
 
-### Using the UMD Build (No Bundler or ESM Support Needed)
+### 3. Using the UMD Build (No Bundler or ESM Support Needed)
 For environments without ESM support or bundlers, the library offers a UMD build that can be used directly in the browser via `<script>` tags.
 
 > CDN Usage
