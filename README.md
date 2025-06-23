@@ -112,7 +112,7 @@ const client = new RestClient('https://api.example.com', {
 
 (async () => {
   try {
-    const result = await client.getAsync('/users', { active: true });
+    const result = await client.getAsync('users', { active: true });
     console.log(result);
   } catch (error) {
     console.error('API request failed:', error);
@@ -124,7 +124,7 @@ const client = new RestClient('https://api.example.com', {
 const controller = new AbortController();
 setTimeout(() => controller.abort(), 3000); // Custom 3s timeout
 
-await client.getAsync('/delayed-endpoint', {}, {}, controller);
+await client.getAsync('delayed-endpoint', {}, {}, controller);
 ```
 
 ### CommonJS Usage (for older Node.js projects)
@@ -254,7 +254,7 @@ const controller = new AbortController();
 
 setTimeout(() => controller.abort(), 5000);  // abort after 5 seconds
 
-await client.getAsync('/endpoint', {}, {}, controller.signal);
+await client.getAsync('endpoint', {}, {}, controller.signal);
 ```
 
 **Q:** Can I use this library with React, Vue, or other frontend frameworks?
@@ -265,7 +265,7 @@ import RestClient from '@bishal-shrestha/rest-client';
 const client = new RestClient('https://api.example.com');
 
 useEffect(() => {
-  client.getAsync('/data').then(console.log);
+  client.getAsync('data').then(console.log);
 }, []);
 ```
 
