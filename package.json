@@ -1,6 +1,6 @@
 {
   "name": "@bishal-shrestha/rest-client",
-  "version": "1.0.6",
+  "version": "1.0.7",
   "type": "module",
   "description": "A lightweight and flexible REST API client for JavaScript and TypeScript, supporting CommonJS and ES modules (ESM). Features include HTTP methods (GET, POST, PUT, PATCH, DELETE), built-in retry policies with exponential backoff, request lifecycle hooks for detailed logging, configurable timeouts, and strong TypeScript typings for seamless integration.",
   "main": "./dist/cjs/index.cjs",
@@ -12,13 +12,15 @@
   "exports": {
     "import": "./dist/esm/index.js",
     "require": "./dist/cjs/index.cjs",
-    "types": "./dist/types/index.d.ts"
+    "types": "./dist/types/index.d.ts",
+    "umd": "./dist/umd/rest-client.umd.js"
   },
   "scripts": {
     "build:cjs": "cross-env BABEL_ENV=cjs babel src --extensions \".ts,.js\" --out-dir dist/cjs && node rename-cjs.js",
     "build:esm": "cross-env BABEL_ENV=esm babel src --extensions \".ts,.js\" --out-dir dist/esm",
     "build:types": "tsc --emitDeclarationOnly --outDir dist/types",
-    "build": "npm run build:cjs && npm run build:esm && npm run build:types",
+    "build:umd": "rollup -c",
+    "build": "npm run build:cjs && npm run build:esm && npm run build:types && npm run build:umd",
     "prepare": "npm run build",
     "test": "node --experimental-vm-modules ./node_modules/jest/bin/jest.js"
   },
@@ -78,10 +80,16 @@
     "@babel/preset-env": "^7.27.2",
     "@babel/preset-typescript": "^7.27.1",
     "@jest/environment": "^30.0.0",
+    "@rollup/plugin-babel": "^6.0.4",
+    "@rollup/plugin-commonjs": "^28.0.6",
+    "@rollup/plugin-node-resolve": "^16.0.1",
+    "@rollup/plugin-terser": "^0.4.4",
     "@types/jest": "^30.0.0",
     "cross-env": "^7.0.3",
     "jest": "^30.0.0",
     "jest-fetch-mock": "^3.0.3",
+    "rollup": "^4.44.0",
+    "rollup-plugin-typescript2": "^0.36.0",
     "ts-jest": "^29.4.0",
     "typescript": "^5.8.3"
   },
