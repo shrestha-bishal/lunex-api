@@ -1,0 +1,15 @@
+body {
+  font-family: Arial, sans-serif;
+  padding: 1rem;
+  background: #f0f0f0;
+}
+
+#output {
+  background: white;
+  border: 1px solid #ccc;
+  padding: 1rem;
+  max-height: 400px;
+  overflow: auto;
+  white-space: pre-wrap;
+  word-break: break-word;
+}
