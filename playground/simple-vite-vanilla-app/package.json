@@ -1,0 +1,17 @@
+{
+  "name": "simple-vite-app",
+  "private": true,
+  "version": "0.0.0",
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview"
+  },
+  "devDependencies": {
+    "vite": "^6.3.5"
+  },
+  "dependencies": {
+    "@bishal-shrestha/rest-client": "^1.0.6"
+  }
+}
