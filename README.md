@@ -95,9 +95,62 @@ Then include your script in your HTML with the `type="module"` attribute:
 
 This approach allows native ES module support while letting the CDN handle package resolution and transformation.
 
-#### Notes
+##### Notes
 - When using ESM CDNs, ensure that the package version is compatible and check the CDN documentation for additional configuration options.
 - For production applications, bundling remains the preferred approach for performance and caching benefits.
+
+#### Using the UMD Build (No Bundler or ESM Support Needed)
+For environments without ESM support or bundlers, the library offers a UMD build that can be used directly in the browser via `<script>` tags.
+
+> CDN Usage
+###### Include the script via a CDN:
+
+```html
+<!-- jsDelivr CDN (latest version or specify version) -->
+<script src="https://cdn.jsdelivr.net/npm/@bishal-shrestha/rest-client/dist/umd/rest-client.umd.js"></script>
+
+<!-- OR unpkg CDN -->
+<script src="https://unpkg.com/@bishal-shrestha/rest-client/dist/umd/rest-client.umd.js"></script>
+```
+###### Local Usage
+- Install the package:
+```bash
+npm install @bishal-shrestha/rest-client
+```
+- Copy the UMD bundle:
+```bash
+cp node_modules/@bishal-shrestha/rest-client/build/umd/rest-client.umd.js ./public/umd/
+```
+- Include it in your HTML:
+```html
+<script src="umd/rest-client.umd.js"></script>
+```
+
+##### Example 
+```html
+<!DOCTYPE html>
+<html>
+  <head>
+    <script src="https://cdn.jsdelivr.net/npm/@bishal-shrestha/rest-client/dist/umd/rest-client.umd.js"></script>
+  </head>
+  <body>
+    <div id="output">Loading...</div>
+    <script>
+      const RestClient = window.RestClient.default;
+      const RestClientOptions = window.RestClient.RestClientOptions;
+
+      const client = new RestClient('https://jsonplaceholder.typicode.com', {}, new RestClientOptions({ timeout: 8000 }));
+
+      client.getAsync('users').then(users => {
+        document.getElementById('output').innerHTML = `<pre>${JSON.stringify(users, null, 2)}</pre>`;
+      }).catch(err => {
+        document.getElementById('output').textContent = 'Request failed: ' + err.message;
+      });
+    </script>
+  </body>
+</html>
+```
+The UMD build exposes the RestClient and RestClientOptions as global variables via window.RestClient.
 
 ## Basic Usage
 ```ts
