@@ -8,7 +8,7 @@
 
 A lightweight, extensible, and strongly-typed HTTP client for interacting with RESTful APIs with support for `GET`, `POST`, `PATCH`, `PUT`, `DELETE` in JavaScript and TypeScript. Built on the Fetch API, with built-in support for retries, timeouts, and request lifecycle hooks.
 
-The library is fully compatible with CommonJS and ES module (ESM) environments and provides complete TypeScript typings for seamless integration in modern JavaScript and TypeScript projects.
+The library is fully compatible with CommonJS (CJS), ES module (ESM) and Universal Module Definition (UMD) environments and provides complete TypeScript typings for seamless integration in modern JavaScript and TypeScript projects.
 
 > **Note:** Versions `1.0.0` to `1.0.5` were reserved for internal testing and were not published to npm. Public releases start from `1.0.6`.
 
