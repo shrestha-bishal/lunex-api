@@ -340,7 +340,7 @@ For bug reports or feature requests, please open an issue on GitHub.
 ## Funding & Sponsorship
 `@bishal-shrestha/rest-client` is an open-source project maintained with care to deliver a reliable, type-safe HTTP client for JavaScript and TypeScript developers. If you or your organization find this project valuable, please consider supporting its development. Your sponsorship helps sustain long-term maintenance, improve features and documentation, and keep the library freely available to the community. As a token of appreciation, sponsors may have their logo and link featured in the project README and documentation site. Priority support and early access to planned features may also be offered where appropriate.
 
-#### Support options:
+### Support options:
 [![Buy Me a Coffee](https://img.shields.io/badge/Buy%20Me%20a%20Coffee-Support%20Developer-yellow?logo=buymeacoffee&style=flat-square)](https://www.buymeacoffee.com/shresthabishal)
 [![GitHub Sponsors](https://img.shields.io/badge/GitHub%20Sponsors-Become%20a%20Sponsor-blueviolet?logo=githubsponsors&style=flat-square)](https://github.com/sponsors/shrestha-bishal)
 [![Thanks.dev](https://img.shields.io/badge/Thanks.dev-Appreciate%20Open%20Source-29abe0?logo=github&style=flat-square)](https://thanks.dev/gh/shrestha-bishal)
