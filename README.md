@@ -10,6 +10,8 @@ A lightweight, extensible, and strongly-typed HTTP client for interacting with R
 
 The library is fully compatible with CommonJS and ES module (ESM) environments and provides complete TypeScript typings for seamless integration in modern JavaScript and TypeScript projects.
 
+> **Note:** Versions `1.0.0` to `1.0.5` were reserved for internal testing and were not published to npm. Public releases start from `1.0.6`.
+
 [View Package in npm](https://www.npmjs.com/package/@bishal-shrestha/rest-client)
 
 ## Features
