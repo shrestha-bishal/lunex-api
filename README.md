@@ -24,7 +24,7 @@ The library is fully compatible with CommonJS and ES module (ESM) environments a
 - Request timeout handling with configurable timeout duration.
 - Optional retry logic for transient server errors with exponential backoff.
 - Detailed error reporting including HTTP status, status text, and response body.
-- Compatible with CommonJS, ESM, and fully typed for TypeScript
+- Compatible with CommonJS, ESM, UMD and fully typed for TypeScript
 
 
 ## API Reference
