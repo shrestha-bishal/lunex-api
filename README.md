@@ -8,7 +8,7 @@
 
 A lightweight, extensible, and strongly-typed HTTP client for interacting with RESTful APIs with support for `GET`, `POST`, `PATCH`, `PUT`, `DELETE` in JavaScript and TypeScript. Built on the Fetch API, with built-in support for retries, timeouts, and request lifecycle hooks.
 
-The library is fully compatible with CommonJS and ES module (ESM) environments and provides complete TypeScript typings for seamless integration in modern JavaScript and TypeScript projects.
+The library is fully compatible with CommonJS (CJS), ES module (ESM) and Universal Module Definition (UMD) environments and provides complete TypeScript typings for seamless integration in modern JavaScript and TypeScript projects.
 
 > **Note:** Versions `1.0.0` to `1.0.5` were reserved for internal testing and were not published to npm. Public releases start from `1.0.6`.
 
@@ -24,7 +24,7 @@ The library is fully compatible with CommonJS and ES module (ESM) environments a
 - Request timeout handling with configurable timeout duration.
 - Optional retry logic for transient server errors with exponential backoff.
 - Detailed error reporting including HTTP status, status text, and response body.
-- Compatible with CommonJS, ESM, and fully typed for TypeScript
+- Compatible with CommonJS, ESM, UMD and fully typed for TypeScript
 
 
 ## API Reference
@@ -336,6 +336,14 @@ Contributions are welcome! Please follow these steps:
 5. Submit a pull request explaining your changes.
 
 For bug reports or feature requests, please open an issue on GitHub.
+
+## Funding & Sponsorship
+`@bishal-shrestha/rest-client` is an open-source project maintained with care to deliver a reliable, type-safe HTTP client for JavaScript and TypeScript developers. If you or your organization find this project valuable, please consider supporting its development. Your sponsorship helps sustain long-term maintenance, improve features and documentation, and keep the library freely available to the community. As a token of appreciation, sponsors may have their logo and link featured in the project README and documentation site. Priority support and early access to planned features may also be offered where appropriate.
+
+### Support options:
+[![GitHub Sponsors](https://img.shields.io/badge/GitHub%20Sponsors-Become%20a%20Sponsor-blueviolet?logo=githubsponsors&style=flat-square)](https://github.com/sponsors/shrestha-bishal)
+[![Buy Me a Coffee](https://img.shields.io/badge/Buy%20Me%20a%20Coffee-Support%20Developer-yellow?logo=buymeacoffee&style=flat-square)](https://www.buymeacoffee.com/shresthabishal)
+[![Thanks.dev](https://img.shields.io/badge/Thanks.dev-Appreciate%20Open%20Source-29abe0?logo=github&style=flat-square)](https://thanks.dev/gh/shrestha-bishal)
 
 ## License
 
