@@ -26,6 +26,11 @@ The library is fully compatible with CommonJS (CJS), ES module (ESM) and Univers
 - Detailed error reporting including HTTP status, status text, and response body.
 - Compatible with CommonJS, ESM, UMD and fully typed for TypeScript
 
+## Installation
+
+```bash
+npm install @bishal-shrestha/rest-client
+```
 
 ## API Reference
 #### `getAsync(routeParam?: string, queryParams?: object, headers?: object, controller?: AbortController): Promise<any>`
@@ -57,12 +62,6 @@ Sends a PATCH request with a JSON payload.
 #### `deleteAsync(routeParam: string, headers?: object, controller?: AbortController): Promise<any>`
 
 Sends a DELETE request to the specified route.
-
-## Installation
-
-```bash
-npm install @bishal-shrestha/rest-client
-```
 
 ## Browser Usage
 This package is primarily designed for Node.js and modern bundler environments. For use in browser environments, please consider the following:
