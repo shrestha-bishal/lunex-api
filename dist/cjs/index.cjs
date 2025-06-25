@@ -22,9 +22,9 @@ Object.defineProperty(exports, "shouldRetry", {
     return _retryPolicy.shouldRetry;
   }
 });
-var _RestClient = _interopRequireDefault(require("./rest/RestClient"));
-var _retryPolicy = require("./policies/retry-policy");
-var _RestClientOptions = _interopRequireDefault(require("./rest/RestClientOptions"));
+var _RestClient = _interopRequireDefault(require("./rest/RestClient.cjs"));
+var _retryPolicy = require("./policies/retry-policy.cjs");
+var _RestClientOptions = _interopRequireDefault(require("./rest/RestClientOptions.cjs"));
 function _interopRequireDefault(e) { return e && e.__esModule ? e : { "default": e }; }
 /**
  * Main entry point for the Rest Client library.
