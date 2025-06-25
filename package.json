@@ -11,7 +11,7 @@
   "bugs": {
     "url": "https://github.com/shrestha-bishal/rest-client-js/issues"
   },
-  "homepage": "https://github.com/shrestha-bishal/rest-client-js#readme",
+  "homepage": "https://rest-client-docs.netlify.app/",
   "main": "./dist/cjs/index.cjs",
   "module": "./dist/esm/index.js",
   "types": "./dist/types/index.d.ts",
