@@ -11,7 +11,7 @@
   "bugs": {
     "url": "https://github.com/shrestha-bishal/rest-client-js/issues"
   },
-  "homepage": "https://rest-client-docs.netlify.app/",
+  "homepage": "https://lunex-http.netlify.app/",
   "main": "./dist/cjs/index.cjs",
   "module": "./dist/esm/index.js",
   "types": "./dist/types/index.d.ts",
@@ -22,7 +22,7 @@
     "import": "./dist/esm/index.js",
     "require": "./dist/cjs/index.cjs",
     "types": "./dist/types/index.d.ts",
-    "umd": "./dist/umd/rest-client.umd.js"
+    "umd": "./dist/umd/lunex-http.umd.js"
   },
   "scripts": {
     "build:cjs": "cross-env BABEL_ENV=cjs babel src --extensions \".ts,.js\" --out-dir dist/cjs && node rename-cjs.js",
@@ -35,7 +35,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/shrestha-bishal/rest-client-js.git"
+    "url": "git+https://github.com/shrestha-bishal/lunex-http.git"
   },
   "funding": [
     {
@@ -117,6 +117,7 @@
     "rest",
     "http",
     "client",
+    "http-client",
     "rest-client",
     "restclient",
     "rest api",
