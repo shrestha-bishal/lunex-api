@@ -1,5 +1,5 @@
 /**
- * Example: Canceling a request using AbortController with LunexClient
+ * Example: Cancelling a request using AbortController with LunexClient
  *
  * This example shows how to abort an ongoing request manually or handle
  * a request timeout using an AbortController.

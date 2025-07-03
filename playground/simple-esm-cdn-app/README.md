@@ -1,4 +1,4 @@
-# LunexClient Vanilla JavaScript ESM CDN Simple App Example
+# Lunex HTTP Vanilla JavaScript ESM CDN Simple App Example
 This is a minimal vanilla JavaScript example demonstrating how to use the lunex-http library by importing it directly from an ESM CDN (esm.sh). It runs in modern browsers without bundlers or build tools.
 
 ### How to run this example

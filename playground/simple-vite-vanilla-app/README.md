@@ -1,4 +1,4 @@
-# LunexClient Vite with Vanilla Simple App Example
+# Lunex HTTP Vite with Vanilla Simple App Example
 This is a minimal vanilla JavaScript example demonstrating how to use the lunex-http library inside a Vite project.
 
 ## How to run this example
