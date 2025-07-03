@@ -351,4 +351,4 @@ This project is licensed under the [MIT License](./LICENSE).
 © 2025 Bishal Shrestha, All rights reserved
 [![npm](https://img.shields.io/badge/npm-View%20Package-red?logo=npm&logoColor=white&style=flat-square)](https://www.npmjs.com/package/lunex-client)
 
-![banner](https://github.com/user-attachments/assets/a469cdd5-eb0b-499d-b23e-dc4ba5748cc3)
+![banner](https://github.com/user-attachments/assets/79602572-82de-4de9-bc9d-57a8d61cb9d0)
