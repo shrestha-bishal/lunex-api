@@ -7,7 +7,7 @@ type OnRequestEndFn = (response: Response) => void;
 type OnRequestErrorFn = (error: any) => void;
 type DelayFn = (ms: number) => Promise<void>;
 
-interface RestClientOptionsConfig {
+interface LunexClientOptionsConfig {
     timeout?: number;
     maxRetries?: number;
     shouldRetry?: ShouldRetryFn;
@@ -26,7 +26,7 @@ interface RestClientOptionsConfig {
  * - Retry decision logic based on the response.
  * - Lifecycle hooks to tap into request start, completion, and error events.
  */
-class RestClientOptions {
+class LunexClientOptions {
     /** Request timeout in milliseconds before aborting. Default: 10000 (10 seconds) */
     timeout: number;
 
@@ -65,7 +65,7 @@ class RestClientOptions {
     onRequestError: OnRequestErrorFn | null;
     
     /**
-     * Creates an instance of RestClientOptions.
+     * Creates an instance of LunexClientOptions.
      * 
      * @param {Object} [config={}] Configuration options.
      * @param {number} [config.timeout=10000] Timeout in milliseconds.
@@ -84,7 +84,7 @@ class RestClientOptions {
         onRequestStart = null,
         onRequestEnd = null,
         onRequestError = null
-    }: RestClientOptionsConfig = {}) {
+    }: LunexClientOptionsConfig = {}) {
         this.timeout = timeout;
         this.maxRetries = maxRetries;
         this.shouldRetry = shouldRetry;
@@ -95,4 +95,4 @@ class RestClientOptions {
     }
 }
 
-export default RestClientOptions;
+export default LunexClientOptions;

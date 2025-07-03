@@ -1,6 +1,6 @@
 import { buildUrl, appendQueryParams } from "../utils/url-utils";
 import { delay, exponentialBackoff } from "../utils/delay-utils";
-import RestClientOptions from "./RestClientOptions";
+import LunexClientOptions from "./LunexClientOptions";
 
 type Headers = Record<string, string>;
 type QueryParams = Record<string, string | number | boolean | undefined | null>;
@@ -10,12 +10,12 @@ type OnRequestErrorFn = (error: unknown) => void;
 type DelayFn = (ms: number) => Promise<void>
 
 /**
- * RestClient provides a clean abstraction to interact with RESTful APIs using HTTP methods.
+ * LunexClient provides a clean abstraction to interact with RESTful APIs using HTTP methods.
  * Supports GET, POST, PUT, DELETE, PATCH with JSON and text response handling.
  * Allows custom headers including Authorization and API keys.
  * Supports request timeout and optional retry for transient errors.
  */
-export class RestClient 
+export class LunexClient 
 {
     private baseUrl: string;
     private defaultHeaders: Headers;
@@ -30,7 +30,7 @@ export class RestClient
     private onRequestError?: OnRequestErrorFn | null;
 
     /**
-     * Creates an instance of RestClient.
+     * Creates an instance of LunexClient.
      * 
      * @param baseUrl - The base URL for all API requests (e.g., "https://api.example.com").
      * @param defaultHeaders - Default HTTP headers to include with every request.
@@ -39,7 +39,7 @@ export class RestClient
     constructor(
         baseUrl: string, 
         defaultHeaders:Headers = {}, 
-        options:RestClientOptions = new RestClientOptions()) {
+        options:LunexClientOptions = new LunexClientOptions()) {
         if (!baseUrl || typeof baseUrl !== "string") {
             throw new TypeError("Base URL must be a non-empty string");
         }
@@ -255,4 +255,4 @@ export class RestClient
     }
 }
 
-export default RestClient;
+export default LunexClient;
