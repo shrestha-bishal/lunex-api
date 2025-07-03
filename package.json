@@ -9,7 +9,7 @@
   },
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/shrestha-bishal/rest-client-js/issues"
+    "url": "https://github.com/shrestha-bishal/lunex-http/issues"
   },
   "homepage": "https://lunex-http.netlify.app/",
   "main": "./dist/cjs/index.cjs",

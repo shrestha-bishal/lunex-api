@@ -8,8 +8,8 @@ Thank you for your interest in contributing to **lunex-http**. This project valu
 1. **Fork** the repository on GitHub.
 2. **Clone** your fork:
    ```bash
-   git clone https://github.com/shrestha-bishal/rest-client-js.git
-   cd rest-client-js
+   git clone https://github.com/shrestha-bishal/lunex-http.git
+   cd lunex-http
    ```
 3. **Install dependencies**:
    ```bash
@@ -72,7 +72,7 @@ Ensure tests are:
 
 ## Reporting Bugs or Issues
 
-Please use the [GitHub Issues](https://github.com/shrestha-bishal/rest-client-js/issues) page and include:
+Please use the [GitHub Issues](https://github.com/shrestha-bishal/lunex-http/issues) page and include:
 
 - A clear title and summary
 - Steps to reproduce

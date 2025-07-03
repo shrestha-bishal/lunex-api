@@ -237,7 +237,7 @@ const client = new LunexClient('https://api.example.com', {}, options);
 
 ## Examples and Demo
 
-You can find example usage and demos in the [examples](https://github.com/shrestha-bishal/rest-client-js/tree/master/examples) folder of the repository.
+You can find example usage and demos in the [examples](https://github.com/shrestha-bishal/lunex-http/tree/master/examples) folder of the repository.
 
 ## Playground Examples
 

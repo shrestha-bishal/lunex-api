@@ -18,7 +18,7 @@ We take security seriously. If you discover a vulnerability in this package, ple
 
 ### How to Report
 
-- GitHub: [Open a private security advisory](https://github.com/shrestha-bishal/rest-client-js/security/advisories)
+- GitHub: [Open a private security advisory](https://github.com/shrestha-bishal/lunex-http/security/advisories)
 
 ### What to Expect
 
