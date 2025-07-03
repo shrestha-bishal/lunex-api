@@ -1,4 +1,4 @@
-# lunex-http 
+# lunex-http ![logo-small](https://github.com/user-attachments/assets/dc643697-df63-4727-86f2-11643cb21578)
 
 ![npm](https://img.shields.io/npm/v/lunex-http)
 ![License](https://img.shields.io/npm/l/lunex-http)
