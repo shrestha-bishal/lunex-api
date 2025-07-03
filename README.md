@@ -108,10 +108,10 @@ For environments without ESM support or bundlers, the library offers a UMD build
 
 ```html
 <!-- jsDelivr CDN (latest version or specify version) -->
-<script src="https://cdn.jsdelivr.net/npm/lunex-client/dist/umd/rest-client.umd.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/lunex-client/dist/umd/lunex-http.umd.js"></script>
 
 <!-- OR unpkg CDN -->
-<script src="https://unpkg.com/lunex-client/dist/umd/rest-client.umd.js"></script>
+<script src="https://unpkg.com/lunex-client/dist/umd/lunex-http.umd.js"></script>
 ```
 
 > Local Usage
@@ -121,11 +121,11 @@ npm install lunex-client
 ```
 - Copy the UMD bundle:
 ```bash
-cp node_modules/lunex-client/build/umd/rest-client.umd.js ./public/umd/
+cp node_modules/lunex-client/build/umd/lunex-http.umd.js ./public/umd/
 ```
 - Include it in your HTML:
 ```html
-<script src="umd/rest-client.umd.js"></script>
+<script src="umd/lunex-http.umd.js"></script>
 ```
 
 ##### Example 
@@ -133,7 +133,7 @@ cp node_modules/lunex-client/build/umd/rest-client.umd.js ./public/umd/
 <!DOCTYPE html>
 <html>
   <head>
-    <script src="https://cdn.jsdelivr.net/npm/lunex-client/dist/umd/rest-client.umd.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/lunex-client/dist/umd/lunex-http.umd.js"></script>
   </head>
   <body>
     <div id="output">Loading...</div>

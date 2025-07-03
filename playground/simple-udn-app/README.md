@@ -7,12 +7,12 @@ This example demonstrates how to use the lunex-http library’s UMD bundle in a 
 
 > jsDelivr CDN (specify version or omit for latest):
 ```html
-<script src="https://cdn.jsdelivr.net/npm/lunex-http@version/dist/umd/rest-client.umd.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/lunex-http@version/dist/umd/lunex-http.umd.js"></script>
 ```
 
 > unpkg CDN (latest version):
 ```html
-<script src="https://unpkg.com/lunex-http/dist/umd/rest-client.umd.js"></script>
+<script src="https://unpkg.com/lunex-http/dist/umd/lunex-http.umd.js"></script>
 ```
 
 ### Using the UMD bundle locally
@@ -22,13 +22,13 @@ npm install lunex-http
 ```
 - Copy the UMD bundle from the package to your project’s public folder (adjust paths as needed):
 ```bash
-cp node_modules/lunex-http/build/umd/rest-client.umd.js ./public/umd/
+cp node_modules/lunex-http/build/umd/lunex-http.umd.js ./public/umd/
 ```
 
 - Reference the local UMD bundle in your HTML:
 
 ```html
-<script src="umd/rest-client.umd.js"></script>
+<script src="umd/lunex-http.umd.js"></script>
 ```
 
 Serve your project with a static server (e.g., npx serve .) for best compatibility, especially if you use modules or local API calls. For simple examples like this, you can also open the HTML file directly in your browser without a server, and it should work fine.
@@ -44,14 +44,14 @@ Serve your project with a static server (e.g., npx serve .) for best compatibili
 
         <!--
             - CDN:
-            <script src="https://unpkg.com/lunex-http/dist/umd/rest-client.umd.js"></script>
+            <script src="https://unpkg.com/lunex-http/dist/umd/lunex-http.umd.js"></script>
 
             - Local:
-            <script src="umd/rest-client.umd.js"></script>
+            <script src="umd/lunex-http.umd.js"></script>
         -->
 
         <!-- CDN via jsdelivr -->
-        <script src="https://cdn.jsdelivr.net/npm/lunex-http/dist/umd/rest-client.umd.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/lunex-http/dist/umd/lunex-http.umd.js"></script>
     </head>
 
     <body>
@@ -87,7 +87,7 @@ Serve your project with a static server (e.g., npx serve .) for best compatibili
 ```
 
 ## Notes
-- The UMD build is located in the package under node_modules/lunex-http/build/umd/rest-client.umd.js.
+- The UMD build is located in the package under node_modules/lunex-http/build/umd/lunex-http.umd.js.
 - When using locally, copy this file into your public directory for static serving.
 - When using CDN, no local file is needed.
 - Replace API URLs and package version as needed.
