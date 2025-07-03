@@ -7,13 +7,13 @@ export default {
   input: 'src/index.ts',
   output: [
     {
-      file: 'dist/umd/lunex-http.umd.js',
+      file: 'dist/umd/lunex-client.umd.js',
       format: 'umd',
       name: 'LunexClient',
       sourcemap: true
     },
     {
-      file: 'dist/umd/lunex-http.umd.min.js',
+      file: 'dist/umd/lunex-client.umd.min.js',
       format: 'umd',
       name: 'LunexClient',
       sourcemap: true,

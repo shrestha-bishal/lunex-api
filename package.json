@@ -22,7 +22,7 @@
     "import": "./dist/esm/index.js",
     "require": "./dist/cjs/index.cjs",
     "types": "./dist/types/index.d.ts",
-    "umd": "./dist/umd/lunex-http.umd.js"
+    "umd": "./dist/umd/lunex-client.umd.js"
   },
   "scripts": {
     "build:cjs": "cross-env BABEL_ENV=cjs babel src --extensions \".ts,.js\" --out-dir dist/cjs && node rename-cjs.js",
