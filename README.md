@@ -11,6 +11,7 @@ A lightweight, extensible, and strongly-typed HTTP client for interacting with R
 The library is fully compatible with CommonJS (CJS), ES module (ESM) and Universal Module Definition (UMD) environments and provides complete TypeScript typings for seamless integration in modern JavaScript and TypeScript projects.
 
 [View Package in npm](https://www.npmjs.com/package/lunex-http)
+
 [View Website](https://lunex-http.netlify.app)
 
 ## Features
@@ -351,7 +352,7 @@ This project is licensed under the [MIT License](./LICENSE).
 Bishal Shrestha 
 [![GitHub](https://img.shields.io/badge/GitHub-Profile-black?logo=github)](https://github.com/shrestha-bishal)
 [![Repo](https://img.shields.io/badge/Repository-GitHub-black?logo=github)](https://github.com/shrestha-bishal/lunex-http)
-[![Website](https://github.com/user-attachments/assets/0a8ba9c9-90c8-4461-bfb4-e996e55bd29a)](https://lunex-http.netlify.app)
+[Website](https://lunex-http.netlify.app)
 
 © 2025 Bishal Shrestha, All rights reserved
 [![npm](https://img.shields.io/badge/npm-View%20Package-red?logo=npm&logoColor=white&style=flat-square)](https://www.npmjs.com/package/lunex-http)
