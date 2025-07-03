@@ -2,12 +2,12 @@ import LunexClientOptions from "./LunexClientOptions";
 type Headers = Record<string, string>;
 type QueryParams = Record<string, string | number | boolean | undefined | null>;
 /**
- * RestClient provides a clean abstraction to interact with RESTful APIs using HTTP methods.
+ * LunexClient provides a clean abstraction to interact with RESTful APIs using HTTP methods.
  * Supports GET, POST, PUT, DELETE, PATCH with JSON and text response handling.
  * Allows custom headers including Authorization and API keys.
  * Supports request timeout and optional retry for transient errors.
  */
-export declare class RestClient {
+export declare class LunexClient {
     #private;
     private baseUrl;
     private defaultHeaders;
@@ -19,7 +19,7 @@ export declare class RestClient {
     private onRequestEnd?;
     private onRequestError?;
     /**
-     * Creates an instance of RestClient.
+     * Creates an instance of LunexClient.
      *
      * @param baseUrl - The base URL for all API requests (e.g., "https://api.example.com").
      * @param defaultHeaders - Default HTTP headers to include with every request.
@@ -76,4 +76,4 @@ export declare class RestClient {
      */
     deleteAsync(routeParam?: string | null, headers?: Headers, controller?: AbortController | null): Promise<any>;
 }
-export default RestClient;
+export default LunexClient;

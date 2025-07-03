@@ -1,7 +1,7 @@
 (function (global, factory) {
     typeof exports === 'object' && typeof module !== 'undefined' ? factory(exports) :
     typeof define === 'function' && define.amd ? define(['exports'], factory) :
-    (global = typeof globalThis !== 'undefined' ? globalThis : global || self, factory(global.RestClient = {}));
+    (global = typeof globalThis !== 'undefined' ? globalThis : global || self, factory(global.LunexClient = {}));
 })(this, (function (exports) { 'use strict';
 
     /******************************************************************************
@@ -96,7 +96,7 @@
     }
 
     /**
-     * Configuration options for the RestClient.
+     * Configuration options for the LunexClient.
      *
      * Enables customization of:
      * - Request timeout duration (in milliseconds).
@@ -128,23 +128,23 @@
         }
     }
 
-    var _RestClient_instances, _RestClient_request;
+    var _LunexClient_instances, _LunexClient_request;
     /**
-     * RestClient provides a clean abstraction to interact with RESTful APIs using HTTP methods.
+     * LunexClient provides a clean abstraction to interact with RESTful APIs using HTTP methods.
      * Supports GET, POST, PUT, DELETE, PATCH with JSON and text response handling.
      * Allows custom headers including Authorization and API keys.
      * Supports request timeout and optional retry for transient errors.
      */
-    class RestClient {
+    class LunexClient {
         /**
-         * Creates an instance of RestClient.
+         * Creates an instance of LunexClient.
          *
          * @param baseUrl - The base URL for all API requests (e.g., "https://api.example.com").
          * @param defaultHeaders - Default HTTP headers to include with every request.
          * @param options - Configuration options for request behavior such as timeout, retries, and hooks.
          */
         constructor(baseUrl, defaultHeaders = {}, options = new LunexClientOptions()) {
-            _RestClient_instances.add(this);
+            _LunexClient_instances.add(this);
             if (!baseUrl || typeof baseUrl !== "string") {
                 throw new TypeError("Base URL must be a non-empty string");
             }
@@ -179,7 +179,7 @@
          */
         async getAsync(routeParam = null, queryParams = {}, headers = {}, controller = null) {
             const urlWithQuery = appendQueryParams(routeParam, queryParams);
-            return await __classPrivateFieldGet(this, _RestClient_instances, "m", _RestClient_request).call(this, "GET", urlWithQuery, null, headers, 0, controller);
+            return await __classPrivateFieldGet(this, _LunexClient_instances, "m", _LunexClient_request).call(this, "GET", urlWithQuery, null, headers, 0, controller);
         }
         /**
          * Send a POST request with JSON body.
@@ -190,7 +190,7 @@
          * @returns {Promise<Object|string|null>}
          */
         async postAsync(routeParam = null, data, headers = {}, controller = null) {
-            return __classPrivateFieldGet(this, _RestClient_instances, "m", _RestClient_request).call(this, "POST", routeParam, data, headers, 0, controller);
+            return __classPrivateFieldGet(this, _LunexClient_instances, "m", _LunexClient_request).call(this, "POST", routeParam, data, headers, 0, controller);
         }
         /**
          * Send a PUT request with JSON body.
@@ -201,7 +201,7 @@
          * @returns {Promise<Object|string|null>}
          */
         async putAsync(routeParam = null, data, headers = {}, controller = null) {
-            return __classPrivateFieldGet(this, _RestClient_instances, "m", _RestClient_request).call(this, "PUT", routeParam, data, headers, 0, controller);
+            return __classPrivateFieldGet(this, _LunexClient_instances, "m", _LunexClient_request).call(this, "PUT", routeParam, data, headers, 0, controller);
         }
         /**
          * Send a PATCH request with JSON body.
@@ -212,7 +212,7 @@
          * @returns {Promise<Object|string|null>}
          */
         async patchAsync(routeParam = null, data, headers = {}, controller = null) {
-            return __classPrivateFieldGet(this, _RestClient_instances, "m", _RestClient_request).call(this, "PATCH", routeParam, data, headers, 0, controller);
+            return __classPrivateFieldGet(this, _LunexClient_instances, "m", _LunexClient_request).call(this, "PATCH", routeParam, data, headers, 0, controller);
         }
         /**
          * Send a DELETE request.
@@ -222,10 +222,10 @@
          * @returns {Promise<Object|string|null>}
          */
         async deleteAsync(routeParam = null, headers = {}, controller = null) {
-            return __classPrivateFieldGet(this, _RestClient_instances, "m", _RestClient_request).call(this, "DELETE", routeParam, null, headers, 0, controller);
+            return __classPrivateFieldGet(this, _LunexClient_instances, "m", _LunexClient_request).call(this, "DELETE", routeParam, null, headers, 0, controller);
         }
     }
-    _RestClient_instances = new WeakSet(), _RestClient_request = 
+    _LunexClient_instances = new WeakSet(), _LunexClient_request = 
     /**
      * Internal request method using fetch API with timeout and retry.
      * @private
@@ -237,7 +237,7 @@
      * @param {AbortController|null} [controller=null] - Optional controller to cancel the request.
      * @returns {Promise<Object|string|null>}
      */
-    async function _RestClient_request(method, routeParam, data, headers, retryCount = 0, externalController = null) {
+    async function _LunexClient_request(method, routeParam, data, headers, retryCount = 0, externalController = null) {
         const url = buildUrl(this.baseUrl, routeParam);
         const combinedHeaders = { ...this.defaultHeaders, ...headers };
         // Allow overriding Content-Type (default is application/json)
@@ -274,7 +274,7 @@
                 if (this.maxRetries > 0 && retryCount < this.maxRetries && this.shouldRetry(response)) {
                     const waitTime = exponentialBackoff(retryCount);
                     await this.delayFn(waitTime);
-                    return __classPrivateFieldGet(this, _RestClient_instances, "m", _RestClient_request).call(this, method, routeParam, data, headers, retryCount + 1, externalController);
+                    return __classPrivateFieldGet(this, _LunexClient_instances, "m", _LunexClient_request).call(this, method, routeParam, data, headers, retryCount + 1, externalController);
                 }
                 const errorText = `HTTP ${response.status} - ${response.statusText}`;
                 const responseContentType = (response.headers.get("content-type") || "").toLowerCase();
@@ -314,9 +314,9 @@
      * @module lunex-http
      */
 
-    exports.RestClient = RestClient;
+    exports.LunexClient = LunexClient;
     exports.LunexClientOptions = LunexClientOptions;
-    exports.default = RestClient;
+    exports.default = LunexClient;
     exports.shouldRetry = shouldRetry;
 
     Object.defineProperty(exports, '__esModule', { value: true });

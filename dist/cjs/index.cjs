@@ -3,10 +3,10 @@
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-Object.defineProperty(exports, "RestClient", {
+Object.defineProperty(exports, "LunexClient", {
   enumerable: true,
   get: function get() {
-    return _RestClient["default"];
+    return _LunexClient["default"];
   }
 });
 Object.defineProperty(exports, "LunexClientOptions", {
@@ -22,7 +22,7 @@ Object.defineProperty(exports, "shouldRetry", {
     return _retryPolicy.shouldRetry;
   }
 });
-var _RestClient = _interopRequireDefault(require("./rest/RestClient.cjs"));
+var _LunexClient = _interopRequireDefault(require("./rest/LunexClient.cjs"));
 var _retryPolicy = require("./policies/retry-policy.cjs");
 var _LunexClientOptions = _interopRequireDefault(require("./rest/LunexClientOptions.cjs"));
 function _interopRequireDefault(e) { return e && e.__esModule ? e : { "default": e }; }
@@ -33,4 +33,4 @@ function _interopRequireDefault(e) { return e && e.__esModule ? e : { "default":
  * 
  * @module lunex-http
  */
-var _default = exports["default"] = _RestClient["default"];
+var _default = exports["default"] = _LunexClient["default"];

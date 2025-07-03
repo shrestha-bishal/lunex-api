@@ -2,9 +2,9 @@
  * Example: POST request with JSON body (ESM)
  * Create a new resource.
  */
-import RestClient from 'lunex-http';
+import LunexClient from 'lunex-http';
 
-const client = new RestClient('https://api.example.com');
+const client = new LunexClient('https://api.example.com');
 
 async function run() {
   try {

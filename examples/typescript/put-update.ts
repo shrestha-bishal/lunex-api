@@ -1,14 +1,14 @@
 /**
  * Example: PUT request to update a resource (TypeScript)
  */
-import RestClient from 'lunex-http';
+import LunexClient from 'lunex-http';
 
 interface UserUpdate {
   name: string;
   email: string;
 }
 
-const client = new RestClient('https://api.example.com');
+const client = new LunexClient('https://api.example.com');
 
 async function run(): Promise<void> {
   try {

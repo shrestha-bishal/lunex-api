@@ -1,10 +1,10 @@
 /**
- * Example: Simple GET request with RestClient (ESM)
+ * Example: Simple GET request with LunexClient (ESM)
  * Fetch a list of resources without query parameters.
  */
-import RestClient from 'lunex-http';
+import LunexClient from 'lunex-http';
 
-const client = new RestClient('https://api.example.com', {
+const client = new LunexClient('https://api.example.com', {
   Authorization: 'Bearer YOUR_TOKEN',
 });
 

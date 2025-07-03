@@ -1,15 +1,15 @@
 /**
- * Example: Uploading a file using FormData with RestClient
+ * Example: Uploading a file using FormData with LunexClient
  *
  * Demonstrates how to send multipart/form-data payloads, commonly used for file uploads.
  * Note: Content-Type header should NOT be manually set when sending FormData,
  * as the browser will set the correct boundary automatically.
  */
 
-import RestClient from 'lunex-http';
+import LunexClient from 'lunex-http';
 
-// Initialize RestClient
-const client = new RestClient('https://api.example.com');
+// Initialize LunexClient
+const client = new LunexClient('https://api.example.com');
 
 (async () => {
   try {

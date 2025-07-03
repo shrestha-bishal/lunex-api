@@ -1,13 +1,13 @@
 /**
- * Example: Canceling a request using AbortController with RestClient
+ * Example: Canceling a request using AbortController with LunexClient
  *
  * This example shows how to abort an ongoing request manually or handle
  * a request timeout using an AbortController.
  */
 
-import RestClient from 'lunex-http';
+import LunexClient from 'lunex-http';
 
-const client = new RestClient('https://api.example.com');
+const client = new LunexClient('https://api.example.com');
 
 (async () => {
   const controller = new AbortController();

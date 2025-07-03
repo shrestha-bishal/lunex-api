@@ -1,10 +1,10 @@
 /**
- * Example: Using retry logic with RestClient (CJS)
+ * Example: Using retry logic with LunexClient (CJS)
  * Demonstrates retries on transient errors.
  */
-const { RestClient } = require('lunex-http');
+const { LunexClient } = require('lunex-http');
 
-const client = new RestClient('https://api.example.com', {}, {
+const client = new LunexClient('https://api.example.com', {}, {
   maxRetries: 3,
   shouldRetry: (response) => [502, 503, 504].includes(response.status),
 });

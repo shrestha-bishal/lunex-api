@@ -1,14 +1,14 @@
 /**
- * Example: Using Bearer token Authorization header with RestClient
+ * Example: Using Bearer token Authorization header with LunexClient
  *
  * Demonstrates how to use the standard Authorization header with a Bearer token
  * for OAuth2 or JWT authentication schemes.
  */
 
-const { RestClient } = require('lunex-http');
+const { LunexClient } = require('lunex-http');
 
-// Initialize the RestClient instance
-const client = new RestClient('https://api.example.com');
+// Initialize the LunexClient instance
+const client = new LunexClient('https://api.example.com');
 
 // Set the Authorization header with Bearer token globally
 client.setHeaders({

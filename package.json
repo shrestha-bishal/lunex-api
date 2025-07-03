@@ -193,6 +193,10 @@
     "got",
     "superagent",
     "node-fetch",
-    "request"
+    "request",
+    "lunex",
+    "lunex api",
+    "lunex-http",
+    "https"
   ]
 }

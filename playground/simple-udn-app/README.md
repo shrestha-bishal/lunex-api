@@ -1,8 +1,8 @@
-# RestClient UMD Vanilla JavaScript Example
+# LunexClient UMD Vanilla JavaScript Example
 This example demonstrates how to use the lunex-http library’s UMD bundle in a simple HTML page with vanilla JavaScript.You can load the UMD bundle either via CDN or locally from the installed package.
 
 ### Using the UMD bundle via CDN
-- Include the RestClient UMD bundle from a CDN in your HTML.
+- Include the LunexClient UMD bundle from a CDN in your HTML.
 - Replace @version with your desired version number or remove it to use the latest.
 
 > jsDelivr CDN (specify version or omit for latest):
@@ -40,7 +40,7 @@ Serve your project with a static server (e.g., npx serve .) for best compatibili
 <html lang="en">
     <head>
         <meta charset="UTF-8" />
-        <title>RestClient UMD Example</title>
+        <title>LunexClient UMD Example</title>
 
         <!--
             - CDN:
@@ -61,15 +61,15 @@ Serve your project with a static server (e.g., npx serve .) for best compatibili
             const output = document.getElementById('output');
 
             // Access classes from the UMD global object
-            const RestClient = window.RestClient.default;
-            const LunexClientOptions = window.RestClient.LunexClientOptions;
+            const LunexClient = window.LunexClient.default;
+            const LunexClientOptions = window.LunexClient.LunexClientOptions;
 
             const options = new LunexClientOptions({
             timeout: 8000,
             maxRetries: 2,
             });
 
-            const client = new RestClient('https://jsonplaceholder.typicode.com', {}, options);
+            const client = new LunexClient('https://jsonplaceholder.typicode.com', {}, options);
 
             async function fetchUsers() {
             try {

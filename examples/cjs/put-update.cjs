@@ -1,9 +1,9 @@
 /**
  * Example: PUT request to update a resource (CJS)
  */
-const { RestClient } = require('lunex-http');
+const { LunexClient } = require('lunex-http');
 
-const client = new RestClient('https://api.example.com');
+const client = new LunexClient('https://api.example.com');
 
 async function run() {
   try {

@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <title>RestClient UMD Example</title>
+        <title>LunexClient UMD Example</title>
         <!-- unpkg CDN (latest version) -->
         <!-- 
             <script src="https://unpkg.com/your-package-name/dist/umd/rest-client.umd.js"></script>
@@ -22,15 +22,15 @@
 
 <script>
     const output = document.getElementById('output');
-    const RestClient = window.RestClient.default;
-    const LunexClientOptions = window.RestClient.LunexClientOptions;
+    const LunexClient = window.LunexClient.default;
+    const LunexClientOptions = window.LunexClient.LunexClientOptions;
 
     const options = new LunexClientOptions({ 
         timeout: 8000,
         maxRetries: 2
     });
 
-    const client = new RestClient('https://jsonplaceholder.typicode.com', {}, options);
+    const client = new LunexClient('https://jsonplaceholder.typicode.com', {}, options);
 
     async function fetchUsers() {
         try {

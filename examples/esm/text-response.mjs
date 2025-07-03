@@ -4,9 +4,9 @@
  * This shows how to handle APIs that return plain text instead of JSON.
  */
 
-import RestClient from 'lunex-http';
+import LunexClient from 'lunex-http';
 
-const client = new RestClient('https://api.example.com');
+const client = new LunexClient('https://api.example.com');
 
 (async () => {
   try {

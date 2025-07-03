@@ -1,8 +1,8 @@
-import RestClient from 'https://esm.sh/lunex-http';
+import LunexClient from 'https://esm.sh/lunex-http';
 
 const output = document.getElementById('output');
 
-const client = new RestClient('https://jsonplaceholder.typicode.com');
+const client = new LunexClient('https://jsonplaceholder.typicode.com');
 
 async function fetchUsers() {
   try {

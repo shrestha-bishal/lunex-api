@@ -5,8 +5,8 @@
  *
  * @module lunex-http
  */
-import RestClient from './rest/RestClient';
+import LunexClient from './rest/LunexClient';
 export { shouldRetry } from './policies/retry-policy';
-export { default as RestClient } from './rest/RestClient';
+export { default as LunexClient } from './rest/LunexClient';
 export { default as LunexClientOptions } from './rest/LunexClientOptions';
-export default RestClient;
+export default LunexClient;

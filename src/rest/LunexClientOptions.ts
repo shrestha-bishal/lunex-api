@@ -18,7 +18,7 @@ interface LunexClientOptionsConfig {
 }
 
 /**
- * Configuration options for the RestClient.
+ * Configuration options for the LunexClient.
  * 
  * Enables customization of:
  * - Request timeout duration (in milliseconds).

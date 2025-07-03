@@ -1,10 +1,10 @@
 /**
- * Example: Using retry logic with RestClient (ESM)
+ * Example: Using retry logic with LunexClient (ESM)
  * Demonstrates retries on transient errors.
  */
-import RestClient from 'lunex-http';
+import LunexClient from 'lunex-http';
 
-const client = new RestClient('https://api.example.com', {}, {
+const client = new LunexClient('https://api.example.com', {}, {
   maxRetries: 3,
   shouldRetry: (response) => [502, 503, 504].includes(response.status),
 });

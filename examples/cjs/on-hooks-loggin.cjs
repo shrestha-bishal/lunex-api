@@ -1,11 +1,11 @@
 /**
- * Example: Using lifecycle hooks for request logging with RestClient
+ * Example: Using lifecycle hooks for request logging with LunexClient
  *
  * Demonstrates how to utilize onRequestStart, onRequestEnd, and onRequestError hooks
  * to log detailed information about HTTP requests and responses.
  */
 
-const { RestClient, LunexClientOptions } = require('lunex-http');
+const { LunexClient, LunexClientOptions } = require('lunex-http');
 
 const options = new LunexClientOptions();
 options.onRequestStart = (method, url, options) => {
@@ -20,7 +20,7 @@ options.onRequestError = (error) => {
   console.error(`[Request Error]`, error);
 };
 
-const client = new RestClient('https://api.example.com', {}, options);
+const client = new LunexClient('https://api.example.com', {}, options);
 
 (async () => {
   try {

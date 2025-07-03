@@ -1,14 +1,14 @@
 /**
  * Example: POST request with JSON body (TypeScript)
  */
-import RestClient from 'lunex-http';
+import LunexClient from 'lunex-http';
 
 interface User {
   name: string;
   email: string;
 }
 
-const client = new RestClient('https://api.example.com');
+const client = new LunexClient('https://api.example.com');
 
 async function run(): Promise<void> {
   try {

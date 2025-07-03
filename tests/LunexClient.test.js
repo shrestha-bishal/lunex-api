@@ -1,21 +1,21 @@
 /**
- * @file RestClient.test.js
- * @description Comprehensive Jest test suite for RestClient.js
+ * @file LunexClient.test.js
+ * @description Comprehensive Jest test suite for LunexClient.js
  */
 import { jest } from '@jest/globals';
-import { RestClient } from '../dist/esm';
+import { LunexClient } from '../dist/esm';
 import fetchMock from 'jest-fetch-mock';
 
 beforeEach(() => {
   fetchMock.resetMocks();
 });
 
-describe('RestClient', () => {
+describe('LunexClient', () => {
     const baseUrl = 'https://api.example.com';
     let client;
 
     beforeEach(() => {
-        client = new RestClient(baseUrl, {
+        client = new LunexClient(baseUrl, {
             maxRetries: 2,
             delayFn: async () => {}
         });
@@ -136,7 +136,7 @@ describe('RestClient', () => {
             });
         });
 
-        const shortTimeoutClient = new RestClient(baseUrl, {}, { timeout: 10 });
+        const shortTimeoutClient = new LunexClient(baseUrl, {}, { timeout: 10 });
         const request = shortTimeoutClient.getAsync('slow');
 
         jest.advanceTimersByTime(20);

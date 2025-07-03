@@ -1,9 +1,9 @@
 /**
  * Example: Handling request timeouts (CJS)
  */
-const { RestClient } = require('lunex-http');
+const { LunexClient } = require('lunex-http');
 
-const client = new RestClient('https://api.example.com', {}, {
+const client = new LunexClient('https://api.example.com', {}, {
   timeout: 3000, // 3 seconds
 });
 

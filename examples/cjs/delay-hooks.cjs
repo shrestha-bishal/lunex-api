@@ -6,7 +6,7 @@
  * to log HTTP request activity.
  */
 
-const { RestClient, LunexClientOptions } = require('lunex-http');
+const { LunexClient, LunexClientOptions } = require('lunex-http');
 
 // Custom delay function for retry logging
 const customDelay = async (ms) => {
@@ -33,7 +33,7 @@ options.onRequestError = (error) => {
   console.error(`[Request Error]`, error);
 };
 
-const client = new RestClient('https://api.example.com', {}, options);
+const client = new LunexClient('https://api.example.com', {}, options);
 
 // Make a GET request
 (async () => {

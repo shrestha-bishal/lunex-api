@@ -9,13 +9,13 @@ export default {
     {
       file: 'dist/umd/rest-client.umd.js',
       format: 'umd',
-      name: 'RestClient',
+      name: 'LunexClient',
       sourcemap: true
     },
     {
       file: 'dist/umd/rest-client.umd.min.js',
       format: 'umd',
-      name: 'RestClient',
+      name: 'LunexClient',
       sourcemap: true,
       plugins: [terser()]
     }

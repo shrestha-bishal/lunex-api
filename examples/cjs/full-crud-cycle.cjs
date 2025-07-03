@@ -1,13 +1,13 @@
 /**
- * Example: Full CRUD cycle using RestClient
+ * Example: Full CRUD cycle using LunexClient
  *
  * This script demonstrates creating, reading, updating, and deleting a user resource
  * via RESTful API endpoints.
  */
 
-const { RestClient } = require('lunex-http');
+const { LunexClient } = require('lunex-http');
 
-const client = new RestClient('https://api.example.com');
+const client = new LunexClient('https://api.example.com');
 
 (async () => {
   try {

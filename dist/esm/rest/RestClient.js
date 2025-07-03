@@ -17,26 +17,26 @@ function _assertClassBrand(e, t, n) { if ("function" == typeof e ? e === t : e.h
 import { buildUrl, appendQueryParams } from "../utils/url-utils";
 import { exponentialBackoff } from "../utils/delay-utils";
 import LunexClientOptions from "./LunexClientOptions";
-var _RestClient_brand = /*#__PURE__*/new WeakSet();
+var _LunexClient_brand = /*#__PURE__*/new WeakSet();
 /**
- * RestClient provides a clean abstraction to interact with RESTful APIs using HTTP methods.
+ * LunexClient provides a clean abstraction to interact with RESTful APIs using HTTP methods.
  * Supports GET, POST, PUT, DELETE, PATCH with JSON and text response handling.
  * Allows custom headers including Authorization and API keys.
  * Supports request timeout and optional retry for transient errors.
  */
-export var RestClient = /*#__PURE__*/function () {
+export var LunexClient = /*#__PURE__*/function () {
   /**
-   * Creates an instance of RestClient.
+   * Creates an instance of LunexClient.
    * 
    * @param baseUrl - The base URL for all API requests (e.g., "https://api.example.com").
    * @param defaultHeaders - Default HTTP headers to include with every request.
    * @param options - Configuration options for request behavior such as timeout, retries, and hooks.
    */
-  function RestClient(baseUrl) {
+  function LunexClient(baseUrl) {
     var _options$timeout, _options$maxRetries, _options$delayFn;
     var defaultHeaders = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : {};
     var _options = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : new LunexClientOptions();
-    _classCallCheck(this, RestClient);
+    _classCallCheck(this, LunexClient);
     /**
      * Internal request method using fetch API with timeout and retry.
      * @private
@@ -48,7 +48,7 @@ export var RestClient = /*#__PURE__*/function () {
      * @param {AbortController|null} [controller=null] - Optional controller to cancel the request.
      * @returns {Promise<Object|string|null>}
      */
-    _classPrivateMethodInitSpec(this, _RestClient_brand);
+    _classPrivateMethodInitSpec(this, _LunexClient_brand);
     if (!baseUrl || typeof baseUrl !== "string") {
       throw new TypeError("Base URL must be a non-empty string");
     }
@@ -77,7 +77,7 @@ export var RestClient = /*#__PURE__*/function () {
    * Update default headers (e.g., to set Authorization or API key).
    * @param headers - Headers to merge with existing defaults.
    */
-  return _createClass(RestClient, [{
+  return _createClass(LunexClient, [{
     key: "setHeaders",
     value: function setHeaders(headers) {
       this.defaultHeaders = _objectSpread(_objectSpread({}, this.defaultHeaders), headers);
@@ -110,7 +110,7 @@ export var RestClient = /*#__PURE__*/function () {
               controller = _args.length > 3 && _args[3] !== undefined ? _args[3] : null;
               urlWithQuery = appendQueryParams(routeParam, queryParams);
               _context.n = 1;
-              return _assertClassBrand(_RestClient_brand, this, _request).call(this, "GET", urlWithQuery, null, headers, 0, controller);
+              return _assertClassBrand(_LunexClient_brand, this, _request).call(this, "GET", urlWithQuery, null, headers, 0, controller);
             case 1:
               return _context.a(2, _context.v);
           }
@@ -146,7 +146,7 @@ export var RestClient = /*#__PURE__*/function () {
               data = _args2.length > 1 ? _args2[1] : undefined;
               headers = _args2.length > 2 && _args2[2] !== undefined ? _args2[2] : {};
               controller = _args2.length > 3 && _args2[3] !== undefined ? _args2[3] : null;
-              return _context2.a(2, _assertClassBrand(_RestClient_brand, this, _request).call(this, "POST", routeParam, data, headers, 0, controller));
+              return _context2.a(2, _assertClassBrand(_LunexClient_brand, this, _request).call(this, "POST", routeParam, data, headers, 0, controller));
           }
         }, _callee2, this);
       }));
@@ -180,7 +180,7 @@ export var RestClient = /*#__PURE__*/function () {
               data = _args3.length > 1 ? _args3[1] : undefined;
               headers = _args3.length > 2 && _args3[2] !== undefined ? _args3[2] : {};
               controller = _args3.length > 3 && _args3[3] !== undefined ? _args3[3] : null;
-              return _context3.a(2, _assertClassBrand(_RestClient_brand, this, _request).call(this, "PUT", routeParam, data, headers, 0, controller));
+              return _context3.a(2, _assertClassBrand(_LunexClient_brand, this, _request).call(this, "PUT", routeParam, data, headers, 0, controller));
           }
         }, _callee3, this);
       }));
@@ -214,7 +214,7 @@ export var RestClient = /*#__PURE__*/function () {
               data = _args4.length > 1 ? _args4[1] : undefined;
               headers = _args4.length > 2 && _args4[2] !== undefined ? _args4[2] : {};
               controller = _args4.length > 3 && _args4[3] !== undefined ? _args4[3] : null;
-              return _context4.a(2, _assertClassBrand(_RestClient_brand, this, _request).call(this, "PATCH", routeParam, data, headers, 0, controller));
+              return _context4.a(2, _assertClassBrand(_LunexClient_brand, this, _request).call(this, "PATCH", routeParam, data, headers, 0, controller));
           }
         }, _callee4, this);
       }));
@@ -245,7 +245,7 @@ export var RestClient = /*#__PURE__*/function () {
               routeParam = _args5.length > 0 && _args5[0] !== undefined ? _args5[0] : null;
               headers = _args5.length > 1 && _args5[1] !== undefined ? _args5[1] : {};
               controller = _args5.length > 2 && _args5[2] !== undefined ? _args5[2] : null;
-              return _context5.a(2, _assertClassBrand(_RestClient_brand, this, _request).call(this, "DELETE", routeParam, null, headers, 0, controller));
+              return _context5.a(2, _assertClassBrand(_LunexClient_brand, this, _request).call(this, "DELETE", routeParam, null, headers, 0, controller));
           }
         }, _callee5, this);
       }));
@@ -336,7 +336,7 @@ function _request2() {
           _context6.n = 3;
           return this.delayFn(waitTime);
         case 3:
-          return _context6.a(2, _assertClassBrand(_RestClient_brand, this, _request).call(this, method, routeParam, data, headers, retryCount + 1, externalController));
+          return _context6.a(2, _assertClassBrand(_LunexClient_brand, this, _request).call(this, method, routeParam, data, headers, retryCount + 1, externalController));
         case 4:
           errorText = "HTTP ".concat(_response.status, " - ").concat(_response.statusText);
           responseContentType = (_response.headers.get("content-type") || "").toLowerCase();
@@ -414,4 +414,4 @@ function _request2() {
   }));
   return _request2.apply(this, arguments);
 }
-export default RestClient;
+export default LunexClient;

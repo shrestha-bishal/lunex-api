@@ -7,7 +7,7 @@ function _classCallCheck(a, n) { if (!(a instanceof n)) throw new TypeError("Can
 import { shouldRetry as defaultShouldRetry } from "../policies/retry-policy";
 import { delay as defaultDelay } from "../utils/delay-utils";
 /**
- * Configuration options for the RestClient.
+ * Configuration options for the LunexClient.
  * 
  * Enables customization of:
  * - Request timeout duration (in milliseconds).

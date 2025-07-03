@@ -1,9 +1,9 @@
 /**
  * Example: PUT request to update a resource (ESM)
  */
-import RestClient from 'lunex-http';
+import LunexClient from 'lunex-http';
 
-const client = new RestClient('https://api.example.com');
+const client = new LunexClient('https://api.example.com');
 
 async function run() {
   try {

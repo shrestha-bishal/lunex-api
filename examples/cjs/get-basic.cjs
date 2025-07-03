@@ -1,10 +1,10 @@
 /**
- * Example: Simple GET request with RestClient (CJS)
+ * Example: Simple GET request with LunexClient (CJS)
  * Fetch a list of resources without query parameters.
  */
-const { RestClient } = require('lunex-http');
+const { LunexClient } = require('lunex-http');
 
-const client = new RestClient('https://api.example.com', {
+const client = new LunexClient('https://api.example.com', {
   Authorization: 'Bearer YOUR_TOKEN',
 });
 

@@ -1,15 +1,15 @@
 /**
- * Example: Using X-Client-ID header with RestClient
+ * Example: Using X-Client-ID header with LunexClient
  *
  * Demonstrates how to include a custom X-Client-ID header in all requests.
  * This is useful for client identification in analytics, rate limiting,
  * or custom middleware implementations on the API server.
  */
 
-import RestClient from 'lunex-http';
+import LunexClient from 'lunex-http';
 
-// Initialize the RestClient with the base API URL
-const client = new RestClient('https://api.example.com');
+// Initialize the LunexClient with the base API URL
+const client = new LunexClient('https://api.example.com');
 
 // Set the X-Client-ID header globally
 client.setHeaders({

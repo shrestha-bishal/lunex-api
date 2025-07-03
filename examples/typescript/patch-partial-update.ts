@@ -1,13 +1,13 @@
 /**
  * Example: PATCH request to partially update a resource (TypeScript)
  */
-import RestClient from 'lunex-http';
+import LunexClient from 'lunex-http';
 
 interface UserPatch {
   email?: string;
 }
 
-const client = new RestClient('https://api.example.com');
+const client = new LunexClient('https://api.example.com');
 
 async function run(): Promise<void> {
   try {

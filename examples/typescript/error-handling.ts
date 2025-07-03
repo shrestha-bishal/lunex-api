@@ -1,13 +1,13 @@
 /**
- * Example: Graceful error handling with RestClient
+ * Example: Graceful error handling with LunexClient
  *
  * Shows how to catch errors, access HTTP status codes, and read error details
  * returned from the API in the error's \`details\` property.
  */
 
-import RestClient from 'lunex-http';
+import LunexClient from 'lunex-http';
 
-const client = new RestClient('https://api.example.com');
+const client = new LunexClient('https://api.example.com');
 
 (async () => {
   try {
