@@ -1,10 +1,10 @@
 # lunex-http
 
-![npm](https://img.shields.io/npm/v/lunex-client)
-![License](https://img.shields.io/npm/l/lunex-client)
+![npm](https://img.shields.io/npm/v/lunex-http)
+![License](https://img.shields.io/npm/l/lunex-http)
 ![TypeScript](https://img.shields.io/badge/built%20with-TypeScript-blue)
-![Downloads](https://img.shields.io/npm/dm/lunex-client)
-[![npm](https://img.shields.io/badge/npm-View%20Package-red?logo=npm&logoColor=white&style=flat-square)](https://www.npmjs.com/package/lunex-client)
+![Downloads](https://img.shields.io/npm/dm/lunex-http)
+[![npm](https://img.shields.io/badge/npm-View%20Package-red?logo=npm&logoColor=white&style=flat-square)](https://www.npmjs.com/package/lunex-http)
 
 A lightweight, extensible, and strongly-typed HTTP client for interacting with RESTful APIs with support for `GET`, `POST`, `PATCH`, `PUT`, `DELETE` in JavaScript and TypeScript. Built on the Fetch API, with built-in support for retries, timeouts, and request lifecycle hooks.
 
@@ -69,7 +69,7 @@ This package is primarily designed for Node.js and modern bundler environments. 
 ### 1. Using with Bundlers (Recommended)
 If your project uses bundlers like Vite, Webpack, Rollup, or similar tools, you can import the package using its npm name:
 ```ts
-import LunexClient from 'lunex-client';
+import LunexClient from 'lunex-http';
 
 const client = new LunexClient('https://api.example.com', {
   Authorization: 'Bearer YOUR_TOKEN'
@@ -79,10 +79,10 @@ const client = new LunexClient('https://api.example.com', {
 Your bundler will resolve the package from node_modules, process it according to your configuration, and bundle it appropriately for browser compatibility.
 
 ### 2. Using Native ES Modules in Browsers Without Bundlers
-Browsers do not natively resolve bare module specifiers like lunex-client. To use the package directly as a module in browsers without a bundler, import it from an ESM CDN such as esm.sh:
+Browsers do not natively resolve bare module specifiers like lunex-http. To use the package directly as a module in browsers without a bundler, import it from an ESM CDN such as esm.sh:
 
 ```ts
-import LunexClient from 'https://esm.sh/lunex-client';
+import LunexClient from 'https://esm.sh/lunex-http';
 
 const client = new LunexClient('https://api.example.com', {
   Authorization: 'Bearer YOUR_TOKEN'
@@ -108,20 +108,20 @@ For environments without ESM support or bundlers, the library offers a UMD build
 
 ```html
 <!-- jsDelivr CDN (latest version or specify version) -->
-<script src="https://cdn.jsdelivr.net/npm/lunex-client/dist/umd/lunex-http.umd.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/lunex-http/dist/umd/lunex-http.umd.js"></script>
 
 <!-- OR unpkg CDN -->
-<script src="https://unpkg.com/lunex-client/dist/umd/lunex-http.umd.js"></script>
+<script src="https://unpkg.com/lunex-http/dist/umd/lunex-http.umd.js"></script>
 ```
 
 > Local Usage
 - Install the package:
 ```bash
-npm install lunex-client
+npm install lunex-http
 ```
 - Copy the UMD bundle:
 ```bash
-cp node_modules/lunex-client/build/umd/lunex-http.umd.js ./public/umd/
+cp node_modules/lunex-http/build/umd/lunex-http.umd.js ./public/umd/
 ```
 - Include it in your HTML:
 ```html
@@ -133,7 +133,7 @@ cp node_modules/lunex-client/build/umd/lunex-http.umd.js ./public/umd/
 <!DOCTYPE html>
 <html>
   <head>
-    <script src="https://cdn.jsdelivr.net/npm/lunex-client/dist/umd/lunex-http.umd.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/lunex-http/dist/umd/lunex-http.umd.js"></script>
   </head>
   <body>
     <div id="output">Loading...</div>
@@ -156,7 +156,7 @@ The UMD build exposes the LunexClient and LunexClientOptions as global variables
 
 ## Basic Usage
 ```ts
-import LunexClient, { LunexClientOptions } from 'lunex-client';
+import LunexClient, { LunexClientOptions } from 'lunex-http';
 
 const client = new LunexClient('https://api.example.com', {
   Authorization: 'Bearer YOUR_TOKEN'
@@ -184,7 +184,7 @@ await client.getAsync('delayed-endpoint', {}, {}, controller);
 
 ### CommonJS Usage (for older Node.js projects)
 ```js
-const { LunexClient, LunexClientOptions } = require('lunex-client');
+const { LunexClient, LunexClientOptions } = require('lunex-http');
 
 const client = new LunexClient('https://api.example.com', {
   Authorization: 'Bearer YOUR_TOKEN'
@@ -196,7 +196,7 @@ const client = new LunexClient('https://api.example.com', {
 The library includes a default retry policy that retries on HTTP status codes 502, 503, and 504. You can override this behavior with a custom function:
 
 ```ts
-import LunexClient, { LunexClientOptions, shouldRetry } from 'lunex-client';
+import LunexClient, { LunexClientOptions, shouldRetry } from 'lunex-http';
 
 const options = new LunexClientOptions({
   maxRetries: 3,
@@ -213,7 +213,7 @@ const options = new LunexClientOptions({
 Hooks allow you to monitor and log request behavior:
 
 ```ts
-import LunexClient, { LunexClientOptions } from 'lunex-client';
+import LunexClient, { LunexClientOptions } from 'lunex-http';
 
 const options = new LunexClientOptions({
   onRequestStart: (method, url) => {
@@ -241,7 +241,7 @@ You can find example usage and demos in the [examples](https://github.com/shrest
 
 ## Playground Examples
 
-To facilitate practical understanding and experimentation, this repository includes a collection of playground projects showcasing various usage scenarios of the `lunex-client` library.
+To facilitate practical understanding and experimentation, this repository includes a collection of playground projects showcasing various usage scenarios of the `lunex-http` library.
 
 These examples encompass multiple technologies and environments—ranging from vanilla JavaScript and TypeScript to modern build tools—and are organized within the [`playground/`](./playground) directory.
 
@@ -256,9 +256,9 @@ Each playground project contains specific setup instructions. The typical workfl
 
 ## Troubleshooting / FAQ
 **Q:** I get a module resolution error when importing in the browser.  
-**A:** Browsers do not natively resolve bare module specifiers (like `lunex-client`). Use a bundler or import via an ESM CDN like [esm.sh](https://esm.sh).
+**A:** Browsers do not natively resolve bare module specifiers (like `lunex-http`). Use a bundler or import via an ESM CDN like [esm.sh](https://esm.sh).
 ```ts
-import LunexClient from 'https://esm.sh/lunex-client';
+import LunexClient from 'https://esm.sh/lunex-http';
 
 const client = new LunexClient('https://api.example.com');
 const response = await client.getAsync('users');
@@ -291,7 +291,7 @@ Example `package.json` snippet:
 **Q:** How can I configure timeout or retry behavior?
 **A:** When creating the client, use LunexClientOptions to customize these settings. For example:
 ```ts
-import LunexClient, { LunexClientOptions } from 'lunex-client';
+import LunexClient, { LunexClientOptions } from 'lunex-http';
 
 const options = new LunexClientOptions({
   timeout: 10000,      // timeout in milliseconds
@@ -315,7 +315,7 @@ await client.getAsync('endpoint', {}, {}, controller.signal);
 **Q:** Can I use this library with React, Vue, or other frontend frameworks?
 **A:** Yes. In React or Vue projects, import the package normally and use a bundler to handle module resolution. For example, in a React component:
 ```ts
-import LunexClient from 'lunex-client';
+import LunexClient from 'lunex-http';
 
 const client = new LunexClient('https://api.example.com');
 
@@ -337,7 +337,7 @@ Contributions are welcome! Please follow these steps:
 For bug reports or feature requests, please open an issue on GitHub.
 
 ## Funding & Sponsorship
-`lunex-client` is an open-source project maintained with care to deliver a reliable, type-safe HTTP client for JavaScript and TypeScript developers. If you or your organization find this project valuable, please consider supporting its development. Your sponsorship helps sustain long-term maintenance, improve features and documentation, and keep the library freely available to the community. As a token of appreciation, sponsors may have their logo and link featured in the project README and documentation site. Priority support and early access to planned features may also be offered where appropriate.
+`lunex-http` is an open-source project maintained with care to deliver a reliable, type-safe HTTP client for JavaScript and TypeScript developers. If you or your organization find this project valuable, please consider supporting its development. Your sponsorship helps sustain long-term maintenance, improve features and documentation, and keep the library freely available to the community. As a token of appreciation, sponsors may have their logo and link featured in the project README and documentation site. Priority support and early access to planned features may also be offered where appropriate.
 
 ### Support options:
 [![GitHub Sponsors](https://img.shields.io/badge/GitHub%20Sponsors-Become%20a%20Sponsor-blueviolet?logo=githubsponsors&style=flat-square)](https://github.com/sponsors/shrestha-bishal)
@@ -349,6 +349,6 @@ For bug reports or feature requests, please open an issue on GitHub.
 This project is licensed under the [MIT License](./LICENSE).
 
 © 2025 Bishal Shrestha, All rights reserved
-[![npm](https://img.shields.io/badge/npm-View%20Package-red?logo=npm&logoColor=white&style=flat-square)](https://www.npmjs.com/package/lunex-client)
+[![npm](https://img.shields.io/badge/npm-View%20Package-red?logo=npm&logoColor=white&style=flat-square)](https://www.npmjs.com/package/lunex-http)
 
 ![banner](https://github.com/user-attachments/assets/a469cdd5-eb0b-499d-b23e-dc4ba5748cc3)
