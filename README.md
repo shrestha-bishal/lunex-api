@@ -1,4 +1,4 @@
-# lunex-api
+# lunex-http
 
 ![npm](https://img.shields.io/npm/v/lunex-client)
 ![License](https://img.shields.io/npm/l/lunex-client)
@@ -12,7 +12,7 @@ The library is fully compatible with CommonJS (CJS), ES module (ESM) and Univers
 
 > **Note:** Versions `1.0.0` to `1.0.5` were reserved for internal testing and were not published to npm. Public releases start from `1.0.6`.
 
-[View Package in npm](https://www.npmjs.com/package/lunex-api)
+[View Package in npm](https://www.npmjs.com/package/lunex-http)
 
 ## Features
 
@@ -29,7 +29,7 @@ The library is fully compatible with CommonJS (CJS), ES module (ESM) and Univers
 ## Installation
 
 ```bash
-npm install lunex-api
+npm install lunex-http
 ```
 
 ## API Reference
