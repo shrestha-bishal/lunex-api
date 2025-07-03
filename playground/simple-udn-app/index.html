@@ -23,9 +23,9 @@
 <script>
     const output = document.getElementById('output');
     const RestClient = window.RestClient.default;
-    const RestClientOptions = window.RestClient.RestClientOptions;
+    const LunexClientOptions = window.RestClient.LunexClientOptions;
 
-    const options = new RestClientOptions({ 
+    const options = new LunexClientOptions({ 
         timeout: 8000,
         maxRetries: 2
     });

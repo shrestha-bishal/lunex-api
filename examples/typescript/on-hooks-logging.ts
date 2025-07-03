@@ -5,9 +5,9 @@
  * to log detailed information about HTTP requests and responses.
  */
 
-import RestClient, { RestClientOptions } from 'lunex-http';
+import RestClient, { LunexClientOptions } from 'lunex-http';
 
-const options = new RestClientOptions();
+const options = new LunexClientOptions();
 options.onRequestStart = (method: string, url: string, options: RequestInit) => {
   console.log(`[Request Start] ${method} ${url}`, options);
 };

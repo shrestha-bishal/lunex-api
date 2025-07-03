@@ -5,14 +5,14 @@
  * HTTP statuses such as 429 (Too Many Requests).
  */
 
-import RestClient, { RestClientOptions } from 'lunex-http';
+import RestClient, { LunexClientOptions } from 'lunex-http';
 
 const customShouldRetry = (response) => {
   // Retry on 502, 503, 504, or 429
   return [502, 503, 504, 429].includes(response.status);
 };
 
-const options = new RestClientOptions();
+const options = new LunexClientOptions();
 options.maxRetries = 3;
 options.shouldRetry = customShouldRetry;
 

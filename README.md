@@ -139,9 +139,9 @@ cp node_modules/lunex-client/build/umd/rest-client.umd.js ./public/umd/
     <div id="output">Loading...</div>
     <script>
       const RestClient = window.RestClient.default;
-      const RestClientOptions = window.RestClient.RestClientOptions;
+      const LunexClientOptions = window.RestClient.LunexClientOptions;
 
-      const client = new RestClient('https://jsonplaceholder.typicode.com', {}, new RestClientOptions({ timeout: 8000 }));
+      const client = new RestClient('https://jsonplaceholder.typicode.com', {}, new LunexClientOptions({ timeout: 8000 }));
 
       client.getAsync('users').then(users => {
         document.getElementById('output').innerHTML = `<pre>${JSON.stringify(users, null, 2)}</pre>`;
@@ -152,15 +152,15 @@ cp node_modules/lunex-client/build/umd/rest-client.umd.js ./public/umd/
   </body>
 </html>
 ```
-The UMD build exposes the RestClient and RestClientOptions as global variables via window.RestClient.
+The UMD build exposes the RestClient and LunexClientOptions as global variables via window.RestClient.
 
 ## Basic Usage
 ```ts
-import RestClient, { RestClientOptions } from 'lunex-client';
+import RestClient, { LunexClientOptions } from 'lunex-client';
 
 const client = new RestClient('https://api.example.com', {
   Authorization: 'Bearer YOUR_TOKEN'
-}, new RestClientOptions({
+}, new LunexClientOptions({
   timeout: 8000,
   maxRetries: 2
 }));
@@ -184,11 +184,11 @@ await client.getAsync('delayed-endpoint', {}, {}, controller);
 
 ### CommonJS Usage (for older Node.js projects)
 ```js
-const { RestClient, RestClientOptions } = require('lunex-client');
+const { RestClient, LunexClientOptions } = require('lunex-client');
 
 const client = new RestClient('https://api.example.com', {
   Authorization: 'Bearer YOUR_TOKEN'
-}, new RestClientOptions({ timeout: 5000 }));
+}, new LunexClientOptions({ timeout: 5000 }));
 ```
 
 ## Advanced Usage with Configuration Options (Retry Policy and Lifecycle Hooks) 
@@ -196,9 +196,9 @@ const client = new RestClient('https://api.example.com', {
 The library includes a default retry policy that retries on HTTP status codes 502, 503, and 504. You can override this behavior with a custom function:
 
 ```ts
-import RestClient, { RestClientOptions, shouldRetry } from 'lunex-client';
+import RestClient, { LunexClientOptions, shouldRetry } from 'lunex-client';
 
-const options = new RestClientOptions({
+const options = new LunexClientOptions({
   maxRetries: 3,
   shouldRetry: (response) => {
     // Retry on network errors or specific status codes
@@ -213,9 +213,9 @@ const options = new RestClientOptions({
 Hooks allow you to monitor and log request behavior:
 
 ```ts
-import RestClient, { RestClientOptions } from 'lunex-client';
+import RestClient, { LunexClientOptions } from 'lunex-client';
 
-const options = new RestClientOptions({
+const options = new LunexClientOptions({
   onRequestStart: (method, url) => {
     console.log(`Starting request: ${method} ${url}`);
   },
@@ -289,11 +289,11 @@ Example `package.json` snippet:
 **A:** No, this library depends on modern browser features such as the Fetch API and native ES modules. For older browsers, you must add polyfills and transpile your code using tools like Babel.
 
 **Q:** How can I configure timeout or retry behavior?
-**A:** When creating the client, use RestClientOptions to customize these settings. For example:
+**A:** When creating the client, use LunexClientOptions to customize these settings. For example:
 ```ts
-import RestClient, { RestClientOptions } from 'lunex-client';
+import RestClient, { LunexClientOptions } from 'lunex-client';
 
-const options = new RestClientOptions({
+const options = new LunexClientOptions({
   timeout: 10000,      // timeout in milliseconds
   maxRetries: 5        // number of retry attempts
 });

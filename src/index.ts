@@ -6,10 +6,10 @@
  * @module lunex-http
  * @author Bishal Shrestha <https://github.com/shrestha-bishal>
  */
-import RestClient from './rest/RestClient'
+import RestClient from './rest/LunexClient'
 
 export { shouldRetry } from './policies/retry-policy'
-export { default as RestClient } from './rest/RestClient'
-export { default as RestClientOptions } from './rest/RestClientOptions'
+export { default as RestClient } from './rest/LunexClient'
+export { default as LunexClientOptions } from './rest/LunexClientOptions'
 
 export default RestClient;

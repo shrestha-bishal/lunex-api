@@ -1,12 +1,12 @@
 /**
- * Example: Using custom delay function with RestClientOptions (ESM)
+ * Example: Using custom delay function with LunexClientOptions (ESM)
  *
  * Demonstrates how to configure a custom delayFn for retry backoff,
  * along with onRequestStart, onRequestEnd, and onRequestError hooks
  * to log HTTP request activity.
  */
 
-import RestClient, { RestClientOptions } from 'lunex-http';
+import RestClient, { LunexClientOptions } from 'lunex-http';
 
 // Custom delay function for retry logging
 const customDelay = async (ms) => {
@@ -15,7 +15,7 @@ const customDelay = async (ms) => {
 };
 
 // Configure options
-const options = new RestClientOptions({
+const options = new LunexClientOptions({
   timeout: 5000,
   maxRetries: 3,
   delayFn: customDelay,

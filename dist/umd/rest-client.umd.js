@@ -104,9 +104,9 @@
      * - Retry decision logic based on the response.
      * - Lifecycle hooks to tap into request start, completion, and error events.
      */
-    class RestClientOptions {
+    class LunexClientOptions {
         /**
-         * Creates an instance of RestClientOptions.
+         * Creates an instance of LunexClientOptions.
          *
          * @param {Object} [config={}] Configuration options.
          * @param {number} [config.timeout=10000] Timeout in milliseconds.
@@ -143,7 +143,7 @@
          * @param defaultHeaders - Default HTTP headers to include with every request.
          * @param options - Configuration options for request behavior such as timeout, retries, and hooks.
          */
-        constructor(baseUrl, defaultHeaders = {}, options = new RestClientOptions()) {
+        constructor(baseUrl, defaultHeaders = {}, options = new LunexClientOptions()) {
             _RestClient_instances.add(this);
             if (!baseUrl || typeof baseUrl !== "string") {
                 throw new TypeError("Base URL must be a non-empty string");
@@ -315,7 +315,7 @@
      */
 
     exports.RestClient = RestClient;
-    exports.RestClientOptions = RestClientOptions;
+    exports.LunexClientOptions = LunexClientOptions;
     exports.default = RestClient;
     exports.shouldRetry = shouldRetry;
 

@@ -3,7 +3,7 @@ type OnRequestStartFn = (method: string, url: string, options: RequestInit) => v
 type OnRequestEndFn = (response: Response) => void;
 type OnRequestErrorFn = (error: any) => void;
 type DelayFn = (ms: number) => Promise<void>;
-interface RestClientOptionsConfig {
+interface LunexClientOptionsConfig {
     timeout?: number;
     maxRetries?: number;
     shouldRetry?: ShouldRetryFn;
@@ -21,7 +21,7 @@ interface RestClientOptionsConfig {
  * - Retry decision logic based on the response.
  * - Lifecycle hooks to tap into request start, completion, and error events.
  */
-declare class RestClientOptions {
+declare class LunexClientOptions {
     /** Request timeout in milliseconds before aborting. Default: 10000 (10 seconds) */
     timeout: number;
     /** Maximum retry attempts on transient errors (like HTTP 502, 503, 504). Default: 0 (no retries) */
@@ -53,7 +53,7 @@ declare class RestClientOptions {
      */
     onRequestError: OnRequestErrorFn | null;
     /**
-     * Creates an instance of RestClientOptions.
+     * Creates an instance of LunexClientOptions.
      *
      * @param {Object} [config={}] Configuration options.
      * @param {number} [config.timeout=10000] Timeout in milliseconds.
@@ -64,6 +64,6 @@ declare class RestClientOptions {
      * @param {OnRequestEndFn|null} [config.onRequestEnd] Hook after request end.
      * @param {OnRequestErrorFn|null} [config.onRequestError] Hook on request error.
      */
-    constructor({ timeout, maxRetries, shouldRetry, delayFn, onRequestStart, onRequestEnd, onRequestError }?: RestClientOptionsConfig);
+    constructor({ timeout, maxRetries, shouldRetry, delayFn, onRequestStart, onRequestEnd, onRequestError }?: LunexClientOptionsConfig);
 }
-export default RestClientOptions;
+export default LunexClientOptions;

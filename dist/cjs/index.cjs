@@ -9,10 +9,10 @@ Object.defineProperty(exports, "RestClient", {
     return _RestClient["default"];
   }
 });
-Object.defineProperty(exports, "RestClientOptions", {
+Object.defineProperty(exports, "LunexClientOptions", {
   enumerable: true,
   get: function get() {
-    return _RestClientOptions["default"];
+    return _LunexClientOptions["default"];
   }
 });
 exports["default"] = void 0;
@@ -24,7 +24,7 @@ Object.defineProperty(exports, "shouldRetry", {
 });
 var _RestClient = _interopRequireDefault(require("./rest/RestClient.cjs"));
 var _retryPolicy = require("./policies/retry-policy.cjs");
-var _RestClientOptions = _interopRequireDefault(require("./rest/RestClientOptions.cjs"));
+var _LunexClientOptions = _interopRequireDefault(require("./rest/LunexClientOptions.cjs"));
 function _interopRequireDefault(e) { return e && e.__esModule ? e : { "default": e }; }
 /**
  * Main entry point for the Rest Client library.

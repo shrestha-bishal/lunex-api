@@ -62,9 +62,9 @@ Serve your project with a static server (e.g., npx serve .) for best compatibili
 
             // Access classes from the UMD global object
             const RestClient = window.RestClient.default;
-            const RestClientOptions = window.RestClient.RestClientOptions;
+            const LunexClientOptions = window.RestClient.LunexClientOptions;
 
-            const options = new RestClientOptions({
+            const options = new LunexClientOptions({
             timeout: 8000,
             maxRetries: 2,
             });

@@ -21,7 +21,7 @@ function _classCallCheck(a, n) { if (!(a instanceof n)) throw new TypeError("Can
  * - Retry decision logic based on the response.
  * - Lifecycle hooks to tap into request start, completion, and error events.
  */
-var RestClientOptions = /*#__PURE__*/_createClass(/** Request timeout in milliseconds before aborting. Default: 10000 (10 seconds) */
+var LunexClientOptions = /*#__PURE__*/_createClass(/** Request timeout in milliseconds before aborting. Default: 10000 (10 seconds) */
 
 /** Maximum retry attempts on transient errors (like HTTP 502, 503, 504). Default: 0 (no retries) */
 
@@ -52,7 +52,7 @@ var RestClientOptions = /*#__PURE__*/_createClass(/** Request timeout in millise
  */
 
 /**
- * Creates an instance of RestClientOptions.
+ * Creates an instance of LunexClientOptions.
  * 
  * @param {Object} [config={}] Configuration options.
  * @param {number} [config.timeout=10000] Timeout in milliseconds.
@@ -63,7 +63,7 @@ var RestClientOptions = /*#__PURE__*/_createClass(/** Request timeout in millise
  * @param {OnRequestEndFn|null} [config.onRequestEnd] Hook after request end.
  * @param {OnRequestErrorFn|null} [config.onRequestError] Hook on request error.
  */
-function RestClientOptions() {
+function LunexClientOptions() {
   var _ref = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {},
     _ref$timeout = _ref.timeout,
     timeout = _ref$timeout === void 0 ? 10000 : _ref$timeout,
@@ -79,7 +79,7 @@ function RestClientOptions() {
     onRequestEnd = _ref$onRequestEnd === void 0 ? null : _ref$onRequestEnd,
     _ref$onRequestError = _ref.onRequestError,
     onRequestError = _ref$onRequestError === void 0 ? null : _ref$onRequestError;
-  _classCallCheck(this, RestClientOptions);
+  _classCallCheck(this, LunexClientOptions);
   this.timeout = timeout;
   this.maxRetries = maxRetries;
   this.shouldRetry = shouldRetry;
@@ -88,4 +88,4 @@ function RestClientOptions() {
   this.onRequestEnd = onRequestEnd;
   this.onRequestError = onRequestError;
 });
-var _default = exports["default"] = RestClientOptions;
+var _default = exports["default"] = LunexClientOptions;

@@ -1,12 +1,12 @@
 /**
- * Example: Using custom delay function with RestClientOptions
+ * Example: Using custom delay function with LunexClientOptions
  *
  * Demonstrates how to configure a custom delayFn for retry backoff,
  * along with onRequestStart, onRequestEnd, and onRequestError hooks
  * to log HTTP request activity.
  */
 
-const { RestClient, RestClientOptions } = require('lunex-http');
+const { RestClient, LunexClientOptions } = require('lunex-http');
 
 // Custom delay function for retry logging
 const customDelay = async (ms) => {
@@ -15,7 +15,7 @@ const customDelay = async (ms) => {
 };
 
 // Configure options
-const options = new RestClientOptions({
+const options = new LunexClientOptions({
   timeout: 5000,
   maxRetries: 3,
   delayFn: customDelay,

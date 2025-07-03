@@ -16,7 +16,7 @@ function _checkPrivateRedeclaration(e, t) { if (t.has(e)) throw new TypeError("C
 function _assertClassBrand(e, t, n) { if ("function" == typeof e ? e === t : e.has(t)) return arguments.length < 3 ? t : n; throw new TypeError("Private element is not present on this object"); }
 import { buildUrl, appendQueryParams } from "../utils/url-utils";
 import { exponentialBackoff } from "../utils/delay-utils";
-import RestClientOptions from "./RestClientOptions";
+import LunexClientOptions from "./LunexClientOptions";
 var _RestClient_brand = /*#__PURE__*/new WeakSet();
 /**
  * RestClient provides a clean abstraction to interact with RESTful APIs using HTTP methods.
@@ -35,7 +35,7 @@ export var RestClient = /*#__PURE__*/function () {
   function RestClient(baseUrl) {
     var _options$timeout, _options$maxRetries, _options$delayFn;
     var defaultHeaders = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : {};
-    var _options = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : new RestClientOptions();
+    var _options = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : new LunexClientOptions();
     _classCallCheck(this, RestClient);
     /**
      * Internal request method using fetch API with timeout and retry.

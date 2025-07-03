@@ -1,4 +1,4 @@
-import RestClientOptions from "./RestClientOptions";
+import LunexClientOptions from "./LunexClientOptions";
 type Headers = Record<string, string>;
 type QueryParams = Record<string, string | number | boolean | undefined | null>;
 /**
@@ -25,7 +25,7 @@ export declare class RestClient {
      * @param defaultHeaders - Default HTTP headers to include with every request.
      * @param options - Configuration options for request behavior such as timeout, retries, and hooks.
      */
-    constructor(baseUrl: string, defaultHeaders?: Headers, options?: RestClientOptions);
+    constructor(baseUrl: string, defaultHeaders?: Headers, options?: LunexClientOptions);
     /**
      * Update default headers (e.g., to set Authorization or API key).
      * @param headers - Headers to merge with existing defaults.
