@@ -1,4 +1,4 @@
-# LunexClient UMD Vanilla JavaScript Example
+# Lunex HTTP UMD Vanilla JavaScript Example
 This example demonstrates how to use the lunex-http library’s UMD bundle in a simple HTML page with vanilla JavaScript.You can load the UMD bundle either via CDN or locally from the installed package.
 
 ### Using the UMD bundle via CDN

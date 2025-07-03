@@ -1,5 +1,5 @@
 /**
- * Main entry point for the Rest Client library.
+ * Main entry point for the Lunex HTTP library.
  *
  * Exports core classes for API interaction, payload handling, and utility functions.
  * 
