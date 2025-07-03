@@ -1,10 +1,10 @@
-# lunex-api
+# @bishal-shrestha/rest-client
 
-![npm](https://img.shields.io/npm/v/lunex-api)
-![License](https://img.shields.io/npm/l/lunex-api)
+![npm](https://img.shields.io/npm/v/@bishal-shrestha/rest-client)
+![License](https://img.shields.io/npm/l/@bishal-shrestha/rest-client)
 ![TypeScript](https://img.shields.io/badge/built%20with-TypeScript-blue)
-![Downloads](https://img.shields.io/npm/dm/lunex-api)
-[![npm](https://img.shields.io/badge/npm-View%20Package-red?logo=npm&logoColor=white&style=flat-square)](https://www.npmjs.com/package/lunex-api)
+![Downloads](https://img.shields.io/npm/dm/@bishal-shrestha/rest-client)
+[![npm](https://img.shields.io/badge/npm-View%20Package-red?logo=npm&logoColor=white&style=flat-square)](https://www.npmjs.com/package/@bishal-shrestha/rest-client)
 
 A lightweight, extensible, and strongly-typed HTTP client for interacting with RESTful APIs with support for `GET`, `POST`, `PATCH`, `PUT`, `DELETE` in JavaScript and TypeScript. Built on the Fetch API, with built-in support for retries, timeouts, and request lifecycle hooks.
 
@@ -12,7 +12,7 @@ The library is fully compatible with CommonJS (CJS), ES module (ESM) and Univers
 
 > **Note:** Versions `1.0.0` to `1.0.5` were reserved for internal testing and were not published to npm. Public releases start from `1.0.6`.
 
-[View Package in npm](https://www.npmjs.com/package/lunex-api)
+[View Package in npm](https://www.npmjs.com/package/@bishal-shrestha/rest-client)
 
 ## Features
 
@@ -29,7 +29,7 @@ The library is fully compatible with CommonJS (CJS), ES module (ESM) and Univers
 ## Installation
 
 ```bash
-npm install lunex-api
+npm install @bishal-shrestha/rest-client
 ```
 
 ## API Reference
@@ -69,7 +69,7 @@ This package is primarily designed for Node.js and modern bundler environments. 
 ### 1. Using with Bundlers (Recommended)
 If your project uses bundlers like Vite, Webpack, Rollup, or similar tools, you can import the package using its npm name:
 ```ts
-import RestClient from 'lunex-api';
+import RestClient from '@bishal-shrestha/rest-client';
 
 const client = new RestClient('https://api.example.com', {
   Authorization: 'Bearer YOUR_TOKEN'
@@ -79,10 +79,10 @@ const client = new RestClient('https://api.example.com', {
 Your bundler will resolve the package from node_modules, process it according to your configuration, and bundle it appropriately for browser compatibility.
 
 ### 2. Using Native ES Modules in Browsers Without Bundlers
-Browsers do not natively resolve bare module specifiers like lunex-api. To use the package directly as a module in browsers without a bundler, import it from an ESM CDN such as esm.sh:
+Browsers do not natively resolve bare module specifiers like @bishal-shrestha/rest-client. To use the package directly as a module in browsers without a bundler, import it from an ESM CDN such as esm.sh:
 
 ```ts
-import RestClient from 'https://esm.sh/lunex-api';
+import RestClient from 'https://esm.sh/@bishal-shrestha/rest-client';
 
 const client = new RestClient('https://api.example.com', {
   Authorization: 'Bearer YOUR_TOKEN'
@@ -108,20 +108,20 @@ For environments without ESM support or bundlers, the library offers a UMD build
 
 ```html
 <!-- jsDelivr CDN (latest version or specify version) -->
-<script src="https://cdn.jsdelivr.net/npm/lunex-api/dist/umd/rest-client.umd.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@bishal-shrestha/rest-client/dist/umd/rest-client.umd.js"></script>
 
 <!-- OR unpkg CDN -->
-<script src="https://unpkg.com/lunex-api/dist/umd/rest-client.umd.js"></script>
+<script src="https://unpkg.com/@bishal-shrestha/rest-client/dist/umd/rest-client.umd.js"></script>
 ```
 
 > Local Usage
 - Install the package:
 ```bash
-npm install lunex-api
+npm install @bishal-shrestha/rest-client
 ```
 - Copy the UMD bundle:
 ```bash
-cp node_modules/lunex-api/build/umd/rest-client.umd.js ./public/umd/
+cp node_modules/@bishal-shrestha/rest-client/build/umd/rest-client.umd.js ./public/umd/
 ```
 - Include it in your HTML:
 ```html
@@ -133,7 +133,7 @@ cp node_modules/lunex-api/build/umd/rest-client.umd.js ./public/umd/
 <!DOCTYPE html>
 <html>
   <head>
-    <script src="https://cdn.jsdelivr.net/npm/lunex-api/dist/umd/rest-client.umd.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@bishal-shrestha/rest-client/dist/umd/rest-client.umd.js"></script>
   </head>
   <body>
     <div id="output">Loading...</div>
@@ -156,7 +156,7 @@ The UMD build exposes the RestClient and RestClientOptions as global variables v
 
 ## Basic Usage
 ```ts
-import RestClient, { RestClientOptions } from 'lunex-api';
+import RestClient, { RestClientOptions } from '@bishal-shrestha/rest-client';
 
 const client = new RestClient('https://api.example.com', {
   Authorization: 'Bearer YOUR_TOKEN'
@@ -184,7 +184,7 @@ await client.getAsync('delayed-endpoint', {}, {}, controller);
 
 ### CommonJS Usage (for older Node.js projects)
 ```js
-const { RestClient, RestClientOptions } = require('lunex-api');
+const { RestClient, RestClientOptions } = require('@bishal-shrestha/rest-client');
 
 const client = new RestClient('https://api.example.com', {
   Authorization: 'Bearer YOUR_TOKEN'
@@ -196,7 +196,7 @@ const client = new RestClient('https://api.example.com', {
 The library includes a default retry policy that retries on HTTP status codes 502, 503, and 504. You can override this behavior with a custom function:
 
 ```ts
-import RestClient, { RestClientOptions, shouldRetry } from 'lunex-api';
+import RestClient, { RestClientOptions, shouldRetry } from '@bishal-shrestha/rest-client';
 
 const options = new RestClientOptions({
   maxRetries: 3,
@@ -213,7 +213,7 @@ const options = new RestClientOptions({
 Hooks allow you to monitor and log request behavior:
 
 ```ts
-import RestClient, { RestClientOptions } from 'lunex-api';
+import RestClient, { RestClientOptions } from '@bishal-shrestha/rest-client';
 
 const options = new RestClientOptions({
   onRequestStart: (method, url) => {
@@ -241,7 +241,7 @@ You can find example usage and demos in the [examples](https://github.com/shrest
 
 ## Playground Examples
 
-To facilitate practical understanding and experimentation, this repository includes a collection of playground projects showcasing various usage scenarios of the `lunex-api` library.
+To facilitate practical understanding and experimentation, this repository includes a collection of playground projects showcasing various usage scenarios of the `@bishal-shrestha/rest-client` library.
 
 These examples encompass multiple technologies and environments—ranging from vanilla JavaScript and TypeScript to modern build tools—and are organized within the [`playground/`](./playground) directory.
 
@@ -256,9 +256,9 @@ Each playground project contains specific setup instructions. The typical workfl
 
 ## Troubleshooting / FAQ
 **Q:** I get a module resolution error when importing in the browser.  
-**A:** Browsers do not natively resolve bare module specifiers (like `lunex-api`). Use a bundler or import via an ESM CDN like [esm.sh](https://esm.sh).
+**A:** Browsers do not natively resolve bare module specifiers (like `@bishal-shrestha/rest-client`). Use a bundler or import via an ESM CDN like [esm.sh](https://esm.sh).
 ```ts
-import RestClient from 'https://esm.sh/lunex-api';
+import RestClient from 'https://esm.sh/@bishal-shrestha/rest-client';
 
 const client = new RestClient('https://api.example.com');
 const response = await client.getAsync('users');
@@ -291,7 +291,7 @@ Example `package.json` snippet:
 **Q:** How can I configure timeout or retry behavior?
 **A:** When creating the client, use RestClientOptions to customize these settings. For example:
 ```ts
-import RestClient, { RestClientOptions } from 'lunex-api';
+import RestClient, { RestClientOptions } from '@bishal-shrestha/rest-client';
 
 const options = new RestClientOptions({
   timeout: 10000,      // timeout in milliseconds
@@ -315,7 +315,7 @@ await client.getAsync('endpoint', {}, {}, controller.signal);
 **Q:** Can I use this library with React, Vue, or other frontend frameworks?
 **A:** Yes. In React or Vue projects, import the package normally and use a bundler to handle module resolution. For example, in a React component:
 ```ts
-import RestClient from 'lunex-api';
+import RestClient from '@bishal-shrestha/rest-client';
 
 const client = new RestClient('https://api.example.com');
 
@@ -337,7 +337,7 @@ Contributions are welcome! Please follow these steps:
 For bug reports or feature requests, please open an issue on GitHub.
 
 ## Funding & Sponsorship
-`lunex-api` is an open-source project maintained with care to deliver a reliable, type-safe HTTP client for JavaScript and TypeScript developers. If you or your organization find this project valuable, please consider supporting its development. Your sponsorship helps sustain long-term maintenance, improve features and documentation, and keep the library freely available to the community. As a token of appreciation, sponsors may have their logo and link featured in the project README and documentation site. Priority support and early access to planned features may also be offered where appropriate.
+`@bishal-shrestha/rest-client` is an open-source project maintained with care to deliver a reliable, type-safe HTTP client for JavaScript and TypeScript developers. If you or your organization find this project valuable, please consider supporting its development. Your sponsorship helps sustain long-term maintenance, improve features and documentation, and keep the library freely available to the community. As a token of appreciation, sponsors may have their logo and link featured in the project README and documentation site. Priority support and early access to planned features may also be offered where appropriate.
 
 ### Support options:
 [![GitHub Sponsors](https://img.shields.io/badge/GitHub%20Sponsors-Become%20a%20Sponsor-blueviolet?logo=githubsponsors&style=flat-square)](https://github.com/sponsors/shrestha-bishal)
@@ -349,6 +349,6 @@ For bug reports or feature requests, please open an issue on GitHub.
 This project is licensed under the [MIT License](./LICENSE).
 
 © 2025 Bishal Shrestha, All rights reserved
-[![npm](https://img.shields.io/badge/npm-View%20Package-red?logo=npm&logoColor=white&style=flat-square)](https://www.npmjs.com/package/lunex-api)
+[![npm](https://img.shields.io/badge/npm-View%20Package-red?logo=npm&logoColor=white&style=flat-square)](https://www.npmjs.com/package/@bishal-shrestha/rest-client)
 
 ![4da5c29c-7f0b-4cae-a28f-0152aa645567](https://github.com/user-attachments/assets/0aa91be4-9c89-45da-9087-c2c9acf74094)
