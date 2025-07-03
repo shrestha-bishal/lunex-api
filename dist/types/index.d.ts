@@ -3,7 +3,7 @@
  *
  * Exports core classes for API interaction, payload handling, and utility functions.
  *
- * @module @bishal-shrestha/rest-client
+ * @module lunex-http
  */
 import RestClient from './rest/RestClient';
 export { shouldRetry } from './policies/retry-policy';

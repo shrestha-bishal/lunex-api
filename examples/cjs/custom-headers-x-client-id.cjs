@@ -6,7 +6,7 @@
  * or custom middleware implementations on the API server.
  */
 
-const { RestClient } = require('@bishal-shrestha/rest-client');
+const { RestClient } = require('lunex-http');
 
 // Initialize the RestClient with the base API URL
 const client = new RestClient('https://api.example.com');

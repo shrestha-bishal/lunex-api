@@ -5,7 +5,7 @@
  * to log detailed information about HTTP requests and responses.
  */
 
-import RestClient, { RestClientOptions } from '@bishal-shrestha/rest-client';
+import RestClient, { RestClientOptions } from 'lunex-http';
 
 const options = new RestClientOptions();
 options.onRequestStart = (method: string, url: string, options: RequestInit) => {

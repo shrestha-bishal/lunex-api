@@ -5,7 +5,7 @@
  * returned from the API in the error's `details` property.
  */
 
-const { RestClient } = require('@bishal-shrestha/rest-client');
+const { RestClient } = require('lunex-http');
 
 const client = new RestClient('https://api.example.com');
 

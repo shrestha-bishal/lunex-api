@@ -5,7 +5,7 @@
  * This is commonly used in APIs that require simple token-based access.
  */
 
-import RestClient from '@bishal-shrestha/rest-client';
+import RestClient from 'lunex-http';
 
 // Initialize the client with the base URL of the API
 const client = new RestClient('https://api.example.com');

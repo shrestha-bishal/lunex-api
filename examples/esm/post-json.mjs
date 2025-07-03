@@ -2,7 +2,7 @@
  * Example: POST request with JSON body (ESM)
  * Create a new resource.
  */
-import RestClient from '@bishal-shrestha/rest-client';
+import RestClient from 'lunex-http';
 
 const client = new RestClient('https://api.example.com');
 

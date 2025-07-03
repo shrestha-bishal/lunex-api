@@ -1,5 +1,5 @@
 import './style.css'
-import RestClient from '@bishal-shrestha/rest-client'
+import RestClient from 'lunex-http'
 
 document.querySelector('#app').innerHTML = `Hello World`
 

@@ -3,7 +3,8 @@
  *
  * Exports core classes for API interaction, payload handling, and utility functions.
  * 
- * @module @bishal-shrestha/rest-client
+ * @module lunex-http
+ * @author Bishal Shrestha <https://github.com/shrestha-bishal>
  */
 import RestClient from './rest/RestClient'
 

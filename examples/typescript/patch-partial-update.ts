@@ -1,7 +1,7 @@
 /**
  * Example: PATCH request to partially update a resource (TypeScript)
  */
-import RestClient from '@bishal-shrestha/rest-client';
+import RestClient from 'lunex-http';
 
 interface UserPatch {
   email?: string;

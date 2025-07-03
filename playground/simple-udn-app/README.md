@@ -1,5 +1,5 @@
 # RestClient UMD Vanilla JavaScript Example
-This example demonstrates how to use the @bishal-shrestha/rest-client library’s UMD bundle in a simple HTML page with vanilla JavaScript.You can load the UMD bundle either via CDN or locally from the installed package.
+This example demonstrates how to use the lunex-http library’s UMD bundle in a simple HTML page with vanilla JavaScript.You can load the UMD bundle either via CDN or locally from the installed package.
 
 ### Using the UMD bundle via CDN
 - Include the RestClient UMD bundle from a CDN in your HTML.
@@ -7,22 +7,22 @@ This example demonstrates how to use the @bishal-shrestha/rest-client library’
 
 > jsDelivr CDN (specify version or omit for latest):
 ```html
-<script src="https://cdn.jsdelivr.net/npm/@bishal-shrestha/rest-client@version/dist/umd/rest-client.umd.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/lunex-http@version/dist/umd/rest-client.umd.js"></script>
 ```
 
 > unpkg CDN (latest version):
 ```html
-<script src="https://unpkg.com/@bishal-shrestha/rest-client/dist/umd/rest-client.umd.js"></script>
+<script src="https://unpkg.com/lunex-http/dist/umd/rest-client.umd.js"></script>
 ```
 
 ### Using the UMD bundle locally
 - Install the package via npm:
 ```bash
-npm install @bishal-shrestha/rest-client
+npm install lunex-http
 ```
 - Copy the UMD bundle from the package to your project’s public folder (adjust paths as needed):
 ```bash
-cp node_modules/@bishal-shrestha/rest-client/build/umd/rest-client.umd.js ./public/umd/
+cp node_modules/lunex-http/build/umd/rest-client.umd.js ./public/umd/
 ```
 
 - Reference the local UMD bundle in your HTML:
@@ -44,14 +44,14 @@ Serve your project with a static server (e.g., npx serve .) for best compatibili
 
         <!--
             - CDN:
-            <script src="https://unpkg.com/@bishal-shrestha/rest-client/dist/umd/rest-client.umd.js"></script>
+            <script src="https://unpkg.com/lunex-http/dist/umd/rest-client.umd.js"></script>
 
             - Local:
             <script src="umd/rest-client.umd.js"></script>
         -->
 
         <!-- CDN via jsdelivr -->
-        <script src="https://cdn.jsdelivr.net/npm/@bishal-shrestha/rest-client/dist/umd/rest-client.umd.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/lunex-http/dist/umd/rest-client.umd.js"></script>
     </head>
 
     <body>
@@ -87,7 +87,7 @@ Serve your project with a static server (e.g., npx serve .) for best compatibili
 ```
 
 ## Notes
-- The UMD build is located in the package under node_modules/@bishal-shrestha/rest-client/build/umd/rest-client.umd.js.
+- The UMD build is located in the package under node_modules/lunex-http/build/umd/rest-client.umd.js.
 - When using locally, copy this file into your public directory for static serving.
 - When using CDN, no local file is needed.
 - Replace API URLs and package version as needed.

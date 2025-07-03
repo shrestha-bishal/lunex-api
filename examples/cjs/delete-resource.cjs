@@ -1,7 +1,7 @@
 /**
  * Example: DELETE request to remove a resource (CJS)
  */
-const { RestClient } = require('@bishal-shrestha/rest-client');
+const { RestClient } = require('lunex-http');
 
 const client = new RestClient('https://api.example.com');
 

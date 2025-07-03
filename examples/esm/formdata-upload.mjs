@@ -6,7 +6,7 @@
  * as the browser will set the correct boundary automatically.
  */
 
-import RestClient from '@bishal-shrestha/rest-client';
+import RestClient from 'lunex-http';
 
 // Initialize RestClient
 const client = new RestClient('https://api.example.com');

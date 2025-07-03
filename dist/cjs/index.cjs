@@ -31,6 +31,6 @@ function _interopRequireDefault(e) { return e && e.__esModule ? e : { "default":
  *
  * Exports core classes for API interaction, payload handling, and utility functions.
  * 
- * @module @bishal-shrestha/rest-client
+ * @module lunex-http
  */
 var _default = exports["default"] = _RestClient["default"];

@@ -1,12 +1,12 @@
 # RestClient Vite with Vanilla Simple App Example
-This is a minimal vanilla JavaScript example demonstrating how to use the @bishal-shrestha/rest-client library inside a Vite project.
+This is a minimal vanilla JavaScript example demonstrating how to use the lunex-http library inside a Vite project.
 
 ## How to run this example
 - Make sure you have Node.js installed.
 - Install dependencies:
 ```
 npm install
-npm install @bishal-shrestha/rest-client
+npm install lunex-http
 ```
 - Run the development server:
 ```
@@ -21,7 +21,7 @@ npm run dev
 ## Example code snippet (src/main.js)
 ```js
 import './style.css'
-import RestClient from '@bishal-shrestha/rest-client'
+import RestClient from 'lunex-http'
 
 document.querySelector('#app').innerHTML = `Hello World`
 

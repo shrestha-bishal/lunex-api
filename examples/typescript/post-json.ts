@@ -1,7 +1,7 @@
 /**
  * Example: POST request with JSON body (TypeScript)
  */
-import RestClient from '@bishal-shrestha/rest-client';
+import RestClient from 'lunex-http';
 
 interface User {
   name: string;

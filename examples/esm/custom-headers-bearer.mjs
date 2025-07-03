@@ -5,7 +5,7 @@
  * for OAuth2 or JWT authentication schemes.
  */
 
-import RestClient from '@bishal-shrestha/rest-client';
+import RestClient from 'lunex-http';
 
 // Initialize the RestClient instance
 const client = new RestClient('https://api.example.com');

@@ -4,7 +4,7 @@
  * This shows how to handle APIs that return plain text instead of JSON.
  */
 
-import RestClient from '@bishal-shrestha/rest-client';
+import RestClient from 'lunex-http';
 
 const client = new RestClient('https://api.example.com');
 

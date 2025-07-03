@@ -6,7 +6,7 @@
  * as the browser will set the correct boundary automatically.
  */
 
-const { RestClient } = require('@bishal-shrestha/rest-client');
+const { RestClient } = require('lunex-http');
 const fs = require('fs');
 const path = require('path');
 

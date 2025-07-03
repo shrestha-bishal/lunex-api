@@ -311,7 +311,7 @@
      *
      * Exports core classes for API interaction, payload handling, and utility functions.
      *
-     * @module @bishal-shrestha/rest-client
+     * @module lunex-http
      */
 
     exports.RestClient = RestClient;

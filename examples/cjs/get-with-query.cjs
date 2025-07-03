@@ -2,7 +2,7 @@
  * Example: GET request with query parameters (CJS)
  * Fetch resources with query string parameters.
  */
-const { RestClient } = require('@bishal-shrestha/rest-client');
+const { RestClient } = require('lunex-http');
 
 const client = new RestClient('https://api.example.com');
 

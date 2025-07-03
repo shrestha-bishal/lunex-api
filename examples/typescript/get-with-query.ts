@@ -1,7 +1,7 @@
 /**
  * Example: GET request with query parameters (TypeScript)
  */
-import RestClient from '@bishal-shrestha/rest-client';
+import RestClient from 'lunex-http';
 
 const client = new RestClient('https://api.example.com');
 

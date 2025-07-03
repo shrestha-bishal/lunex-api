@@ -5,7 +5,7 @@
  * via RESTful API endpoints.
  */
 
-const { RestClient } = require('@bishal-shrestha/rest-client');
+const { RestClient } = require('lunex-http');
 
 const client = new RestClient('https://api.example.com');
 

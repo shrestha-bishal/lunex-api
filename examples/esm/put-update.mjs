@@ -1,7 +1,7 @@
 /**
  * Example: PUT request to update a resource (ESM)
  */
-import RestClient from '@bishal-shrestha/rest-client';
+import RestClient from 'lunex-http';
 
 const client = new RestClient('https://api.example.com');
 

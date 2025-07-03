@@ -12,6 +12,6 @@
     "vite": "^6.3.5"
   },
   "dependencies": {
-    "@bishal-shrestha/rest-client": "^1.0.6"
+    "lunex-http": "^1.0.6"
   }
 }

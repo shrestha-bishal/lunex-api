@@ -1,6 +1,6 @@
 # Contributing Guide
 
-Thank you for your interest in contributing to **@bishal-shrestha/rest-client**. This project values high-quality, reliable code and thoughtful collaboration. This guide outlines the standards and steps for reporting issues, contributing code, or improving documentation.
+Thank you for your interest in contributing to **lunex-http**. This project values high-quality, reliable code and thoughtful collaboration. This guide outlines the standards and steps for reporting issues, contributing code, or improving documentation.
 ---
 
 ## Getting Started
@@ -96,4 +96,4 @@ By contributing, you agree that your contributions will be licensed under the [M
 
 ---
 
-Thank you for contributing to **@bishal-shrestha/rest-client**.
+Thank you for contributing to **lunex-http**.

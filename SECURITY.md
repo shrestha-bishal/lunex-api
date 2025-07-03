@@ -2,7 +2,7 @@
 
 ## Supported Versions
 
-The following table outlines which versions of `@bishal-shrestha/rest-client` are currently supported with security updates.
+The following table outlines which versions of `lunex-http` are currently supported with security updates.
 
 | Version   | Supported          |
 |-----------|--------------------|
@@ -33,4 +33,4 @@ Please **do not** disclose security issues publicly until a patch has been relea
 
 ---
 
-Thank you for helping keep `@bishal-shrestha/rest-client` safe for everyone!
+Thank you for helping keep `lunex-http` safe for everyone!

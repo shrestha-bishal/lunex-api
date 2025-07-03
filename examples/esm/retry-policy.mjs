@@ -2,7 +2,7 @@
  * Example: Using retry logic with RestClient (ESM)
  * Demonstrates retries on transient errors.
  */
-import RestClient from '@bishal-shrestha/rest-client';
+import RestClient from 'lunex-http';
 
 const client = new RestClient('https://api.example.com', {}, {
   maxRetries: 3,

@@ -6,7 +6,7 @@
  * or custom middleware implementations on the API server.
  */
 
-import RestClient from '@bishal-shrestha/rest-client';
+import RestClient from 'lunex-http';
 
 // Initialize the RestClient with the base API URL
 const client = new RestClient('https://api.example.com');

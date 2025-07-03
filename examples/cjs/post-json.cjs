@@ -2,7 +2,7 @@
  * Example: POST request with JSON body (CJS)
  * Create a new resource.
  */
-const { RestClient } = require('@bishal-shrestha/rest-client');
+const { RestClient } = require('lunex-http');
 
 const client = new RestClient('https://api.example.com');
 

@@ -5,7 +5,7 @@
  * This is commonly used in APIs that require simple token-based access.
  */
 
-const { RestClient } = require('@bishal-shrestha/rest-client');
+const { RestClient } = require('lunex-http');
 
 // Initialize the client with the base URL of the API
 const client = new RestClient('https://api.example.com');

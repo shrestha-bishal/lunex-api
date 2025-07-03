@@ -5,7 +5,7 @@
  * for OAuth2 or JWT authentication schemes.
  */
 
-const { RestClient } = require('@bishal-shrestha/rest-client');
+const { RestClient } = require('lunex-http');
 
 // Initialize the RestClient instance
 const client = new RestClient('https://api.example.com');

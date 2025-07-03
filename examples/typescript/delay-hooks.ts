@@ -6,7 +6,7 @@
  * to log HTTP request activity.
  */
 
-import RestClient, { RestClientOptions } from '@bishal-shrestha/rest-client';
+import RestClient, { RestClientOptions } from 'lunex-http';
 
 // Custom delay function for retry logging
 const customDelay = async (ms: number): Promise<void> => {

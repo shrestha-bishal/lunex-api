@@ -6,7 +6,7 @@
  * to log HTTP request activity.
  */
 
-const { RestClient, RestClientOptions } = require('@bishal-shrestha/rest-client');
+const { RestClient, RestClientOptions } = require('lunex-http');
 
 // Custom delay function for retry logging
 const customDelay = async (ms) => {

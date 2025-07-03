@@ -5,7 +5,7 @@
  * HTTP statuses such as 429 (Too Many Requests).
  */
 
-const { RestClient, RestClientOptions } = require('@bishal-shrestha/rest-client');
+const { RestClient, RestClientOptions } = require('lunex-http');
 
 const customShouldRetry = (response) => {
   // Retry on 502, 503, 504, or 429

@@ -1,5 +1,5 @@
 # RestClient Vanilla JavaScript ESM CDN Simple App Example
-This is a minimal vanilla JavaScript example demonstrating how to use the @bishal-shrestha/rest-client library by importing it directly from an ESM CDN (esm.sh). It runs in modern browsers without bundlers or build tools.
+This is a minimal vanilla JavaScript example demonstrating how to use the lunex-http library by importing it directly from an ESM CDN (esm.sh). It runs in modern browsers without bundlers or build tools.
 
 ### How to run this example
 - Simply open the index.html file in a modern browser that supports ES modules.
@@ -13,7 +13,7 @@ Note: For full functionality (e.g., making API calls to your backend), serve the
 
 ### Example code snippet (main.js)
 ```js
-import RestClient from 'https://esm.sh/@bishal-shrestha/rest-client';
+import RestClient from 'https://esm.sh/lunex-http';
 
 const output = document.getElementById('output');
 

@@ -1,4 +1,4 @@
-import RestClient from 'https://esm.sh/@bishal-shrestha/rest-client';
+import RestClient from 'https://esm.sh/lunex-http';
 
 const output = document.getElementById('output');
 

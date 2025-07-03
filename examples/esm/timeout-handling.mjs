@@ -1,7 +1,7 @@
 /**
  * Example: Handling request timeouts (ESM)
  */
-import RestClient from '@bishal-shrestha/rest-client';
+import RestClient from 'lunex-http';
 
 const client = new RestClient('https://api.example.com', {}, {
   timeout: 3000, // 3 seconds
